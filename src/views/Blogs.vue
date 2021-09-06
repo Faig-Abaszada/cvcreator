@@ -30,6 +30,9 @@ export default {
         this.$store.commit('toggleEditPost', payload);
       }
     }
+  },
+  beforeDestroy() {
+    this.$store.commit('toggleEditPost', false);
   }
 }
 </script>
