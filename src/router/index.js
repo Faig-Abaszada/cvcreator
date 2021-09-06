@@ -10,11 +10,13 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+
   },
   {
     path: "/blogs",
     name: "Blogs",
     component: Blogs,
+
   },
 ];
 
@@ -23,5 +25,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+
 
 export default router;
