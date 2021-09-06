@@ -18,11 +18,6 @@ export default {
   components: {
     BlogCard
   },
-  data() {
-    return {
-
-    }
-  },
   computed: {
     sampleBlogCards() {
       return this.$store.state.sampleBlogCards;
@@ -32,7 +27,7 @@ export default {
         return this.$store.state.editPost;
       },
       set(payload) {
-        this.$store.commit('toogleEditPost', payload);
+        this.$store.commit('toggleEditPost', payload);
       }
     }
   }
