@@ -30,6 +30,9 @@ export default new Vuex.Store({
       state.editPost = payload;
       console.log(state.editPost);
     },
+    updateUser(state, payload) {
+      state.user = payload;
+    },
     setProfileInfo(state, doc) {
       state.profileId = doc.id;
       state.profileEmail = doc.data().email;
@@ -48,6 +51,7 @@ export default new Vuex.Store({
       const dbResult = await dataBase.get();
       commit("setProfileInfo", dbResult);
       commit("setProfileInitials");
+      console.log(dbResult);
     }
    },
   modules: {
