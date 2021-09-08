@@ -41,11 +41,9 @@
                   <p>Admin</p>
                 </router-link>
               </div>
-              <div class="option">
-                <router-link class="option" to="#">
+              <div @click="signOut" class="option">
                   <signOutIcon class="icon"/>
                   <p>Sign Out</p>
-                </router-link>
               </div>
             </div>
           </div>
@@ -75,6 +73,10 @@ import menuIcon from '../assets/Icons/bars-regular.svg';
 import userIcon from '../assets/Icons/user-alt-light.svg';
 import adminIcon from '../assets/Icons/user-crown-light.svg';
 import signOutIcon from '../assets/Icons/sign-out-alt-regular.svg';
+
+import firebase from "firebase/app";
+import "firebase/auth";
+
 export default {
   name: "Navigation",
   components: {
@@ -114,6 +116,10 @@ export default {
       if (e.target === this.$refs.profile) {
         this.profileMenu = !this.profileMenu;
       }
+    },
+    signOut() {
+      firebase.auth().signOut();
+      window.location.reload();
     }
   }
 }
