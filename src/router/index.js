@@ -5,6 +5,8 @@ import Blogs from "../views/Blogs";
 import Login from "../views/Login";
 import Register from "../views/Register";
 import ForgotPassword from "../views/ForgotPassword";
+import Profile from "../views/Profile";
+import Admin from "../views/Admin";
 
 Vue.use(VueRouter);
 
@@ -47,6 +49,22 @@ const routes = [
     component: ForgotPassword,
     meta: {
       title: "Forgot Password"
+    }
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
+    meta: {
+      title: "Profile"
+    }
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: Admin,
+    meta: {
+      title: "Admin"
     }
   },
 ];
