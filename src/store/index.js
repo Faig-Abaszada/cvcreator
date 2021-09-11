@@ -18,6 +18,7 @@ export default new Vuex.Store({
     ],
     editPost: null,
     user: null,
+    admin: null,
     profileEmail: null,
     profileFirstName: null,
     profileLastName: null,
@@ -39,6 +40,7 @@ export default new Vuex.Store({
       state.profileFirstName = doc.data().firstName;
       state.profileLastName = doc.data().lastName;
       state.profileUserName = doc.data().userName;
+      state.admin = doc.data().admin;
     },
     setProfileInitials(state) {
       state.profileInitials = state.profileFirstName.match(/(\b\S)?/g).join("") + state.profileLastName.match(/(\b\S)?/g).join("");

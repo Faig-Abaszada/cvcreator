@@ -32,6 +32,7 @@ export default {
         this.$store.commit("updateUser", user);
         if (user) {
           this.$store.dispatch("getCurrentUser");
+
           setTimeout(() => {
             console.log(this.$store.state.profileEmail);
           },2000)
