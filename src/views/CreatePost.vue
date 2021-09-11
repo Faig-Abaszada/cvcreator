@@ -22,7 +22,7 @@
     </div>
     <div class="blog-actions">
       <button>Publish Blog</button>
-      <router-link class="router-button" to="#">Post Preview</router-link>
+      <router-link class="router-button" :to="{ name: 'BlogPreview' }">Post Preview</router-link>
     </div>
   </div>
 </div>
@@ -71,7 +71,7 @@ export default {
       docRef.put(file).on(
           "state_change",
           (snapshot) => {
-
+            console.log(snapshot)
       }, (err) => {
         console.log(err);
       }, async () => {
