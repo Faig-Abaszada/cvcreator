@@ -96,8 +96,7 @@ export default new Vuex.Store({
             commit("setProfileInitials");
         },
         async getPost({ state }) {
-            const dataBase = await db.collection('blogPost')
-                .orderBy('date', 'desc');
+            const dataBase = await db.collection('blogPost').orderBy('date', 'desc');
             const dbResults = await dataBase.get();
             dbResults.forEach((doc) => {
                 if (!state.blogPosts.some(post => post.blogID === doc.id)) {
@@ -112,7 +111,7 @@ export default new Vuex.Store({
                 }
             });
             state.postLoaded = true;
-            console.log(state.blogPosts)
+            console.log(state.blogPosts);
         },
     },
     modules: {}
