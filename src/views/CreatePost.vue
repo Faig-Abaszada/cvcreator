@@ -114,6 +114,8 @@ export default {
             await this.$store.dispatch("getPost");
             this.loading = false;
             this.$router.push({name: 'ViewBlog', params: { blogid: dataBase.id } });
+            window.location.reload();
+
           }
           );
           return;

@@ -164,6 +164,9 @@ export default {
         this.$store.commit("newBlogPost", payload);
       }
     }
+  },
+  destroyed() {
+    window.location.reload();
   }
 }
 </script>
