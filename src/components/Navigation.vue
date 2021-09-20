@@ -1,91 +1,107 @@
 <template>
   <header>
-<!--    desktop menu-->
+    <!--    desktop menu-->
     <nav class="container">
-
       <div class="branding">
         <router-link class="header" to="/">
-          <img :src="logo" alt="">
+          <img :src="logo" alt="" />
         </router-link>
       </div>
 
       <div class="nav-links">
-        <ul v-show="!mobile ">
+        <ul v-show="!mobile">
           <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
           <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-          <router-link v-show="admin" class="link" to="#">Create CV</router-link>
-          <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }">Create Post</router-link>
-          <router-link v-show="!user" class="link" :to="{ name: 'Login' }">Login/Register </router-link>
+          <router-link v-show="admin" class="link" :to="{ name: 'CreateCv' }"
+            >Create CV</router-link
+          >
+          <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }"
+            >Create Post</router-link
+          >
+          <router-link v-show="!user" class="link" :to="{ name: 'Login' }"
+            >Login/Register
+          </router-link>
         </ul>
 
-        <div v-if="user" @click="toggleProfileMenu" class="profile" ref="profile">
+        <div
+          v-if="user"
+          @click="toggleProfileMenu"
+          class="profile"
+          ref="profile"
+        >
           <span>{{ this.$store.state.profileInitials }}</span>
           <div v-show="profileMenu" class="profile-menu">
             <div class="info">
               <p class="initials">{{ this.$store.state.profileInitials }}</p>
               <div class="right">
-                <p>{{ this.$store.state.profileFirstName }} {{this.$store.state.profileLastName }}</p>
+                <p>
+                  {{ this.$store.state.profileFirstName }}
+                  {{ this.$store.state.profileLastName }}
+                </p>
                 <p>{{ this.$store.state.profileUserName }}</p>
                 <p>{{ this.$store.state.profileEmail }}</p>
               </div>
             </div>
             <div class="options">
               <div class="option">
-                <router-link class="option" :to="{name: 'Profile'}">
-                  <userIcon class="icon"/>
+                <router-link class="option" :to="{ name: 'Profile' }">
+                  <userIcon class="icon" />
                   <p>Profile</p>
                 </router-link>
               </div>
               <div class="option" v-show="admin">
-                <router-link class="option" :to="{name: 'Admin'}">
-                  <adminIcon class="icon"/>
+                <router-link class="option" :to="{ name: 'Admin' }">
+                  <adminIcon class="icon" />
                   <p>Admin</p>
                 </router-link>
               </div>
               <div @click="signOut" class="option">
-                  <signOutIcon class="icon"/>
-                  <p>Sign Out</p>
+                <signOutIcon class="icon" />
+                <p>Sign Out</p>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
     </nav>
 
-<!--    mobile menu-->
-    <menuIcon @click="toggleMobileNav" class="menu-icon"  v-show="mobile" />
+    <!--    mobile menu-->
+    <menuIcon @click="toggleMobileNav" class="menu-icon" v-show="mobile" />
     <transition name="mobile-nav">
-      <ul class="mobile-nav" v-show="mobileNav" >
+      <ul class="mobile-nav" v-show="mobileNav">
         <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
         <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-        <router-link v-show="admin" class="link" to="#">Create CV</router-link>
-        <router-link v-show="admin"  class="link" :to="{ name: 'CreatePost' }">Create Post</router-link>
-        <router-link v-show="!user" class="link" :to="{ name: 'Login' }">Login/Register </router-link>
+        <router-link v-show="admin" class="link" :to="{ name: 'CreateCv' }"
+          >Create CV</router-link
+        >
+        <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }"
+          >Create Post</router-link
+        >
+        <router-link v-show="!user" class="link" :to="{ name: 'Login' }"
+          >Login/Register
+        </router-link>
       </ul>
     </transition>
-
   </header>
 </template>
 
 <script>
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
 import menuIcon from '../assets/Icons/bars-regular.svg';
 import userIcon from '../assets/Icons/user-alt-light.svg';
 import adminIcon from '../assets/Icons/user-crown-light.svg';
 import signOutIcon from '../assets/Icons/sign-out-alt-regular.svg';
 
-import firebase from "firebase/app";
-import "firebase/auth";
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default {
-  name: "Navigation",
+  name: 'Navigation',
   components: {
     menuIcon,
     userIcon,
     signOutIcon,
-    adminIcon
+    adminIcon,
   },
   data() {
     return {
@@ -94,7 +110,7 @@ export default {
       mobile: null, // screen is mobile or not
       mobileNav: null, //  if mobile nav is open
       windownWidth: null,
-    }
+    };
   },
   created() {
     window.addEventListener('resize', this.checkScreen); // ekran olculeri deyisen kimi checkscreen ishe dussun
@@ -103,7 +119,7 @@ export default {
   methods: {
     checkScreen() {
       this.windownWidth = window.innerWidth;
-      if(this.windownWidth <= 750) {
+      if (this.windownWidth <= 750) {
         this.mobile = true;
         return;
       }
@@ -122,7 +138,7 @@ export default {
     signOut() {
       firebase.auth().signOut();
       window.location.reload();
-    }
+    },
   },
   computed: {
     user() {
@@ -130,16 +146,17 @@ export default {
     },
     admin() {
       return this.$store.state.admin;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 header {
   background-color: #ffffff;
   padding: 0 25px;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 99;
 
   .link {
@@ -161,7 +178,6 @@ header {
       align-items: center;
 
       .header {
-
         img {
           width: 100px;
         }
@@ -208,7 +224,8 @@ header {
           right: 0;
           width: 250px;
           background-color: #303030;
-          box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
           .info {
             display: flex;
@@ -294,13 +311,13 @@ header {
 
     .link {
       padding: 15px 0;
-      color:  #fff;
+      color: #fff;
     }
   }
 
   .mobile-nav-enter-active,
   .mobile-nav-leave-active {
-     transition: all 1s ease ;
+    transition: all 1s ease;
   }
 
   // transition burda sehifeden kenar baslayir
@@ -308,13 +325,12 @@ header {
     transform: translateX(-250px);
   }
   // transition burda sehife icinde bitir
-  .mobile-nav-enter-to  {
+  .mobile-nav-enter-to {
     transform: translateX(0);
   }
   // transition burda sehifeden geri cekilir yani menu geri qayidir
   .mobile-nav-leave-to {
     transform: translateX(-250px);
   }
-
 }
 </style>

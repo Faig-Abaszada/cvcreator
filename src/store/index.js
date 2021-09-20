@@ -140,3 +140,20 @@ export default new Vuex.Store({
     },
     modules: {}
 })
+
+// database
+
+// service cloud.firestore {
+// 	match /databases/{database}/documents {
+//   	match /users/{userID} {
+//     	allow read;
+//       allow write: if request.auth.uid != null;
+//     }
+//     match /blogPosts/{postID} {
+//     allow read;
+//     allow write: if request.auth.token.admin == true;
+//     }
+//   }
+// }
+
+// storage

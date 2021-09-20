@@ -11,6 +11,8 @@ import CreatePost from "../views/CreatePost";
 import BlogPreview from "../components/BlogPreview";
 import ViewBlog from "../views/ViewBlog";
 import EditBlog from "../views/EditBlog";
+import CreateCv from "../views/CreateCv";
+
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -120,6 +122,15 @@ const routes = [{
             title: "Edit Blog Post",
             requiresAuth: true,
             requiresAdmin: true,
+        }
+    },
+    {
+        path: "create-cv",
+        name: "CreateCv",
+        component: CreateCv,
+        meta: {
+            title: "Create CV",
+            // requiresAuth: true
         }
     },
 ];
