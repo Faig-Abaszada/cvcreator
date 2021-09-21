@@ -1,46 +1,50 @@
 <template>
-  <div class="create-cv">
-    <div class="container">
-      <h2 class="page-title">Create CV</h2>
-      <div class="create-cv-header">
-        <div class="top">
-          <p class="complete-percent"><span>25%</span> Profile completeness</p>
-          <p class="section-percent">
-            <span>+10%</span>Add profile summary<QuestionIcon
-              class="info-icon"
-            />
-          </p>
+  <div class="create-cv-wrapper">
+    <div class="create-cv">
+      <div class="container">
+        <h2 class="page-title">Create CV</h2>
+        <div class="create-cv-header">
+          <div class="top">
+            <p class="complete-percent">
+              <span>25%</span> Profile completeness
+            </p>
+            <p class="section-percent">
+              <span>+10%</span>Add profile summary<QuestionIcon
+                class="info-icon"
+              />
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="cv-info-fill">
-        <!-- section start -->
-        <div class="section">
-          <h2 class="section-title">Personal Details</h2>
+        <div class="cv-info-fill">
+          <!-- section start -->
+          <div class="section">
+            <h2 class="section-title">
+              Personal Details<EditIcon class="icon" />
+            </h2>
 
-          <div class="inputs">
-            <div class="input">
-              <label for="job-title">Wanted Job Title</label>
-              <input type="text" id="job-title" />
+            <div class="inputs">
+              <div class="input">
+                <label for="job-title">Wanted Job Title</label>
+                <input type="text" id="job-title" />
+              </div>
+              <div class="input">
+                <input type="file" id="upload-photo" />
+                <label for="upload-photo" class="upload-photo"
+                  ><UserIcon />Upload photo</label
+                >
+              </div>
             </div>
-            <div class="input">
-              <input type="file" id="upload-photo" />
-              <label for="upload-photo" class="upload-photo"
-                ><UserIcon />Upload photo</label
-              >
+            <div class="inputs">
+              <div class="input">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" />
+              </div>
+              <div class="input">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" />
+              </div>
             </div>
-          </div>
-          <div class="inputs">
-            <div class="input">
-              <label for="first-name">First Name</label>
-              <input type="text" id="first-name" />
-            </div>
-            <div class="input">
-              <label for="last-name">Last Name</label>
-              <input type="text" id="last-name" />
-            </div>
-          </div>
-          <div class="more-cv-info-fill">
             <div class="inputs">
               <div class="input">
                 <label for="email">Email</label>
@@ -51,153 +55,160 @@
                 <input type="text" id="phone" />
               </div>
             </div>
-            <div class="inputs">
-              <div class="input">
-                <label for="country">Country</label>
-                <input type="text" id="country" />
+            <transition name="additional-details">
+              <div v-show="showAdditionalDetails" class="additional-details">
+                <div class="inputs">
+                  <div class="input">
+                    <label for="country">Country</label>
+                    <input type="text" id="country" />
+                  </div>
+                  <div class="input">
+                    <label for="city">City</label>
+                    <input type="text" id="city" />
+                  </div>
+                </div>
+                <div class="inputs">
+                  <div class="input">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" />
+                  </div>
+                  <div class="input">
+                    <label for="postal-code">Postal Code</label>
+                    <input type="text" id="postal-code" />
+                  </div>
+                </div>
+                <div class="inputs">
+                  <div class="input">
+                    <label for="driving-license">Drivin Lisense</label>
+                    <input type="text" id="driving-license" />
+                  </div>
+                  <div class="input">
+                    <label for="nationality">Nationality</label>
+                    <input type="text" id="nationality" />
+                  </div>
+                </div>
+                <div class="inputs">
+                  <div class="input">
+                    <label for="place-of-birth">Place Of Birth</label>
+                    <input type="text" id="place-of-birth" />
+                  </div>
+                  <div class="input">
+                    <label for="date-of-birth">Date Of Birth</label>
+                    <input type="text" id="date-of-birth" />
+                  </div>
+                </div>
               </div>
-              <div class="input">
-                <label for="city">City</label>
-                <input type="text" id="city" />
-              </div>
+            </transition>
+            <button
+              class="section-btn"
+              @click="showAdditionalDetails = !showAdditionalDetails"
+            >
+              Edit Additional Details<ArrowIcon class="icon" />
+            </button>
+          </div>
+          <!-- section end -->
+          <!-- section start  -->
+          <div class="section">
+            <h2 class="section-title">
+              Professional Summary<EditIcon class="icon" />
+            </h2>
+            <h4 class="section-subtitle">
+              Include 2-3 clear sentences about your overall experience
+            </h4>
+            <div class="editor">
+              <vue-editor
+                :editorOptions="editorSettings"
+                v-model="blogHTML"
+                useCustomImageHandler
+                @image-added="imageHandler"
+                :editorToolbar="customToolbar"
+              />
             </div>
-            <div class="inputs">
-              <div class="input">
-                <label for="address">Address</label>
-                <input type="text" id="address" />
+          </div>
+          <!-- section end -->
+          <!-- section start  -->
+          <div class="section">
+            <h2 class="section-title">
+              <MoveIcon class="icon move-icon" />Employment History<EditIcon
+                class="icon"
+              />
+            </h2>
+            <h4 class="section-subtitle">
+              Include your last 10 years of relevant experience and dates in
+              this section. List your most recent position first.
+            </h4>
+            <button class="section-btn">
+              <PlusIcon class="icon" /> Add employment
+            </button>
+          </div>
+          <!-- section end -->
+          <!-- section start  -->
+          <div class="section">
+            <h2 class="section-title">
+              <MoveIcon class="icon move-icon" />Education<EditIcon
+                class="icon"
+              />
+            </h2>
+            <h4 class="section-subtitle">
+              If relevant, include your most recent educational achievments and
+              the dates here.
+            </h4>
+            <button class="section-btn">
+              <PlusIcon class="icon" /> Add education
+            </button>
+          </div>
+          <!-- section end -->
+          <!-- section start  -->
+          <div class="section">
+            <h2 class="section-title">
+              <MoveIcon class="icon move-icon" />Websites & Social
+              Links<EditIcon class="icon" />
+            </h2>
+            <h4 class="section-subtitle">
+              You can add links to websites you want hiring managers to see!
+              Perhaps it will be a link to you portfolio. LinkedIn profile.
+            </h4>
+            <button class="section-btn">
+              <PlusIcon class="icon" /> Add link
+            </button>
+          </div>
+          <!-- section end -->
+          <!-- section start  -->
+          <div class="section">
+            <h2 class="section-title">
+              <MoveIcon class="icon move-icon" />Skills<EditIcon class="icon" />
+            </h2>
+            <h4 class="section-subtitle">
+              You can add links to websites you want hiring managers to see!
+              Perhaps it will be a link to you portfolio. LinkedIn profile.
+            </h4>
+            <button class="section-btn">
+              <PlusIcon class="icon" /> Add skill
+            </button>
+          </div>
+          <!-- section end -->
+          <!-- section start  -->
+          <div class="section">
+            <h2 class="section-title">Add Section</h2>
+            <div class="more-section">
+              <div>
+                <p><CustomSecIcon />Custom Section</p>
+                <p><ActivitiesSecIcon />Extra-curricular Activities</p>
+                <p><HobbiesSecIcon />Hobbies</p>
+                <p><ReferencesSecIcon />References</p>
               </div>
-              <div class="input">
-                <label for="postal-code">Postal Code</label>
-                <input type="text" id="postal-code" />
-              </div>
-            </div>
-            <div class="inputs">
-              <div class="input">
-                <label for="driving-license">Drivin Lisense</label>
-                <input type="text" id="driving-license" />
-              </div>
-              <div class="input">
-                <label for="nationality">Nationality</label>
-                <input type="text" id="nationality" />
-              </div>
-            </div>
-            <div class="inputs">
-              <div class="input">
-                <label for="place-of-birth">Place Of Birth</label>
-                <input type="text" id="place-of-birth" />
-              </div>
-              <div class="input">
-                <label for="date-of-birth">Date Of Birth</label>
-                <input type="text" id="date-of-birth" />
+              <div>
+                <p><CoursesSecIcon />Courses</p>
+                <p><InternSecIcon />Internships</p>
+                <p><LangsSecIcon />Languages</p>
               </div>
             </div>
           </div>
-          <button class="section-btn">
-            Edit Additional Details<ArrowIcon class="icon" />
-          </button>
+          <!-- section end -->
         </div>
-        <!-- section end -->
-        <!-- section start  -->
-        <div class="section">
-          <h2 class="section-title">
-            Professional Summary<EditIcon class="icon" />
-          </h2>
-          <h4 class="section-subtitle">
-            Include 2-3 clear sentences about your overall experience
-          </h4>
-          <div class="editor">
-            <vue-editor
-              :editorOptions="editorSettings"
-              v-model="blogHTML"
-              useCustomImageHandler
-              @image-added="imageHandler"
-              :editorToolbar="customToolbar"
-            />
-          </div>
-        </div>
-        <!-- section end -->
-        <!-- section start  -->
-        <div class="section">
-          <h2 class="section-title">
-            <MoveIcon class="icon move-icon" />Employment History<EditIcon
-              class="icon"
-            />
-          </h2>
-          <h4 class="section-subtitle">
-            Include your last 10 years of relevant experience and dates in this
-            section. List your most recent position first.
-          </h4>
-          <button class="section-btn">
-            <PlusIcon class="icon" /> Add employment
-          </button>
-        </div>
-        <!-- section end -->
-        <!-- section start  -->
-        <div class="section">
-          <h2 class="section-title">
-            <MoveIcon class="icon move-icon" />Education<EditIcon
-              class="icon"
-            />
-          </h2>
-          <h4 class="section-subtitle">
-            If relevant, include your most recent educational achievments and
-            the dates here.
-          </h4>
-          <button class="section-btn">
-            <PlusIcon class="icon" /> Add education
-          </button>
-        </div>
-        <!-- section end -->
-        <!-- section start  -->
-        <div class="section">
-          <h2 class="section-title">
-            <MoveIcon class="icon move-icon" />Websites & Social Links<EditIcon
-              class="icon"
-            />
-          </h2>
-          <h4 class="section-subtitle">
-            You can add links to websites you want hiring managers to see!
-            Perhaps it will be a link to you portfolio. LinkedIn profile.
-          </h4>
-          <button class="section-btn">
-            <PlusIcon class="icon" /> Add link
-          </button>
-        </div>
-        <!-- section end -->
-        <!-- section start  -->
-        <div class="section">
-          <h2 class="section-title">
-            <MoveIcon class="icon move-icon" />Skills<EditIcon class="icon" />
-          </h2>
-          <h4 class="section-subtitle">
-            You can add links to websites you want hiring managers to see!
-            Perhaps it will be a link to you portfolio. LinkedIn profile.
-          </h4>
-          <button class="section-btn">
-            <PlusIcon class="icon" /> Add skill
-          </button>
-        </div>
-        <!-- section end -->
-        <!-- section start  -->
-        <div class="section">
-          <h2 class="section-title">Add Section</h2>
-          <div class="more-section">
-            <div>
-              <p><CustomSecIcon />Custom Section</p>
-              <p><ActivitiesSecIcon />Extra-curricular Activities</p>
-              <p><HobbiesSecIcon />Hobbies</p>
-              <p><ReferencesSecIcon />References</p>
-            </div>
-            <div>
-              <p><CoursesSecIcon />Courses</p>
-              <p><InternSecIcon />Internships</p>
-              <p><LangsSecIcon />Languages</p>
-            </div>
-          </div>
-        </div>
-        <!-- section end -->
       </div>
     </div>
+    <div class="preview-cv"></div>
   </div>
 </template>
 <script>
@@ -239,6 +250,7 @@ export default {
         ['bold', 'italic', 'underline'],
         [{ list: 'ordered' }, { list: 'bullet' }],
       ],
+      showAdditionalDetails: false,
     };
   },
 };
@@ -467,5 +479,34 @@ export default {
       }
     }
   }
+}
+.additional-details-enter-active,
+.additional-details-leave-active {
+  transition: all 0.8s ease;
+}
+
+// transition burda sehifeden kenar baslayir
+.additional-details-enter {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+// transition burda sehife icinde bitir
+.additional-details-enter-to {
+  transform: translateY(0%);
+  opacity: 1;
+}
+// transition burda sehifeden geri cekilir yani menu geri qayidir
+.additional-details-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.preview-cv {
+  //   width: 50%;
+  //   height: auto;
+  //   background-color: #98a1b3;
+}
+.create-cv-wrapper {
+  //   display: flex;
 }
 </style>
