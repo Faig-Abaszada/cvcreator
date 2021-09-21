@@ -226,6 +226,11 @@ import LangsSecIcon from '../assets/Icons/create-cv/langs.svg';
 import ArrowIcon from '../assets/Icons/create-cv/arrow-right.svg';
 import PlusIcon from '../assets/Icons/create-cv/plus-blue.svg';
 
+import Quill from 'quill';
+window.Quill = Quill;
+const ImageResize = require('quill-image-resize-module').default;
+Quill.register('modules/imageResize', ImageResize);
+
 export default {
   name: 'CreateCv',
   components: {
@@ -482,12 +487,12 @@ export default {
 }
 .additional-details-enter-active,
 .additional-details-leave-active {
-  transition: all 0.8s ease;
+  transition: all 0.4s ease;
 }
 
 // transition burda sehifeden kenar baslayir
 .additional-details-enter {
-  transform: translateY(-100%);
+  transform: translateY(0%);
   opacity: 0;
 }
 // transition burda sehife icinde bitir
@@ -497,7 +502,7 @@ export default {
 }
 // transition burda sehifeden geri cekilir yani menu geri qayidir
 .additional-details-leave-to {
-  transform: translateY(-100%);
+  transform: translateY(0%);
   opacity: 0;
 }
 
@@ -508,5 +513,49 @@ export default {
 }
 .create-cv-wrapper {
   //   display: flex;
+}
+
+.editor {
+  //   height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &:hover::after {
+    // border-bottom: 2px solid blue !important;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 3px;
+    background-color: cornflowerblue;
+    margin-bottom: -3px;
+  }
+
+  .quilWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .ql-container .ql-snow {
+      border-color: brown !important;
+    }
+  }
+
+  .ql-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: scroll;
+  }
+
+  .ql-editor {
+    padding: 20px 16px 30px;
+  }
+}
+.quilWrapper {
+  .ql-toolbar.ql-snow {
+    border-width: 4px;
+  }
 }
 </style>
