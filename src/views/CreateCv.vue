@@ -137,6 +137,11 @@
               Include your last 10 years of relevant experience and dates in
               this section. List your most recent position first.
             </h4>
+            <div class="section-inner">
+              <JobItem />
+              <JobItem />
+            </div>
+
             <button class="section-btn">
               <PlusIcon class="icon" /> Add employment
             </button>
@@ -153,6 +158,10 @@
               If relevant, include your most recent educational achievments and
               the dates here.
             </h4>
+
+            <div class="section-inner">
+              <EduItem />
+            </div>
             <button class="section-btn">
               <PlusIcon class="icon" /> Add education
             </button>
@@ -168,6 +177,9 @@
               You can add links to websites you want hiring managers to see!
               Perhaps it will be a link to you portfolio. LinkedIn profile.
             </h4>
+            <div class="section-inner">
+              <LinksItem />
+            </div>
             <button class="section-btn">
               <PlusIcon class="icon" /> Add link
             </button>
@@ -182,6 +194,9 @@
               You can add links to websites you want hiring managers to see!
               Perhaps it will be a link to you portfolio. LinkedIn profile.
             </h4>
+            <div class="section-inner">
+              <SkillItem />
+            </div>
             <button class="section-btn">
               <PlusIcon class="icon" /> Add skill
             </button>
@@ -225,11 +240,17 @@ import InternSecIcon from '../assets/Icons/create-cv/internships.svg';
 import LangsSecIcon from '../assets/Icons/create-cv/langs.svg';
 import ArrowIcon from '../assets/Icons/create-cv/arrow-right.svg';
 import PlusIcon from '../assets/Icons/create-cv/plus-blue.svg';
+// import DeleteIcon from '../assets/Icons/create-cv/delete.svg';
 
 import Quill from 'quill';
 window.Quill = Quill;
 const ImageResize = require('quill-image-resize-module').default;
 Quill.register('modules/imageResize', ImageResize);
+
+import JobItem from '../components/JobItem.vue';
+import EduItem from '../components/EduItem.vue';
+import LinksItem from '../components/LinksItem.vue';
+import SkillItem from '../components/SkillItem.vue';
 
 export default {
   name: 'CreateCv',
@@ -247,6 +268,11 @@ export default {
     LangsSecIcon,
     ArrowIcon,
     PlusIcon,
+    // DeleteIcon,
+    JobItem,
+    EduItem,
+    LinksItem,
+    SkillItem,
   },
   data() {
     return {
@@ -260,10 +286,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-* {
-  box-sizing: border-box;
-}
+<style lang="scss">
 .create-cv {
   width: 100%;
   padding: 50px;
@@ -475,11 +498,68 @@ export default {
         .ql-editor {
           padding: 20px 16px 30px;
         }
+      }
 
-        .ql-snow .ql-toolbar button svg,
-        .quillWrapper .ql-snow.ql-toolbar button {
-          width: 7px !important;
-          height: 3px !important;
+      .section-inner {
+        .section-item-wrapper {
+          position: relative;
+          border: 1px solid rgb(226, 224, 224);
+          margin: 10px 0;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+          .section-item {
+            .section-item-header-wrapper {
+              line-height: 70px;
+              position: relative;
+
+              .section-item-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px;
+                cursor: pointer;
+                .section-item-title {
+                  position: relative;
+
+                  .icon {
+                    transform: translateX(0px) rotate(90deg);
+                    position: absolute;
+                    right: 0;
+                  }
+                }
+              }
+              .move-icon {
+                position: absolute;
+                top: 50%;
+                // right: calc(100% + 8px);
+                right: 100%;
+                transform: translateY(-50%);
+                visibility: hidden;
+              }
+              .delete-icon {
+                position: absolute;
+                top: 50%;
+                // left: calc(100% + 8px);
+                left: 100%;
+                transform: translateY(-50%);
+                visibility: hidden;
+              }
+            }
+            .section-item-header-wrapper:hover {
+              .section-item-header {
+                color: blue;
+              }
+              .move-icon,
+              .delete-icon {
+                visibility: initial;
+              }
+            }
+
+            .section-item-info {
+              padding: 20px;
+            }
+          }
         }
       }
     }
@@ -514,48 +594,8 @@ export default {
 .create-cv-wrapper {
   //   display: flex;
 }
-
-.editor {
-  //   height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  &:hover::after {
-    // border-bottom: 2px solid blue !important;
-    content: '';
-    display: block;
-    width: 100%;
-    height: 3px;
-    border-radius: 3px;
-    background-color: cornflowerblue;
-    margin-bottom: -3px;
-  }
-
-  .quilWrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-
-    .ql-container .ql-snow {
-      border-color: brown !important;
-    }
-  }
-
-  .ql-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: scroll;
-  }
-
-  .ql-editor {
-    padding: 20px 16px 30px;
-  }
-}
-.quilWrapper {
-  .ql-toolbar.ql-snow {
-    border-width: 4px;
-  }
+.cv-info-fill .section .editor .quillWrapper .ql-snow.ql-toolbar button {
+  width: auto;
+  height: auto;
 }
 </style>
