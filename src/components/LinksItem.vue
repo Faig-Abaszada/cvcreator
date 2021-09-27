@@ -1,18 +1,15 @@
 <template>
-  <div class="section-item-wrapper">
-    <div class="section-item">
-      <div class="section-item-header-wrapper">
+  <div class="item-wrapper">
+    <div class="item">
+      <div class="header-wrapper">
         <MoveIcon class="icon move-icon" />
         <DeleteIcon class="icon delete-icon" />
-        <div
-          class="section-item-header"
-          @click="showJobDetail = !showJobDetail"
-        >
-          <h2 class="section-item-title">Linkedin</h2>
+        <div class="header" @click="showJobDetail = !showJobDetail">
+          <h2 class="title">Linkedin</h2>
           <ArrowIcon class="icon" />
         </div>
       </div>
-      <div class="section-item-info" v-show="showJobDetail">
+      <div class="info" v-show="showJobDetail">
         <div class="inputs">
           <div class="input">
             <label for="first-name">Label</label>

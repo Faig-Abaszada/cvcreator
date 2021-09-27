@@ -3,12 +3,14 @@
     <div class="create-cv">
       <div class="container">
         <h2 class="page-title">Create CV</h2>
+
+        <!-- percentages -->
         <div class="create-cv-header">
           <div class="top">
             <p class="complete-percent">
               <span>25%</span> Profile completeness
             </p>
-            <p class="section-percent">
+            <p class="percent">
               <span>+10%</span>Add profile summary<QuestionIcon
                 class="info-icon"
               />
@@ -19,88 +21,90 @@
         <div class="cv-info-fill">
           <!-- section start -->
           <div class="section">
-            <h2 class="section-title">
-              Personal Details<EditIcon class="icon" />
-            </h2>
+            <div class="section-header">
+              <h2 class="title">Personal Details<EditIcon class="icon" /></h2>
+            </div>
 
-            <div class="inputs">
-              <div class="input">
-                <label for="job-title">Wanted Job Title</label>
-                <input type="text" id="job-title" />
+            <div class="section-inner">
+              <div class="inputs">
+                <div class="input">
+                  <label for="job-title">Wanted Job Title</label>
+                  <input type="text" id="job-title" />
+                </div>
+                <div class="input">
+                  <input type="file" id="upload-photo" />
+                  <label for="upload-photo" class="upload-photo"
+                    ><UserIcon />Upload photo</label
+                  >
+                </div>
               </div>
-              <div class="input">
-                <input type="file" id="upload-photo" />
-                <label for="upload-photo" class="upload-photo"
-                  ><UserIcon />Upload photo</label
-                >
+              <div class="inputs">
+                <div class="input">
+                  <label for="first-name">First Name</label>
+                  <input type="text" id="first-name" />
+                </div>
+                <div class="input">
+                  <label for="last-name">Last Name</label>
+                  <input type="text" id="last-name" />
+                </div>
               </div>
+              <div class="inputs">
+                <div class="input">
+                  <label for="email">Email</label>
+                  <input type="text" id="email" />
+                </div>
+                <div class="input">
+                  <label for="phone">Phone</label>
+                  <input type="text" id="phone" />
+                </div>
+              </div>
+              <transition name="additional-details">
+                <div v-show="showAdditionalDetails" class="additional-details">
+                  <div class="inputs">
+                    <div class="input">
+                      <label for="country">Country</label>
+                      <input type="text" id="country" />
+                    </div>
+                    <div class="input">
+                      <label for="city">City</label>
+                      <input type="text" id="city" />
+                    </div>
+                  </div>
+                  <div class="inputs">
+                    <div class="input">
+                      <label for="address">Address</label>
+                      <input type="text" id="address" />
+                    </div>
+                    <div class="input">
+                      <label for="postal-code">Postal Code</label>
+                      <input type="text" id="postal-code" />
+                    </div>
+                  </div>
+                  <div class="inputs">
+                    <div class="input">
+                      <label for="driving-license">Drivin Lisense</label>
+                      <input type="text" id="driving-license" />
+                    </div>
+                    <div class="input">
+                      <label for="nationality">Nationality</label>
+                      <input type="text" id="nationality" />
+                    </div>
+                  </div>
+                  <div class="inputs">
+                    <div class="input">
+                      <label for="place-of-birth">Place Of Birth</label>
+                      <input type="text" id="place-of-birth" />
+                    </div>
+                    <div class="input">
+                      <label for="date-of-birth">Date Of Birth</label>
+                      <input type="text" id="date-of-birth" />
+                    </div>
+                  </div>
+                </div>
+              </transition>
             </div>
-            <div class="inputs">
-              <div class="input">
-                <label for="first-name">First Name</label>
-                <input type="text" id="first-name" />
-              </div>
-              <div class="input">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" />
-              </div>
-            </div>
-            <div class="inputs">
-              <div class="input">
-                <label for="email">Email</label>
-                <input type="text" id="email" />
-              </div>
-              <div class="input">
-                <label for="phone">Phone</label>
-                <input type="text" id="phone" />
-              </div>
-            </div>
-            <transition name="additional-details">
-              <div v-show="showAdditionalDetails" class="additional-details">
-                <div class="inputs">
-                  <div class="input">
-                    <label for="country">Country</label>
-                    <input type="text" id="country" />
-                  </div>
-                  <div class="input">
-                    <label for="city">City</label>
-                    <input type="text" id="city" />
-                  </div>
-                </div>
-                <div class="inputs">
-                  <div class="input">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" />
-                  </div>
-                  <div class="input">
-                    <label for="postal-code">Postal Code</label>
-                    <input type="text" id="postal-code" />
-                  </div>
-                </div>
-                <div class="inputs">
-                  <div class="input">
-                    <label for="driving-license">Drivin Lisense</label>
-                    <input type="text" id="driving-license" />
-                  </div>
-                  <div class="input">
-                    <label for="nationality">Nationality</label>
-                    <input type="text" id="nationality" />
-                  </div>
-                </div>
-                <div class="inputs">
-                  <div class="input">
-                    <label for="place-of-birth">Place Of Birth</label>
-                    <input type="text" id="place-of-birth" />
-                  </div>
-                  <div class="input">
-                    <label for="date-of-birth">Date Of Birth</label>
-                    <input type="text" id="date-of-birth" />
-                  </div>
-                </div>
-              </div>
-            </transition>
             <button
-              class="section-btn"
+              class="btn"
               @click="showAdditionalDetails = !showAdditionalDetails"
             >
               Edit Additional Details<ArrowIcon class="icon" />
@@ -109,12 +113,15 @@
           <!-- section end -->
           <!-- section start  -->
           <div class="section">
-            <h2 class="section-title">
-              Professional Summary<EditIcon class="icon" />
-            </h2>
-            <h4 class="section-subtitle">
-              Include 2-3 clear sentences about your overall experience
-            </h4>
+            <div class="section-header">
+              <h2 class="title">
+                Professional Summary<EditIcon class="icon" />
+              </h2>
+              <h4 class="subtitle">
+                Include 2-3 clear sentences about your overall experience
+              </h4>
+            </div>
+
             <div class="editor">
               <vue-editor
                 :editorOptions="editorSettings"
@@ -128,83 +135,89 @@
           <!-- section end -->
           <!-- section start  -->
           <div class="section">
-            <h2 class="section-title">
-              <MoveIcon class="icon move-icon" />Employment History<EditIcon
-                class="icon"
-              />
-            </h2>
-            <h4 class="section-subtitle">
-              Include your last 10 years of relevant experience and dates in
-              this section. List your most recent position first.
-            </h4>
+            <div class="section-header">
+              <h2 class="title">
+                <MoveIcon class="icon move-icon" />Employment History<EditIcon
+                  class="icon"
+                />
+              </h2>
+              <h4 class="subtitle">
+                Include your last 10 years of relevant experience and dates in
+                this section. List your most recent position first.
+              </h4>
+            </div>
+
             <div class="section-inner">
+              <draggable></draggable>
               <JobItem />
               <JobItem />
             </div>
 
-            <button class="section-btn">
+            <button class="btn">
               <PlusIcon class="icon" /> Add employment
             </button>
           </div>
           <!-- section end -->
           <!-- section start  -->
           <div class="section">
-            <h2 class="section-title">
-              <MoveIcon class="icon move-icon" />Education<EditIcon
-                class="icon"
-              />
-            </h2>
-            <h4 class="section-subtitle">
-              If relevant, include your most recent educational achievments and
-              the dates here.
-            </h4>
+            <div class="section-header">
+              <h2 class="title">
+                <MoveIcon class="icon move-icon" />Education<EditIcon
+                  class="icon"
+                />
+              </h2>
+              <h4 class="subtitle">
+                If relevant, include your most recent educational achievments
+                and the dates here.
+              </h4>
+            </div>
 
             <div class="section-inner">
               <EduItem />
             </div>
-            <button class="section-btn">
-              <PlusIcon class="icon" /> Add education
-            </button>
+            <button class="btn"><PlusIcon class="icon" /> Add education</button>
           </div>
           <!-- section end -->
           <!-- section start  -->
           <div class="section">
-            <h2 class="section-title">
-              <MoveIcon class="icon move-icon" />Websites & Social
-              Links<EditIcon class="icon" />
-            </h2>
-            <h4 class="section-subtitle">
-              You can add links to websites you want hiring managers to see!
-              Perhaps it will be a link to you portfolio. LinkedIn profile.
-            </h4>
+            <div class="section-header">
+              <h2 class="title">
+                <MoveIcon class="icon move-icon" />Websites & Social
+                Links<EditIcon class="icon" />
+              </h2>
+              <h4 class="subtitle">
+                You can add links to websites you want hiring managers to see!
+                Perhaps it will be a link to you portfolio. LinkedIn profile.
+              </h4>
+            </div>
             <div class="section-inner">
               <LinksItem />
             </div>
-            <button class="section-btn">
-              <PlusIcon class="icon" /> Add link
-            </button>
+            <button class="btn"><PlusIcon class="icon" /> Add link</button>
           </div>
           <!-- section end -->
           <!-- section start  -->
           <div class="section">
-            <h2 class="section-title">
-              <MoveIcon class="icon move-icon" />Skills<EditIcon class="icon" />
-            </h2>
-            <h4 class="section-subtitle">
-              You can add links to websites you want hiring managers to see!
-              Perhaps it will be a link to you portfolio. LinkedIn profile.
-            </h4>
+            <div class="section-header">
+              <h2 class="title">
+                <MoveIcon class="icon move-icon" />Skills<EditIcon
+                  class="icon"
+                />
+              </h2>
+              <h4 class="subtitle">
+                You can add links to websites you want hiring managers to see!
+                Perhaps it will be a link to you portfolio. LinkedIn profile.
+              </h4>
+            </div>
             <div class="section-inner">
               <SkillItem />
             </div>
-            <button class="section-btn">
-              <PlusIcon class="icon" /> Add skill
-            </button>
+            <button class="btn"><PlusIcon class="icon" /> Add skill</button>
           </div>
           <!-- section end -->
           <!-- section start  -->
           <div class="section">
-            <h2 class="section-title">Add Section</h2>
+            <h2 class="title">Add Section</h2>
             <div class="more-section">
               <div>
                 <p><CustomSecIcon />Custom Section</p>
@@ -242,6 +255,8 @@ import ArrowIcon from '../assets/Icons/create-cv/arrow-right.svg';
 import PlusIcon from '../assets/Icons/create-cv/plus-blue.svg';
 // import DeleteIcon from '../assets/Icons/create-cv/delete.svg';
 
+import draggable from 'vuedraggable';
+
 import Quill from 'quill';
 window.Quill = Quill;
 const ImageResize = require('quill-image-resize-module').default;
@@ -273,6 +288,7 @@ export default {
     EduItem,
     LinksItem,
     SkillItem,
+    draggable,
   },
   data() {
     return {
@@ -324,7 +340,7 @@ export default {
         font-weight: bold;
       }
     }
-    .section-percent {
+    .percent {
       display: flex;
       align-items: center;
       span {
@@ -346,99 +362,174 @@ export default {
 
     .section {
       margin-top: 50px;
-
-      #upload-photo {
-        visibility: hidden;
-        width: 0;
-        height: 0;
-        padding: 0;
-      }
-      .upload-photo {
-        cursor: pointer;
-        margin-top: 25px;
-      }
-
-      .section-title {
-        line-height: 50px;
-        margin-right: 20px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-
-        .icon {
+      .section-header {
+        .title {
+          line-height: 50px;
+          margin-right: 20px;
           display: flex;
           align-items: center;
-          visibility: hidden;
-          margin-right: 3px;
-          margin-left: 3px;
-        }
-        .move-icon {
-          margin-left: -24px;
-        }
-        &:hover .icon {
-          visibility: initial !important;
-        }
-      }
+          cursor: pointer;
 
-      .section-subtitle {
-        color: rgb(152, 161, 179);
-        font-weight: initial;
-        font-size: 14px;
-        margin-bottom: 8px;
-      }
-
-      .inputs {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 100%;
-        // margin: 20px;
-        @media (min-width: 700px) {
-          flex-direction: row;
-        }
-
-        .input {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          width: 100%;
-          margin-bottom: 15px;
-
-          label {
+          .icon {
             display: flex;
             align-items: center;
-            color: #98a1b3;
-            line-height: 20px;
-            margin-bottom: 5px;
+            visibility: hidden;
+            margin-right: 3px;
+            margin-left: 3px;
           }
-          input {
-            border: none;
-            background-color: rgb(242, 245, 250);
-            // background-color: #e8f0fe;
-            line-height: 24px;
-            padding: 11px 16px;
-            border-radius: 3px;
-            font-size: 19px;
-            margin-top: 5px;
+          .move-icon {
+            margin-left: -24px;
+          }
+          &:hover .icon {
+            visibility: initial !important;
+          }
+        }
 
-            &:focus {
-              outline: none;
-              border-bottom: 2px solid black;
-              margin-bottom: -2px;
+        .subtitle {
+          color: rgb(152, 161, 179);
+          font-weight: initial;
+          font-size: 14px;
+          margin-bottom: 8px;
+        }
+      }
+
+      .section-inner {
+        .item-wrapper {
+          position: relative;
+          border: 1px solid rgb(226, 224, 224);
+          margin: 10px 0;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+          .item {
+            .header-wrapper {
+              //   line-height: 70px;
+              position: relative;
+
+              .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 20px;
+                cursor: pointer;
+
+                .title {
+                  position: relative;
+
+                  .icon {
+                    transform: translateX(0px) rotate(90deg);
+                    position: absolute;
+                    right: 0;
+                  }
+                }
+              }
+              .move-icon {
+                position: absolute;
+                top: 50%;
+                // right: calc(100% + 8px);
+                right: 100%;
+                transform: translateY(-50%);
+                visibility: hidden;
+              }
+              .delete-icon {
+                position: absolute;
+                top: 50%;
+                // left: calc(100% + 8px);
+                left: 100%;
+                transform: translateY(-50%);
+                visibility: hidden;
+              }
+            }
+            .header-wrapper:hover {
+              .header {
+                color: #2196f3;
+              }
+              .move-icon,
+              .delete-icon {
+                visibility: initial;
+              }
+            }
+
+            .info {
+              padding: 20px;
             }
           }
         }
-        .input:nth-child(1) {
-          margin-right: 0 !important;
+        .inputs {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
+          // margin: 20px;
           @media (min-width: 700px) {
-            margin-right: 20px;
+            flex-direction: row;
+          }
+
+          .input {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 15px;
+
+            label {
+              display: flex;
+              align-items: center;
+              color: #98a1b3;
+              line-height: 20px;
+              margin-bottom: 5px;
+            }
+            input {
+              border: none;
+              background-color: rgb(242, 245, 250);
+              // background-color: #e8f0fe;
+              line-height: 24px;
+              padding: 11px 16px;
+              border-radius: 3px;
+              font-size: 19px;
+              margin-top: 5px;
+
+              &:focus {
+                outline: none;
+                border-bottom: 2px solid black;
+                margin-bottom: -2px;
+              }
+            }
+          }
+          .input:nth-child(1) {
+            margin-right: 0 !important;
+            @media (min-width: 700px) {
+              margin-right: 20px;
+            }
+          }
+          .input:nth-child(2) {
+            margin-left: 0px;
+            @media (min-width: 700px) {
+              margin-left: 20px;
+            }
+          }
+          form {
+            display: flex;
+
+            .date-input:nth-child(1) {
+              margin-right: 10px;
+              width: 100%;
+            }
+            .date-input:nth-child(2) {
+              margin-left: 10px;
+              width: 100%;
+            }
           }
         }
-        .input:nth-child(2) {
-          margin-left: 0px;
-          @media (min-width: 700px) {
-            margin-left: 20px;
-          }
+        #upload-photo {
+          visibility: hidden;
+          width: 0;
+          height: 0;
+          padding: 0;
+        }
+        .upload-photo {
+          cursor: pointer;
+          margin-top: 25px;
         }
       }
 
@@ -460,7 +551,7 @@ export default {
         }
       }
 
-      .section-btn {
+      .btn {
         background-color: initial !important;
         color: rgb(33, 150, 243);
         text-transform: initial;
@@ -497,69 +588,6 @@ export default {
 
         .ql-editor {
           padding: 20px 16px 30px;
-        }
-      }
-
-      .section-inner {
-        .section-item-wrapper {
-          position: relative;
-          border: 1px solid rgb(226, 224, 224);
-          margin: 10px 0;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-            0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-          .section-item {
-            .section-item-header-wrapper {
-              line-height: 70px;
-              position: relative;
-
-              .section-item-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0 20px;
-                cursor: pointer;
-                .section-item-title {
-                  position: relative;
-
-                  .icon {
-                    transform: translateX(0px) rotate(90deg);
-                    position: absolute;
-                    right: 0;
-                  }
-                }
-              }
-              .move-icon {
-                position: absolute;
-                top: 50%;
-                // right: calc(100% + 8px);
-                right: 100%;
-                transform: translateY(-50%);
-                visibility: hidden;
-              }
-              .delete-icon {
-                position: absolute;
-                top: 50%;
-                // left: calc(100% + 8px);
-                left: 100%;
-                transform: translateY(-50%);
-                visibility: hidden;
-              }
-            }
-            .section-item-header-wrapper:hover {
-              .section-item-header {
-                color: blue;
-              }
-              .move-icon,
-              .delete-icon {
-                visibility: initial;
-              }
-            }
-
-            .section-item-info {
-              padding: 20px;
-            }
-          }
         }
       }
     }

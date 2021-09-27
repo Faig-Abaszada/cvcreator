@@ -1,18 +1,15 @@
 <template>
-  <div class="section-item-wrapper">
-    <div class="section-item">
-      <div class="section-item-header-wrapper">
+  <div class="item-wrapper">
+    <div class="item">
+      <div class="header-wrapper">
         <MoveIcon class="icon move-icon" />
         <DeleteIcon class="icon delete-icon" />
-        <div
-          class="section-item-header"
-          @click="showEduDetail = !showEduDetail"
-        >
-          <h2 class="section-item-title">Azerbaijan Technical University</h2>
+        <div class="header" @click="showEduDetail = !showEduDetail">
+          <h2 class="title">Azerbaijan Technical University</h2>
           <ArrowIcon class="icon" />
         </div>
       </div>
-      <div class="section-item-info" v-show="showEduDetail">
+      <div class="info" v-show="showEduDetail">
         <div class="inputs">
           <div class="inputs">
             <div class="input">
@@ -28,8 +25,22 @@
         <div class="inputs">
           <div class="inputs">
             <div class="input">
-              <label for="first-name">Start & End Date</label>
-              <input type="text" id="first-name" />
+              <form>
+                <DatePicker
+                  class="date-input"
+                  v-model="this.date"
+                  lang="en"
+                  type="month"
+                  format="MMMM-YYYY"
+                />
+                <DatePicker
+                  class="date-input"
+                  v-model="date"
+                  lang="en"
+                  type="month"
+                  format="MMMM-YYYY"
+                />
+              </form>
             </div>
             <div class="input">
               <label for="last-name">City</label>
@@ -37,7 +48,7 @@
             </div>
           </div>
         </div>
-        <h4 class="section-subtitle">Description</h4>
+        <h4 class="subtitle">Description</h4>
         <div class="editor">
           <vue-editor
             :editorOptions="editorSettings"
@@ -56,11 +67,15 @@ import MoveIcon from '../assets/Icons/create-cv/movement.svg';
 import ArrowIcon from '../assets/Icons/create-cv/arrow-right.svg';
 import DeleteIcon from '../assets/Icons/create-cv/delete.svg';
 
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
 export default {
   components: {
     MoveIcon,
     ArrowIcon,
     DeleteIcon,
+    DatePicker,
   },
   data() {
     return {
@@ -69,6 +84,7 @@ export default {
         [{ list: 'ordered' }, { list: 'bullet' }],
       ],
       showEduDetail: false,
+      date: '',
     };
   },
 };
