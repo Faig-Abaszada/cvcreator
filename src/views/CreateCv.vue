@@ -23,126 +23,22 @@
           <PersonalDetailsSec />
           <!-- section end -->
           <!-- section start  -->
-          <div class="section">
-            <div class="section-header">
-              <h2 class="title">
-                Professional Summary<EditIcon class="icon" />
-              </h2>
-              <h4 class="subtitle">
-                Include 2-3 clear sentences about your overall experience
-              </h4>
-            </div>
-
-            <div class="editor">
-              <vue-editor
-                :editorOptions="editorSettings"
-                v-model="blogHTML"
-                useCustomImageHandler
-                @image-added="imageHandler"
-                :editorToolbar="customToolbar"
-              />
-            </div>
-          </div>
+          <SummarySec />
           <!-- section end -->
           <!-- section start  -->
-          <div class="section">
-            <div class="section-header">
-              <h2 class="title">
-                <MoveIcon class="icon move-icon" />Employment History<EditIcon
-                  class="icon"
-                />
-              </h2>
-              <h4 class="subtitle">
-                Include your last 10 years of relevant experience and dates in
-                this section. List your most recent position first.
-              </h4>
-            </div>
-
-            <div class="section-inner">
-              <draggable></draggable>
-              <JobItem />
-              <JobItem />
-            </div>
-
-            <button class="btn">
-              <PlusIcon class="icon" /> Add employment
-            </button>
-          </div>
+          <EmploymentSec />
           <!-- section end -->
           <!-- section start  -->
-          <div class="section">
-            <div class="section-header">
-              <h2 class="title">
-                <MoveIcon class="icon move-icon" />Education<EditIcon
-                  class="icon"
-                />
-              </h2>
-              <h4 class="subtitle">
-                If relevant, include your most recent educational achievments
-                and the dates here.
-              </h4>
-            </div>
-
-            <div class="section-inner">
-              <EduItem />
-            </div>
-            <button class="btn"><PlusIcon class="icon" /> Add education</button>
-          </div>
+          <EducationSec />
           <!-- section end -->
           <!-- section start  -->
-          <div class="section">
-            <div class="section-header">
-              <h2 class="title">
-                <MoveIcon class="icon move-icon" />Websites & Social
-                Links<EditIcon class="icon" />
-              </h2>
-              <h4 class="subtitle">
-                You can add links to websites you want hiring managers to see!
-                Perhaps it will be a link to you portfolio. LinkedIn profile.
-              </h4>
-            </div>
-            <div class="section-inner">
-              <LinksItem />
-            </div>
-            <button class="btn"><PlusIcon class="icon" /> Add link</button>
-          </div>
+          <SocialLinksSec />
           <!-- section end -->
           <!-- section start  -->
-          <div class="section">
-            <div class="section-header">
-              <h2 class="title">
-                <MoveIcon class="icon move-icon" />Skills<EditIcon
-                  class="icon"
-                />
-              </h2>
-              <h4 class="subtitle">
-                You can add links to websites you want hiring managers to see!
-                Perhaps it will be a link to you portfolio. LinkedIn profile.
-              </h4>
-            </div>
-            <div class="section-inner">
-              <SkillItem />
-            </div>
-            <button class="btn"><PlusIcon class="icon" /> Add skill</button>
-          </div>
+          <SkillsSec />
           <!-- section end -->
           <!-- section start  -->
-          <div class="section">
-            <h2 class="title">Add Section</h2>
-            <div class="more-section">
-              <div>
-                <p><CustomSecIcon />Custom Section</p>
-                <p><ActivitiesSecIcon />Extra-curricular Activities</p>
-                <p><HobbiesSecIcon />Hobbies</p>
-                <p><ReferencesSecIcon />References</p>
-              </div>
-              <div>
-                <p><CoursesSecIcon />Courses</p>
-                <p><InternSecIcon />Internships</p>
-                <p><LangsSecIcon />Languages</p>
-              </div>
-            </div>
-          </div>
+          <CustomSec />
           <!-- section end -->
         </div>
       </div>
@@ -152,57 +48,69 @@
 </template>
 <script>
 import QuestionIcon from '../assets/Icons/create-cv/question.svg';
-import EditIcon from '../assets/Icons/create-cv/editicon.svg';
+// import EditIcon from '../assets/Icons/create-cv/editicon.svg';
 // import UserIcon from '../assets/Icons/create-cv/upload-user.svg';
-import MoveIcon from '../assets/Icons/create-cv/movement.svg';
-import CustomSecIcon from '../assets/Icons/create-cv/custom-section.svg';
-import ActivitiesSecIcon from '../assets/Icons/create-cv/activities-section.svg';
-import HobbiesSecIcon from '../assets/Icons/create-cv/hobbies.svg';
-import ReferencesSecIcon from '../assets/Icons/create-cv/speaker.svg';
-import CoursesSecIcon from '../assets/Icons/create-cv/courses-section.svg';
-import InternSecIcon from '../assets/Icons/create-cv/internships.svg';
-import LangsSecIcon from '../assets/Icons/create-cv/langs.svg';
+// import MoveIcon from '../assets/Icons/create-cv/movement.svg';
+// import CustomSecIcon from '../assets/Icons/create-cv/custom-section.svg';
+// import ActivitiesSecIcon from '../assets/Icons/create-cv/activities-section.svg';
+// import HobbiesSecIcon from '../assets/Icons/create-cv/hobbies.svg';
+// import ReferencesSecIcon from '../assets/Icons/create-cv/speaker.svg';
+// import CoursesSecIcon from '../assets/Icons/create-cv/courses-section.svg';
+// import InternSecIcon from '../assets/Icons/create-cv/internships.svg';
+// import LangsSecIcon from '../assets/Icons/create-cv/langs.svg';
 // import ArrowIcon from '../assets/Icons/create-cv/arrow-right.svg';
-import PlusIcon from '../assets/Icons/create-cv/plus-blue.svg';
+// import PlusIcon from '../assets/Icons/create-cv/plus-blue.svg';
 // import DeleteIcon from '../assets/Icons/create-cv/delete.svg';
 
-import draggable from 'vuedraggable';
+// import draggable from 'vuedraggable';
 
 import Quill from 'quill';
 window.Quill = Quill;
 const ImageResize = require('quill-image-resize-module').default;
 Quill.register('modules/imageResize', ImageResize);
 
-import JobItem from '../components/JobItem.vue';
-import EduItem from '../components/EduItem.vue';
-import LinksItem from '../components/LinksItem.vue';
-import SkillItem from '../components/SkillItem.vue';
+// import JobItem from '../components/JobItem.vue';
+// import EduItem from '../components/EduItem.vue';
+// import LinksItem from '../components/LinksItem.vue';
+// import SkillItem from '../components/SkillItem.vue';
 
 import PersonalDetailsSec from '../components/createcv-sections/PersonalDetailsSec.vue';
+import SummarySec from '../components/createcv-sections/SummarySec.vue';
+import EmploymentSec from '../components/createcv-sections/EmploymentSec.vue';
+import EducationSec from '../components/createcv-sections/EducationSec.vue';
+import SocialLinksSec from '../components/createcv-sections/SocialLinksSec.vue';
+import SkillsSec from '../components/createcv-sections/SkillsSec.vue';
+import CustomSec from '../components/createcv-sections/CustomSec.vue';
 
 export default {
   name: 'CreateCv',
   components: {
     QuestionIcon,
-    EditIcon,
+    // EditIcon,
     // UserIcon,
-    MoveIcon,
-    CustomSecIcon,
-    ActivitiesSecIcon,
-    HobbiesSecIcon,
-    ReferencesSecIcon,
-    CoursesSecIcon,
-    InternSecIcon,
-    LangsSecIcon,
+    // MoveIcon,
+    // CustomSecIcon,
+    // ActivitiesSecIcon,
+    // HobbiesSecIcon,
+    // ReferencesSecIcon,
+    // CoursesSecIcon,
+    // InternSecIcon,
+    // LangsSecIcon,
     // ArrowIcon,
-    PlusIcon,
+    // PlusIcon,
     // DeleteIcon,
-    JobItem,
-    EduItem,
-    LinksItem,
-    SkillItem,
-    draggable,
+    // JobItem,
+    // EduItem,
+    // LinksItem,
+    // SkillItem,
+    // draggable,
     PersonalDetailsSec,
+    SummarySec,
+    EmploymentSec,
+    EducationSec,
+    SocialLinksSec,
+    SkillsSec,
+    CustomSec,
   },
   data() {
     return {

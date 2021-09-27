@@ -95,11 +95,13 @@
 <script>
 import UserIcon from '../../assets/Icons/create-cv/upload-user.svg';
 import ArrowIcon from '../../assets/Icons/create-cv/arrow-right.svg';
+import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
 
 export default {
   components: {
     UserIcon,
     ArrowIcon,
+    EditIcon,
   },
   data() {
     return {
