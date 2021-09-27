@@ -33,6 +33,12 @@ export default {
   },
   data() {},
   methods: {},
+  computed: {
+    //                    data from state
+    // socialLinks() {
+    //   return this.$store.socialLinks.sectionTitle;
+    // },
+  },
 };
 </script>
 <style lang="scss">
