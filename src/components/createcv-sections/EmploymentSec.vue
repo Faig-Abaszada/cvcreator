@@ -12,12 +12,14 @@
       </h4>
     </div>
 
-    <div class="section-inner">
+    <div class="section-inner" ref="sectionInner">
       <JobItem />
       <JobItem />
     </div>
 
-    <button class="btn"><PlusIcon class="icon" /> Add employment</button>
+    <button @click="addEmployment" class="btn add-employment">
+      <PlusIcon class="icon" /> Add employment
+    </button>
   </div>
 </template>
 <script>
@@ -25,6 +27,7 @@ import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
 import MoveIcon from '../../assets/Icons/create-cv/movement.svg';
 import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 
+import Vue from 'vue';
 import JobItem from '../../components/JobItem.vue';
 
 export default {
@@ -34,8 +37,25 @@ export default {
     PlusIcon,
     JobItem,
   },
-  data() {},
-  methods: {},
+  data() {
+    return {};
+  },
+  methods: {
+    addEmployment(event) {
+      if (event.target && event.target.classList.contains('add-employment')) {
+        const JobItemClass = Vue.extend(JobItem);
+        const jobItemInstance = new JobItemClass({
+          propsData: {
+            isActive: this.isActive, // pass any data you need here
+            toggleSignature: this.toggleSignature, // callback
+          },
+        });
+        jobItemInstance.$mount();
+        this.$refs.sectionInner.appendChild(jobItemInstance.$el);
+        // event.target.parentNode.appendChild(jobItemInstance.$el);
+      }
+    },
+  },
 };
 </script>
 <style lang="scss">

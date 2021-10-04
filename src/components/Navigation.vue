@@ -12,7 +12,10 @@
         <ul v-show="!mobile">
           <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
           <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-          <router-link v-show="admin" class="link" :to="{ name: 'CreateCv' }"
+
+          <!-- v-show="admin"    idi bunu sildik biz hele sehife uzerinde ishleyirik!! -->
+          <!--  ve bize admin deyi adi user de giris etdikde create cv gorunsun isteyirik ona gore basqa condition yarat -->
+          <router-link class="link" :to="{ name: 'CreateCv' }"
             >Create CV</router-link
           >
           <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }"

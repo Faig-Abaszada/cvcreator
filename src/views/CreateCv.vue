@@ -125,8 +125,9 @@ export default {
 </script>
 <style lang="scss">
 .create-cv {
-  width: 100%;
+  width: 50%;
   padding: 50px;
+  margin: 0 auto;
 
   .page-title {
     text-align: center;

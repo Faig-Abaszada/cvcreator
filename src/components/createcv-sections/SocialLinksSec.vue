@@ -31,7 +31,9 @@ export default {
     EditIcon,
     LinksItem,
   },
-  data() {},
+  data() {
+    return {};
+  },
   methods: {},
   computed: {
     //                    data from state

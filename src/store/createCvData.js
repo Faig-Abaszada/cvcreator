@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        personalDetails: {
+        personalDetailsSec: {
             sectionTitle: "Personal Details",
             jobTitle: "",
             cvPhotoName: "",
@@ -25,90 +25,119 @@ export default new Vuex.Store({
             cvPlaceOfBirth: null,
             cvDateOfBirth: null,
         },
-        professionalSummary: {
+        professionalSummarySec: {
             sectionTitle: "Professional Summary",
             summaryHTML: null,
         },
-        skills: {
+        skillsSec: {
             sectionTitle: "Skills",
-            skill: null,
-            skillLevel: null,
+            skills: [{
+                    skill: "HTML5",
+                    skillLevel: null,
+                },
+                {
+                    skill: "CSS3",
+                    skillLevel: null,
+                },
+                {
+                    skill: "JavaScript",
+                    skillLevel: null,
+                }
+            ]
         },
-        education: {
+        educationSec: {
             sectionTitle: "Education",
-            school: null,
-            degree: null,
-            startDate: null,
-            endDate: null,
-            startAndEndDate: null,
-            description: null,
+            educations: [{
+                school: null,
+                degree: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+                description: null,
+            }]
         },
-        socialLinks: {
+        socialLinksSec: {
             sectionTitle: "Websites & Social Links",
-            label: null,
-            link: null,
+            socialLinks: [{
+                label: null,
+                link: null,
+            }]
         },
-        employmentHistory: {
+        employmentHistorySec: {
             sectionTitle: "Employment History",
-            jobTitle: null,
-            employer: null,
-            startDate: null,
-            endDate: null,
-            startAndEndDate: null,
-            city: null,
-            jobDescHTML: null,
+            employmentHistories: [{
+                jobTitle: null,
+                employer: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+                city: null,
+                jobDescHTML: null,
+            }]
         },
-        hobbies: {
+        hobbiesSec: {
             sectionTitle: "Hobbies",
             hobbiesText: null,
         },
-        courses: {
+        coursesSec: {
             sectionTitle: "Courses",
-            courseName: null,
-            institution: null,
-            startDate: null,
-            endDate: null,
-            startAndEndDate: null,
+            courses: [{
+                courseName: null,
+                institution: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+            }]
         },
-        internships: {
+        internshipsSec: {
             sectionTitle: "Internships",
-            jobTitle: null,
-            employer: null,
-            startDate: null,
-            endDate: null,
-            startAndEndDate: null,
-            city: null,
-            jobDescHTML: null,
+            internships: [{
+                jobTitle: null,
+                employer: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+                city: null,
+                jobDescHTML: null,
+            }]
         },
-        languages: {
+        languagesSec: {
             sectionTitle: "Languages",
-            language: null,
-            level: null,
+            languagesSec: [{
+                language: null,
+                level: null,
+            }]
         },
-        references: {
+        referencesSec: {
             sectionTitle: "References",
-            referentsFullName: null,
-            company: null,
-            phone: null,
-            email: null,
+            references: [{
+                referentsFullName: null,
+                company: null,
+                phone: null,
+                email: null,
+            }]
         },
-        extraActivities: {
+        extraActivitiesSec: {
             sectionTitle: "Extra-curricular Activities",
-            functionTitle: null,
-            employer: null,
-            startDate: null,
-            endDate: null,
-            startAndEndDate: null,
-            city: null,
-            jobDescHTML: null,
+            extraActivities: [{
+                functionTitle: null,
+                employer: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+                city: null,
+                jobDescHTML: null,
+            }]
         },
-        customSection: {
+        customSectionSec: {
             sectionTitle: "Untitled Edit Me!",
-            itemName: null,
-            city: null,
-            startDate: null,
-            endDate: null,
-            startAndEndDate: null,
+            customSectionSec: [{
+                itemName: null,
+                city: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+            }]
         }
 
 

@@ -7,8 +7,8 @@
         <DeleteIcon class="icon delete-icon" />
         <div class="header" @click="showJobDetail = !showJobDetail">
           <div>
-            <h2 class="title">HTML</h2>
-            <span>Expert</span>
+            <h2 class="title">{{ skillObj.skill }}</h2>
+            <span>{{ skillObj.skillLevel }}</span>
           </div>
           <ArrowIcon class="icon" />
         </div>
@@ -17,7 +17,7 @@
         <div class="inputs">
           <div class="input">
             <label for="first-name">Skill</label>
-            <input type="text" id="first-name" />
+            <input type="text" id="first-name" v-model="skillObj.skill" />
           </div>
           <div class="input">
             <label for="last-name">Level ---<span> Expert</span></label>
@@ -33,12 +33,15 @@ import MoveIcon from '../assets/Icons/create-cv/movement.svg';
 import ArrowIcon from '../assets/Icons/create-cv/arrow-right.svg';
 import DeleteIcon from '../assets/Icons/create-cv/delete.svg';
 
+import { mapState } from 'vuex';
+
 export default {
   components: {
     MoveIcon,
     ArrowIcon,
     DeleteIcon,
   },
+  props: ['skillObj'],
   data() {
     return {
       customToolbar: [
@@ -48,6 +51,7 @@ export default {
       showJobDetail: false,
     };
   },
+  computed: mapState(['skillsSec']),
 };
 </script>
 <style lang="scss" scoped>

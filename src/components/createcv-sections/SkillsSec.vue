@@ -2,17 +2,24 @@
   <div class="section">
     <div class="section-header">
       <h2 class="title">
-        <MoveIcon class="icon move-icon" />Skills<EditIcon class="icon" />
+        <MoveIcon class="icon move-icon" />{{ skillsSec.sectionTitle
+        }}<EditIcon class="icon" />
       </h2>
       <h4 class="subtitle">
         You can add links to websites you want hiring managers to see! Perhaps
         it will be a link to you portfolio. LinkedIn profile.
       </h4>
     </div>
-    <div class="section-inner">
-      <SkillItem />
+    <div class="section-inner" ref="sectionInner">
+      <SkillItem
+        v-for="(skillObj, index) in skillsSec.skills"
+        :key="index"
+        :skillObj="skillObj"
+      />
     </div>
-    <button class="btn"><PlusIcon class="icon" /> Add skill</button>
+    <button @click="addSkill" class="btn add-skill">
+      <PlusIcon class="icon" @click="addSkill" /> Add skill
+    </button>
   </div>
 </template>
 <script>
@@ -22,6 +29,9 @@ import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 
 import SkillItem from '../../components/SkillItem.vue';
 
+// import Vue from 'vue';
+import { mapState, mapMutations } from 'vuex';
+
 export default {
   components: {
     MoveIcon,
@@ -29,9 +39,33 @@ export default {
     EditIcon,
     SkillItem,
   },
-  data() {},
-  methods: {},
+  computed: {
+    ...mapState(['skillsSec']),
+  },
+  methods: {
+    ...mapMutations(['addEmptySkillComp']),
+
+    addSkill(event) {
+      if (event.target && event.target.classList.contains('add-skill')) {
+        const skill = {
+          id: 1,
+          skill: '(Not specified)',
+          skillLevel: 'expert',
+        };
+        this.addEmptySkillComp(skill);
+      }
+    },
+  },
 };
+// rules_version = '2';
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//     match /{document=**} {
+//       allow read, write: if
+//           request.time < timestamp.date(2021, 10, 4);
+//     }
+//   }
+// }
 </script>
 <style lang="scss">
 </style>

@@ -130,7 +130,7 @@ const routes = [{
         component: CreateCv,
         meta: {
             title: "Create CV",
-            // requiresAuth: true
+            requiresAuth: false
         }
     },
 ];

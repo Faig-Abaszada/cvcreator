@@ -30,7 +30,9 @@ export default {
     PlusIcon,
     EditIcon,
   },
-  data() {},
+  data() {
+    return {};
+  },
   methods: {},
 };
 </script>

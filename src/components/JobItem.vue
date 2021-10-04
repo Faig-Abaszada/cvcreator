@@ -54,13 +54,7 @@
           Include 2-3 clear sentences about your overall experience
         </h4>
         <div class="editor">
-          <vue-editor
-            :editorOptions="editorSettings"
-            v-model="blogHTML"
-            useCustomImageHandler
-            @image-added="imageHandler"
-            :editorToolbar="customToolbar"
-          />
+          <vue-editor v-model="blogHTML" useCustomImageHandler />
         </div>
       </div>
     </div>
@@ -82,6 +76,7 @@ export default {
   },
   data() {
     return {
+      blogHTML: '',
       customToolbar: [
         ['bold', 'italic', 'underline'],
         [{ list: 'ordered' }, { list: 'bullet' }],

@@ -34,7 +34,9 @@ export default {
     InternSecIcon,
     LangsSecIcon,
   },
-  data() {},
+  data() {
+    return {};
+  },
   methods: {},
 };
 </script>
