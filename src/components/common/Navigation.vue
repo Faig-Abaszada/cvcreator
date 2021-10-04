@@ -89,11 +89,11 @@
 </template>
 
 <script>
-import logo from '../assets/logo.png';
-import menuIcon from '../assets/Icons/bars-regular.svg';
-import userIcon from '../assets/Icons/user-alt-light.svg';
-import adminIcon from '../assets/Icons/user-crown-light.svg';
-import signOutIcon from '../assets/Icons/sign-out-alt-regular.svg';
+import logo from '../../assets/logo.png';
+import menuIcon from '../../assets/Icons/bars-regular.svg';
+import userIcon from '../../assets/Icons/user-alt-light.svg';
+import adminIcon from '../../assets/Icons/user-crown-light.svg';
+import signOutIcon from '../../assets/Icons/sign-out-alt-regular.svg';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';

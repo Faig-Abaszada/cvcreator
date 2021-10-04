@@ -27,7 +27,7 @@ import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
 import MoveIcon from '../../assets/Icons/create-cv/movement.svg';
 import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 
-import SkillItem from '../../components/SkillItem.vue';
+import SkillItem from './section-items/SkillItem.vue';
 
 // import Vue from 'vue';
 import { mapState, mapMutations } from 'vuex';

@@ -4,20 +4,20 @@
       <div class="header-wrapper">
         <MoveIcon class="icon move-icon" />
         <DeleteIcon class="icon delete-icon" />
-        <div class="header" @click="showJobDetail = !showJobDetail">
-          <h2 class="title">Unibank Bank</h2>
+        <div class="header" @click="showEduDetail = !showEduDetail">
+          <h2 class="title">Azerbaijan Technical University</h2>
           <ArrowIcon class="icon" />
         </div>
       </div>
-      <div class="info" v-show="showJobDetail">
+      <div class="info" v-show="showEduDetail">
         <div class="inputs">
           <div class="inputs">
             <div class="input">
-              <label for="first-name">Job title</label>
+              <label for="first-name">School</label>
               <input type="text" id="first-name" />
             </div>
             <div class="input">
-              <label for="last-name">Employer</label>
+              <label for="last-name">Degree</label>
               <input type="text" id="last-name" />
             </div>
           </div>
@@ -25,8 +25,6 @@
         <div class="inputs">
           <div class="inputs">
             <div class="input">
-              <!-- <label for="first-name">Job title</label>
-              <input type="text" id="first-name" /> -->
               <form>
                 <DatePicker
                   class="date-input"
@@ -50,9 +48,7 @@
             </div>
           </div>
         </div>
-        <h4 class="subtitle">
-          Include 2-3 clear sentences about your overall experience
-        </h4>
+        <h4 class="subtitle">Description</h4>
         <div class="editor">
           <vue-editor v-model="blogHTML" useCustomImageHandler />
         </div>
@@ -61,9 +57,10 @@
   </div>
 </template>
 <script>
-import MoveIcon from '../assets/Icons/create-cv/movement.svg';
-import ArrowIcon from '../assets/Icons/create-cv/arrow-right.svg';
-import DeleteIcon from '../assets/Icons/create-cv/delete.svg';
+import MoveIcon from '../../../assets/Icons/create-cv/movement.svg';
+import ArrowIcon from '../../../assets/Icons/create-cv/arrow-right.svg';
+import DeleteIcon from '../../../assets/Icons/create-cv/delete.svg';
+
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 
@@ -81,14 +78,9 @@ export default {
         ['bold', 'italic', 'underline'],
         [{ list: 'ordered' }, { list: 'bullet' }],
       ],
-      showJobDetail: false,
+      showEduDetail: false,
       date: '',
     };
-  },
-  methods: {
-    // customFormatter(date) {
-    //   return moment(date).format('MMMM Do YYYY, h:mm:ss a');
-    // },
   },
 };
 </script>

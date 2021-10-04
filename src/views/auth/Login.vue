@@ -3,70 +3,74 @@
     <form class="login">
       <p class="login-register">
         Don't have an account?
-        <router-link class="router-link" :to="{ name: 'Register' }">Register</router-link>
+        <router-link class="router-link" :to="{ name: 'Register' }"
+          >Register</router-link
+        >
       </p>
       <h2>Login to asan-cv</h2>
       <div class="inputs">
         <div class="input">
-          <input type="text" placeholder="Email" v-model="email">
+          <input type="text" placeholder="Email" v-model="email" />
           <emailIcon class="icon" />
         </div>
         <div class="input">
-          <input type="password" placeholder="Password" v-model="password">
+          <input type="password" placeholder="Password" v-model="password" />
           <passwordIcon class="icon" />
         </div>
         <div v-show="error" class="error">{{ this.errorMsg }}</div>
       </div>
-      <router-link class="forgot-password" :to="{ name: 'ForgotPassword' }">Forgot your Password</router-link>
+      <router-link class="forgot-password" :to="{ name: 'ForgotPassword' }"
+        >Forgot your Password</router-link
+      >
 
       <button @click.prevent="signIn">Sign In</button>
 
       <div class="angle"></div>
     </form>
 
-    <div class="background">
-
-    </div>
-
+    <div class="background"></div>
   </div>
 </template>
 
 <script>
-import emailIcon from "../assets/Icons/envelope-regular.svg";
-import passwordIcon from "../assets/Icons/lock-alt-solid.svg";
+import emailIcon from '../../assets/Icons/envelope-regular.svg';
+import passwordIcon from '../../assets/Icons/lock-alt-solid.svg';
 
-import firebase from "firebase/app";
-import "firebase/auth";
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default {
-  name: "Login",
+  name: 'Login',
   components: {
     emailIcon,
     passwordIcon,
   },
   data() {
     return {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       error: null,
-      errorMsg: "",
-    }
+      errorMsg: '',
+    };
   },
   methods: {
     signIn() {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
-        this.$router.push({ name: "Home" });
-        this.error = false;
-        this.errorMsg = "";
-        console.log(firebase.auth().currentUser.uid);
-      }).catch((err) => {
-        this.error = true;
-        this.errorMsg = err.message;
-      })
-
-    }
-  }
-}
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push({ name: 'Home' });
+          this.error = false;
+          this.errorMsg = '';
+          console.log(firebase.auth().currentUser.uid);
+        })
+        .catch((err) => {
+          this.error = true;
+          this.errorMsg = err.message;
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -80,7 +84,7 @@ export default {
   width: 90%;
 
   @media (min-width: 900px) {
-    width: 100%
+    width: 100%;
   }
 
   .login-register {
@@ -169,21 +173,18 @@ export default {
         display: initial;
       }
     }
-
   }
 
   .background {
     display: none;
     flex: 2;
     background-size: cover;
-    background-image: url("../assets/background.png");
+    background-image: url('../../assets/background.png');
     width: 100%;
     height: 100%;
     @media (min-width: 900px) {
       display: initial;
     }
   }
-
 }
-
 </style>

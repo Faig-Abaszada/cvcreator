@@ -1,22 +1,26 @@
 <template>
+  <!-- inner -->
   <div class="item-wrapper">
     <div class="item">
       <div class="header-wrapper">
         <MoveIcon class="icon move-icon" />
         <DeleteIcon class="icon delete-icon" />
         <div class="header" @click="showJobDetail = !showJobDetail">
-          <h2 class="title">Linkedin</h2>
+          <div>
+            <h2 class="title">{{ skillObj.skill }}</h2>
+            <span>{{ skillObj.skillLevel }}</span>
+          </div>
           <ArrowIcon class="icon" />
         </div>
       </div>
       <div class="info" v-show="showJobDetail">
         <div class="inputs">
           <div class="input">
-            <label for="first-name">Label</label>
-            <input type="text" id="first-name" />
+            <label for="first-name">Skill</label>
+            <input type="text" id="first-name" v-model="skillObj.skill" />
           </div>
           <div class="input">
-            <label for="last-name">Link</label>
+            <label for="last-name">Level ---<span> Expert</span></label>
             <input type="text" id="last-name" />
           </div>
         </div>
@@ -25,9 +29,11 @@
   </div>
 </template>
 <script>
-import MoveIcon from '../assets/Icons/create-cv/movement.svg';
-import ArrowIcon from '../assets/Icons/create-cv/arrow-right.svg';
-import DeleteIcon from '../assets/Icons/create-cv/delete.svg';
+import MoveIcon from '../../../assets/Icons/create-cv/movement.svg';
+import ArrowIcon from '../../../assets/Icons/create-cv/arrow-right.svg';
+import DeleteIcon from '../../../assets/Icons/create-cv/delete.svg';
+
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -35,6 +41,7 @@ export default {
     ArrowIcon,
     DeleteIcon,
   },
+  props: ['skillObj'],
   data() {
     return {
       customToolbar: [
@@ -44,7 +51,15 @@ export default {
       showJobDetail: false,
     };
   },
+  computed: mapState(['skillsSec']),
 };
 </script>
 <style lang="scss" scoped>
+.inner {
+  .title {
+    span {
+      color: rgb(139, 139, 139);
+    }
+  }
+}
 </style>

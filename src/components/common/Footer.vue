@@ -3,28 +3,39 @@
     <div class="container">
       <div class="left">
         <div class="col-1">
-          <router-link class="header" :to="{name: 'hHme'}">asan-cv</router-link>
+          <router-link class="header" :to="{ name: 'hHme' }"
+            >asan-cv</router-link
+          >
           <ul>
             <li>
-              <a href="#"><youTube class="svg-icon"/></a>
+              <a href="#"><youTube class="svg-icon" /></a>
             </li>
             <li>
-              <a href="#"><twitter class="svg-icon"/></a>
+              <a href="#"><twitter class="svg-icon" /></a>
             </li>
             <li>
-              <a href="#"><instagram class="svg-icon"/></a>
+              <a href="#"><instagram class="svg-icon" /></a>
             </li>
             <li>
-              <a href="#"><linkedin class="svg-icon"/></a>
+              <a href="#"><linkedin class="svg-icon" /></a>
             </li>
           </ul>
         </div>
         <div class="col-2">
           <ul>
             <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
-            <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-            <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }">Create Post</router-link>
-            <router-link v-if="!user" class="link" :to="{ name: 'Login' }">Login In / Register</router-link>
+            <router-link class="link" :to="{ name: 'Blogs' }"
+              >Blogs</router-link
+            >
+            <router-link
+              v-show="admin"
+              class="link"
+              :to="{ name: 'CreatePost' }"
+              >Create Post</router-link
+            >
+            <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
+              >Login In / Register</router-link
+            >
           </ul>
         </div>
       </div>
@@ -36,17 +47,17 @@
 </template>
 
 <script>
-import youTube from "../assets/Icons/youtube-brands.svg";
-import twitter from "../assets/Icons/twitter-brands.svg";
-import instagram from "../assets/Icons/instagram-brands.svg";
-import linkedin from "../assets/Icons/linkedin-brands.svg";
+import youTube from '../../assets/Icons/youtube-brands.svg';
+import twitter from '../../assets/Icons/twitter-brands.svg';
+import instagram from '../../assets/Icons/instagram-brands.svg';
+import linkedin from '../../assets/Icons/linkedin-brands.svg';
 export default {
-  name: "Footer",
+  name: 'Footer',
   components: {
     youTube,
     twitter,
     instagram,
-    linkedin
+    linkedin,
   },
   computed: {
     user() {
@@ -54,9 +65,9 @@ export default {
     },
     admin() {
       return this.$store.state.admin;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

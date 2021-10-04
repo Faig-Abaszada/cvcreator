@@ -74,13 +74,13 @@ Quill.register('modules/imageResize', ImageResize);
 // import LinksItem from '../components/LinksItem.vue';
 // import SkillItem from '../components/SkillItem.vue';
 
-import PersonalDetailsSec from '../components/createcv-sections/PersonalDetailsSec.vue';
-import SummarySec from '../components/createcv-sections/SummarySec.vue';
-import EmploymentSec from '../components/createcv-sections/EmploymentSec.vue';
-import EducationSec from '../components/createcv-sections/EducationSec.vue';
-import SocialLinksSec from '../components/createcv-sections/SocialLinksSec.vue';
-import SkillsSec from '../components/createcv-sections/SkillsSec.vue';
-import CustomSec from '../components/createcv-sections/CustomSec.vue';
+import PersonalDetailsSec from '../components/cv-sections/PersonalDetailsSec.vue';
+import SummarySec from '../components/cv-sections/SummarySec.vue';
+import EmploymentSec from '../components/cv-sections/EmploymentSec.vue';
+import EducationSec from '../components/cv-sections/EducationSec.vue';
+import SocialLinksSec from '../components/cv-sections/SocialLinksSec.vue';
+import SkillsSec from '../components/cv-sections/SkillsSec.vue';
+import CustomSec from '../components/cv-sections/CustomSec.vue';
 
 export default {
   name: 'CreateCv',

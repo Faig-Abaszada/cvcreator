@@ -2,19 +2,18 @@
   <div class="section">
     <div class="section-header">
       <h2 class="title">
-        <MoveIcon class="icon move-icon" />Websites & Social Links<EditIcon
-          class="icon"
-        />
+        <MoveIcon class="icon move-icon" />Education<EditIcon class="icon" />
       </h2>
       <h4 class="subtitle">
-        You can add links to websites you want hiring managers to see! Perhaps
-        it will be a link to you portfolio. LinkedIn profile.
+        If relevant, include your most recent educational achievments and the
+        dates here.
       </h4>
     </div>
+
     <div class="section-inner">
-      <LinksItem />
+      <EduItem />
     </div>
-    <button class="btn"><PlusIcon class="icon" /> Add link</button>
+    <button class="btn"><PlusIcon class="icon" /> Add education</button>
   </div>
 </template>
 <script>
@@ -22,25 +21,19 @@ import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
 import MoveIcon from '../../assets/Icons/create-cv/movement.svg';
 import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 
-import LinksItem from '../../components/LinksItem.vue';
+import EduItem from './section-items/EduItem.vue';
 
 export default {
   components: {
+    EduItem,
     MoveIcon,
     PlusIcon,
     EditIcon,
-    LinksItem,
   },
   data() {
     return {};
   },
   methods: {},
-  computed: {
-    //                    data from state
-    // socialLinks() {
-    //   return this.$store.socialLinks.sectionTitle;
-    // },
-  },
 };
 </script>
 <style lang="scss">

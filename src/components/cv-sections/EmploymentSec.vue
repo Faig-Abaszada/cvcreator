@@ -28,7 +28,7 @@ import MoveIcon from '../../assets/Icons/create-cv/movement.svg';
 import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 
 import Vue from 'vue';
-import JobItem from '../../components/JobItem.vue';
+import JobItem from './section-items/JobItem.vue';
 
 export default {
   components: {

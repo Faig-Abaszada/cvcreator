@@ -56,7 +56,7 @@ const ImageResize = require('quill-image-resize-module').default;
 Quill.register('modules/imageResize', ImageResize);
 
 import BlogCoverPreview from '../components/BlogCoverPreview';
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 export default {
   name: 'CreatePost',
   components: {

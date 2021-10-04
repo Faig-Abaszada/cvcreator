@@ -1,79 +1,76 @@
 <template>
   <div class="app-wrapper">
     <div class="app" v-if="this.$store.state.postLoaded">
-      <Navigation v-if="!navigation"/>
+      <Navigation v-if="!navigation" />
       <router-view />
-      <Footer v-if="!navigation"/>
+      <Footer v-if="!navigation" />
     </div>
   </div>
 </template>
 
 <script>
-import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
+import Navigation from './components/common/Navigation';
+import Footer from './components/common/Footer.vue';
 
-import firebase from "firebase/app";
-import "firebase/auth";
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     Navigation,
-    Footer
-  }, 
+    Footer,
+  },
   data() {
     return {
       navigation: null,
     };
   },
   created() {
-    
-
     firebase.auth().onAuthStateChanged((user) => {
-        this.$store.commit("updateUser", user);
-        if (user) {
-          this.$store.dispatch("getCurrentUser");
+      this.$store.commit('updateUser', user);
+      if (user) {
+        this.$store.dispatch('getCurrentUser');
 
-          setTimeout(() => {
-            console.log(this.$store.state.profileEmail);
-          },2000)
-        }
-    })
+        setTimeout(() => {
+          console.log(this.$store.state.profileEmail);
+        }, 2000);
+      }
+    });
 
     this.checkRoute();
-    this.$store.dispatch("getPost");
-
+    this.$store.dispatch('getPost');
   },
   mounted() {},
   methods: {
     checkRoute() {
-      if(
-          this.$route.name === "Login" ||
-          this.$route.name === "Register" ||
-          this.$route.name === "ForgotPassword"
+      if (
+        this.$route.name === 'Login' ||
+        this.$route.name === 'Register' ||
+        this.$route.name === 'ForgotPassword'
       ) {
         this.navigation = true;
         return;
       }
       this.navigation = false;
-    }
+    },
   },
   watch: {
     $route() {
       this.checkRoute();
-    }
+    },
   },
 };
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .app {
@@ -127,7 +124,7 @@ button,
     outline: none;
   }
   &:hover {
-    background-color: rgba(48,48,48,0.7);
+    background-color: rgba(48, 48, 48, 0.7);
   }
 }
 
@@ -158,7 +155,7 @@ button,
 .button-inactive {
   pointer-events: none !important;
   cursor: none !important;
-  background-color: rgba(128,128,128, 0.5) !important;
+  background-color: rgba(128, 128, 128, 0.5) !important;
 }
 
 .error {
