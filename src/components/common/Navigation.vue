@@ -213,6 +213,7 @@ header {
         justify-content: center;
         width: 40px;
         height: 40px;
+        margin-right: 50px;
         border-radius: 50%;
         color: #fff;
         background-color: #303030;
@@ -294,7 +295,7 @@ header {
   .menu-icon {
     cursor: pointer;
     position: absolute;
-    top: 32px;
+    top: 40px;
     right: 25px;
     height: 25px;
     width: auto;

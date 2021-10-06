@@ -292,6 +292,11 @@ export default {
       }
     }
   }
+  @media (max-width: 800px) {
+    .blog-info {
+      display: block;
+    }
+  }
 
   .editor {
     height: 60vh;
