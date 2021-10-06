@@ -11,7 +11,8 @@ import CreatePost from "../views/CreatePost";
 import BlogPreview from "../components/BlogPreview";
 import ViewBlog from "../views/ViewBlog";
 import EditBlog from "../views/EditBlog";
-import CreateCv from "../views/CreateCv";
+import Resumes from "../views/Resumes";
+import EditCv from "../views/EditCv";
 
 
 import firebase from "firebase/app";
@@ -125,20 +126,32 @@ const routes = [{
         }
     },
     {
-        path: "create-cv",
-        name: "CreateCv",
-        component: CreateCv,
+        path: "resumes",
+        name: "Resumes",
+        component: Resumes,
         meta: {
-            title: "Create CV",
+            title: "Resumes",
             requiresAuth: false
-        }
+        },
+        props: true
+    },
+    {
+        path: "editcv",
+        name: "EditCv",
+        component: EditCv,
+        meta: {
+            title: "Edit CV",
+            requiresAuth: false
+        },
+        props: true
+
     },
 ];
 
 const router = new VueRouter({
     mode: "history",
     base: process.env.BASE_URL,
-    routes,
+    routes
 });
 
 router.beforeEach((to, from, next) => {

@@ -17,7 +17,12 @@
         <div class="inputs">
           <div class="input">
             <label for="first-name">Skill</label>
-            <input type="text" id="first-name" v-model="skillObj.skill" />
+            <input
+              :blur="handleBlur"
+              type="text"
+              id="first-name"
+              v-model="skillObj.skill"
+            />
           </div>
           <div class="input">
             <label for="last-name">Level ---<span> Expert</span></label>
@@ -52,6 +57,11 @@ export default {
     };
   },
   computed: mapState(['skillsSec']),
+  methods: {
+    handleBlur() {
+      this.$emit();
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -32,6 +32,10 @@ import SkillItem from './section-items/SkillItem.vue';
 // import Vue from 'vue';
 import { mapState, mapMutations } from 'vuex';
 
+// import firebase from 'firebase/app';
+// import 'firebase/storage';
+// import db from '../firebase/firebaseInit';
+
 export default {
   components: {
     MoveIcon,
@@ -53,6 +57,9 @@ export default {
           skillLevel: 'expert',
         };
         this.addEmptySkillComp(skill);
+        // async () => {
+        //   const dataBase = await db.collection('cvItem')
+        // }
       }
     },
   },
