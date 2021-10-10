@@ -6,22 +6,42 @@
         <button>Resumes</button>
         <button>+ Create New</button>
       </div>
-
+      <Template />
       <h2>
-        <router-link class="link" :to="{ name: 'EditCv' }"
+        <!-- <router-link class="link" :to="{ name: 'EditCv' }"
           >+ Create New</router-link
-        >
+        > -->
+        <button @click="createCv">+ Create New</button>
       </h2>
     </div>
   </div>
 </template>
 <script>
 // import firebase from 'firebase/app';
-import 'firebase/storage';
+// import 'firebase/storage';
 // import db from '../firebase/firebaseInit';
+import Template from '../components/templates/BasicTheme.vue';
+import { mapActions } from 'vuex';
 
 export default {
-  name: 'App',
+  name: 'Resumes',
+  components: { Template },
+  data() {
+    return {
+      resumes: [],
+    };
+  },
+  methods: {
+    ...mapActions(['createResume']),
+    async createCv() {
+      this.createResume();
+    },
+  },
+  computed: {
+    profileId() {
+      return this.$store.state.profileId;
+    },
+  },
 };
 </script>
 <style lang="scss">

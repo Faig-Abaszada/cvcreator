@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li>Job Title:{{ personalDetailsSec.jobTitle }}</li>
+      <!-- <li>Job Title:{{ resumes[0].personalDetailsSec.jobTitle }}</li> -->
       <li>First name:</li>
       <li>Last name:</li>
       <li>Email:</li>
@@ -13,9 +13,12 @@
       <li>
         Skills:
         <ul>
-          <li v-for="(skill, index) in skillsSec.skills" :key="index">
+          <!-- <li
+            v-for="(skill, index) in resumes[0].skillsSec.skills"
+            :key="index"
+          >
             {{ skill.skill }}
-          </li>
+          </li> -->
         </ul>
       </li>
     </ul>
@@ -25,7 +28,7 @@
 import { mapState } from 'vuex';
 export default {
   computed: {
-    ...mapState(['personalDetailsSec', 'skillsSec']),
+    ...mapState(['resumes']),
   },
 };
 </script>

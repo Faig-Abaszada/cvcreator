@@ -27,127 +27,8 @@ export default new Vuex.Store({
         profileId: null,
         profileInitials: null,
         // create cv page
-        personalDetailsSec: {
-            sectionTitle: "Personal Details",
-            jobTitle: "",
-            cvPhotoName: "",
-            cvPhotoFileURL: null,
-            cvPhotoPreview: null,
-            cvFirstName: null,
-            cvLastName: null,
-            cvEmail: null,
-            cvPhone: null,
-            cvCountry: null,
-            cvCity: null,
-            cvAddress: null,
-            cvPostalCode: null,
-            cvDrivingLicense: null,
-            cvNationality: null,
-            cvPlaceOfBirth: null,
-            cvDateOfBirth: null,
-        },
-        professionalSummarySec: {
-            sectionTitle: "Professional Summary",
-            summaryHTML: null,
-        },
-        skillsSec: {
-            sectionTitle: "Skills",
-            skills: []
-        },
-        educationSec: {
-            sectionTitle: "Education",
-            educations: [{
-                school: null,
-                degree: null,
-                startDate: null,
-                endDate: null,
-                startAndEndDate: null,
-                description: null,
-            }]
-        },
-        socialLinksSec: {
-            sectionTitle: "Websites & Social Links",
-            socialLinks: [{
-                label: null,
-                link: null,
-            }]
-        },
-        employmentHistorySec: {
-            sectionTitle: "Employment History",
-            employmentHistories: [{
-                jobTitle: null,
-                employer: null,
-                startDate: null,
-                endDate: null,
-                startAndEndDate: null,
-                city: null,
-                jobDescHTML: null,
-            }]
-        },
-        hobbiesSec: {
-            sectionTitle: "Hobbies",
-            hobbiesText: null,
-        },
-        coursesSec: {
-            sectionTitle: "Courses",
-            courses: [{
-                courseName: null,
-                institution: null,
-                startDate: null,
-                endDate: null,
-                startAndEndDate: null,
-            }]
-        },
-        internshipsSec: {
-            sectionTitle: "Internships",
-            internships: [{
-                jobTitle: null,
-                employer: null,
-                startDate: null,
-                endDate: null,
-                startAndEndDate: null,
-                city: null,
-                jobDescHTML: null,
-            }]
-        },
-        languagesSec: {
-            sectionTitle: "Languages",
-            languagesSec: [{
-                language: null,
-                level: null,
-            }]
-        },
-        referencesSec: {
-            sectionTitle: "References",
-            references: [{
-                referentsFullName: null,
-                company: null,
-                phone: null,
-                email: null,
-            }]
-        },
-        extraActivitiesSec: {
-            sectionTitle: "Extra-curricular Activities",
-            extraActivities: [{
-                functionTitle: null,
-                employer: null,
-                startDate: null,
-                endDate: null,
-                startAndEndDate: null,
-                city: null,
-                jobDescHTML: null,
-            }]
-        },
-        customSectionSec: {
-            sectionTitle: "Untitled Edit Me!",
-            customSectionSec: [{
-                itemName: null,
-                city: null,
-                startDate: null,
-                endDate: null,
-                startAndEndDate: null,
-            }]
-        }
+        resumes: []
+
         // create cv page end
 
 
@@ -249,6 +130,7 @@ export default new Vuex.Store({
             state.postLoaded = true;
             // console.log(state.blogPosts);
         },
+
         async updatePost({ commit, dispatch }, payload) {
             commit('filterBlogPost', payload);
             await dispatch("getPost");
@@ -267,6 +149,155 @@ export default new Vuex.Store({
             });
             commit("setProfileInitials");
         },
+        // 
+        // Resume Actions Start
+        // 
+        async createResume() {
+            const timestamp = await Date.now();
+            const resumesCollection = await db.collection('resumes').doc();
+            await resumesCollection.set({
+                profileId: this.state.profileId,
+                date: timestamp,
+                personalDetailsSec: {
+                    sectionTitle: "Personal Details",
+                    jobTitle: "frontend dev",
+                    cvPhotoName: "",
+                    cvPhotoFileURL: null,
+                    cvPhotoPreview: null,
+                    cvFirstName: null,
+                    cvLastName: null,
+                    cvEmail: null,
+                    cvPhone: null,
+                    cvCountry: null,
+                    cvCity: null,
+                    cvAddress: null,
+                    cvPostalCode: null,
+                    cvDrivingLicense: null,
+                    cvNationality: null,
+                    cvPlaceOfBirth: null,
+                    cvDateOfBirth: null,
+                },
+                professionalSummarySec: {
+                    sectionTitle: "Professional Summary",
+                    summaryHTML: null,
+                },
+                skillsSec: {
+                    sectionTitle: "Skills",
+                    skills: []
+                },
+                educationSec: {
+                    sectionTitle: "Education",
+                    educations: [{
+                        school: null,
+                        degree: null,
+                        startDate: null,
+                        endDate: null,
+                        startAndEndDate: null,
+                        description: null,
+                    }]
+                },
+                socialLinksSec: {
+                    sectionTitle: "Websites & Social Links",
+                    socialLinks: [{
+                        label: null,
+                        link: null,
+                    }]
+                },
+                employmentHistorySec: {
+                    sectionTitle: "Employment History",
+                    employmentHistories: [{
+                        jobTitle: null,
+                        employer: null,
+                        startDate: null,
+                        endDate: null,
+                        startAndEndDate: null,
+                        city: null,
+                        jobDescHTML: null,
+                    }]
+                },
+                hobbiesSec: {
+                    sectionTitle: "Hobbies",
+                    hobbiesText: null,
+                },
+                coursesSec: {
+                    sectionTitle: "Courses",
+                    courses: [{
+                        courseName: null,
+                        institution: null,
+                        startDate: null,
+                        endDate: null,
+                        startAndEndDate: null,
+                    }]
+                },
+                internshipsSec: {
+                    sectionTitle: "Internships",
+                    internships: [{
+                        jobTitle: null,
+                        employer: null,
+                        startDate: null,
+                        endDate: null,
+                        startAndEndDate: null,
+                        city: null,
+                        jobDescHTML: null,
+                    }]
+                },
+                languagesSec: {
+                    sectionTitle: "Languages",
+                    languagesSec: [{
+                        language: null,
+                        level: null,
+                    }]
+                },
+                referencesSec: {
+                    sectionTitle: "References",
+                    references: [{
+                        referentsFullName: null,
+                        company: null,
+                        phone: null,
+                        email: null,
+                    }]
+                },
+                extraActivitiesSec: {
+                    sectionTitle: "Extra-curricular Activities",
+                    extraActivities: [{
+                        functionTitle: null,
+                        employer: null,
+                        startDate: null,
+                        endDate: null,
+                        startAndEndDate: null,
+                        city: null,
+                        jobDescHTML: null,
+                    }]
+                },
+                customSectionSec: {
+                    sectionTitle: "Untitled Edit Me!",
+                    customSectionSec: [{
+                        itemName: null,
+                        city: null,
+                        startDate: null,
+                        endDate: null,
+                        startAndEndDate: null,
+                    }]
+                },
+            });
+        },
+        async getResumes() {
+            const resumesCollection = await db.collection('resumes');
+            const allResumes = resumesCollection.get();
+
+            allResumes.forEach(() => {
+
+            })
+        },
+        async updateResume() {
+            // update resume here
+        },
+        async deleteResume() {
+            // delete resume here
+        }
+        // 
+        // Resume Actions End
+        // 
 
     },
     modules: {}
@@ -288,3 +319,128 @@ export default new Vuex.Store({
 // }
 
 // storage
+//   await dataBase.set({
+// {
+//             personalDetailsSec: {
+//                 sectionTitle: "Personal Details",
+//                 jobTitle: "frontend dev",
+//                 cvPhotoName: "",
+//                 cvPhotoFileURL: null,
+//                 cvPhotoPreview: null,
+//                 cvFirstName: null,
+//                 cvLastName: null,
+//                 cvEmail: null,
+//                 cvPhone: null,
+//                 cvCountry: null,
+//                 cvCity: null,
+//                 cvAddress: null,
+//                 cvPostalCode: null,
+//                 cvDrivingLicense: null,
+//                 cvNationality: null,
+//                 cvPlaceOfBirth: null,
+//                 cvDateOfBirth: null,
+//             },
+//             professionalSummarySec: {
+//                 sectionTitle: "Professional Summary",
+//                 summaryHTML: null,
+//             },
+//             skillsSec: {
+//                 sectionTitle: "Skills",
+//                 skills: []
+//             },
+//             educationSec: {
+//                 sectionTitle: "Education",
+//                 educations: [{
+//                     school: null,
+//                     degree: null,
+//                     startDate: null,
+//                     endDate: null,
+//                     startAndEndDate: null,
+//                     description: null,
+//                 }]
+//             },
+//             socialLinksSec: {
+//                 sectionTitle: "Websites & Social Links",
+//                 socialLinks: [{
+//                     label: null,
+//                     link: null,
+//                 }]
+//             },
+//             employmentHistorySec: {
+//                 sectionTitle: "Employment History",
+//                 employmentHistories: [{
+//                     jobTitle: null,
+//                     employer: null,
+//                     startDate: null,
+//                     endDate: null,
+//                     startAndEndDate: null,
+//                     city: null,
+//                     jobDescHTML: null,
+//                 }]
+//             },
+//             hobbiesSec: {
+//                 sectionTitle: "Hobbies",
+//                 hobbiesText: null,
+//             },
+//             coursesSec: {
+//                 sectionTitle: "Courses",
+//                 courses: [{
+//                     courseName: null,
+//                     institution: null,
+//                     startDate: null,
+//                     endDate: null,
+//                     startAndEndDate: null,
+//                 }]
+//             },
+//             internshipsSec: {
+//                 sectionTitle: "Internships",
+//                 internships: [{
+//                     jobTitle: null,
+//                     employer: null,
+//                     startDate: null,
+//                     endDate: null,
+//                     startAndEndDate: null,
+//                     city: null,
+//                     jobDescHTML: null,
+//                 }]
+//             },
+//             languagesSec: {
+//                 sectionTitle: "Languages",
+//                 languagesSec: [{
+//                     language: null,
+//                     level: null,
+//                 }]
+//             },
+//             referencesSec: {
+//                 sectionTitle: "References",
+//                 references: [{
+//                     referentsFullName: null,
+//                     company: null,
+//                     phone: null,
+//                     email: null,
+//                 }]
+//             },
+//             extraActivitiesSec: {
+//                 sectionTitle: "Extra-curricular Activities",
+//                 extraActivities: [{
+//                     functionTitle: null,
+//                     employer: null,
+//                     startDate: null,
+//                     endDate: null,
+//                     startAndEndDate: null,
+//                     city: null,
+//                     jobDescHTML: null,
+//                 }]
+//             },
+//             customSectionSec: {
+//                 sectionTitle: "Untitled Edit Me!",
+//                 customSectionSec: [{
+//                     itemName: null,
+//                     city: null,
+//                     startDate: null,
+//                     endDate: null,
+//                     startAndEndDate: null,
+//                 }]
+//             },
+//         }
+//         });
