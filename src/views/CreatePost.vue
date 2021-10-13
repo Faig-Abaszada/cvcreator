@@ -142,7 +142,8 @@ export default {
                 name: 'ViewBlog',
                 params: { blogid: dataBase.id },
               });
-              window.location.reload();
+              // window.location.reload(); bunu edirdim cunki create post yeniden edende kohne yazilanlar qalirdi orda
+              // bunun evezine mutation yaradib clearInputs deyib hamisina bosh string deye bilersen
             },
           );
           return;

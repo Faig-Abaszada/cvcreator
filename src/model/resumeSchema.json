@@ -1,0 +1,272 @@
+{
+    "sections": [
+
+        {
+            "id": "4",
+            "name": "section name",
+            "fields": [{
+                "id": "field_name"
+            }]
+        },
+
+        {
+            "id": "3",
+            "name": "Personal Details",
+            "fields": [{
+                    "id": "job_title"
+                },
+                {
+                    "id": "photo_name"
+                },
+                {
+                    "id": "photo_fileURL"
+                },
+                {
+                    "id": "photo_preview"
+                },
+                {
+                    "id": "first_name"
+                },
+                {
+                    "id": "last_name"
+                },
+                {
+                    "id": "email"
+                },
+                {
+                    "id": "phone"
+                },
+                {
+                    "id": "country"
+                },
+                {
+                    "id": "city"
+                },
+                {
+                    "id": "address"
+                },
+                {
+                    "id": "postal_code"
+                },
+                {
+                    "id": "driving_license"
+                },
+                {
+                    "id": "nationality"
+                },
+                {
+                    "id": "placeOf_birth"
+                },
+                {
+                    "id": "dateOf_birth"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "name": "Professional Summary",
+            "fields": [{
+                "id": "summary_HTML"
+            }]
+        },
+        {
+            "id": "5",
+            "name": "Skills",
+            "fields": [{
+                    "id": "skill"
+                },
+                {
+                    "id": "level"
+                }
+            ]
+        },
+        {
+            "id": "6",
+            "name": "Education",
+            "fields": [{
+                    "id": "school"
+                },
+                {
+                    "id": "degree"
+                },
+                {
+                    "id": "start_date"
+                },
+                {
+                    "id": "end_date"
+                },
+                {
+                    "id": "start_end_date"
+                },
+                {
+                    "id": "description"
+                }
+            ]
+        },
+        {
+            "id": "7",
+            "name": "Websites & Social Links",
+            "fields": [{
+                    "id": "label"
+                },
+                {
+                    "id": "link"
+                }
+            ]
+        },
+        {
+            "id": "8",
+            "name": "Employment History",
+            "fields": [{
+                    "id": "jobTitle"
+                },
+                {
+                    "id": "employer"
+                },
+                {
+                    "id": "start_date"
+                },
+                {
+                    "id": "end_date"
+                },
+                {
+                    "id": "start_end_date"
+                },
+                {
+                    "id": "city"
+                },
+                {
+                    "id": "job_desc_HTML"
+                }
+            ]
+        },
+        {
+            "id": "9",
+            "name": "Hobbies",
+            "fields": [{
+                "id": "hobbies-text"
+            }]
+        },
+        {
+            "id": "10",
+            "name": "Courses",
+            "fields": [{
+                    "id": "course_name"
+                },
+                {
+                    "id": "institution"
+                },
+                {
+                    "id": "start_date"
+                },
+                {
+                    "id": "end_date"
+                },
+                {
+                    "id": "start_end_date"
+                }
+            ]
+        },
+        {
+            "id": "11",
+            "name": "Internships",
+            "fields": [{
+                    "id": "job_title"
+                },
+                {
+                    "id": "employer"
+                },
+                {
+                    "id": "start_date"
+                },
+                {
+                    "id": "end_date"
+                },
+                {
+                    "id": "start_end_date"
+                },
+                {
+                    "id": "city"
+                },
+                {
+                    "id": "job_desc_HTML"
+                }
+            ]
+        },
+        {
+            "id": "12",
+            "name": "Languages",
+            "fields": [{
+                    "id": "language"
+                },
+                {
+                    "id": "level"
+                }
+            ]
+        },
+        {
+            "id": "13",
+            "name": "References",
+            "fields": [{
+                    "id": "referents_fullName"
+                },
+                {
+                    "id": "company"
+                },
+                {
+                    "id": "phone"
+                },
+                {
+                    "id": "email"
+                }
+            ]
+        },
+        {
+            "id": "14",
+            "name": "Extra-curricular Activities",
+            "fields": [{
+                    "id": "function_title"
+                },
+                {
+                    "id": "employer"
+                },
+                {
+                    "id": "start_date"
+                },
+                {
+                    "id": "end_date"
+                },
+                {
+                    "id": "start_end_date"
+                },
+                {
+                    "id": "city"
+                },
+                {
+                    "id": "job_desc_HTML"
+                }
+            ]
+        },
+
+        {
+            "id": "4",
+            "name": "section name",
+            "fields": [{
+                    "id": "itemName"
+                },
+                {
+                    "id": "start_date"
+                },
+                {
+                    "id": "end_date"
+                },
+                {
+                    "id": "start_end_date"
+                },
+                {
+                    "id": "city"
+                }
+            ]
+        }
+    ]
+}

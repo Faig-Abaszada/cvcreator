@@ -27,9 +27,9 @@ export default new Vuex.Store({
         profileId: null,
         profileInitials: null,
         // create cv page
-        resumes: []
-
-        // create cv page end
+        resumes: [],
+        resumeDocName: "test doc nameeeeeee"
+            // create cv page end
 
 
     },
@@ -47,6 +47,7 @@ export default new Vuex.Store({
             state.skillsSec.skills.push(payload);
             console.log(state.skillsSec.skills);
         },
+
         //cv create end
         newBlogPost(state, payload) {
             state.blogHTML = payload;
@@ -152,30 +153,32 @@ export default new Vuex.Store({
         // 
         // Resume Actions Start
         // 
-        async createResume() {
+        async createResume({ state }) {
             const timestamp = await Date.now();
             const resumesCollection = await db.collection('resumes').doc();
             await resumesCollection.set({
+                resumeDocName: state.resumeDocName,
+                resumeID: resumesCollection.id,
                 profileId: this.state.profileId,
                 date: timestamp,
                 personalDetailsSec: {
                     sectionTitle: "Personal Details",
                     jobTitle: "frontend dev",
-                    cvPhotoName: "",
-                    cvPhotoFileURL: null,
-                    cvPhotoPreview: null,
-                    cvFirstName: null,
-                    cvLastName: null,
-                    cvEmail: null,
-                    cvPhone: null,
-                    cvCountry: null,
-                    cvCity: null,
-                    cvAddress: null,
-                    cvPostalCode: null,
-                    cvDrivingLicense: null,
-                    cvNationality: null,
-                    cvPlaceOfBirth: null,
-                    cvDateOfBirth: null,
+                    PhotoName: "",
+                    PhotoFileURL: null,
+                    PhotoPreview: null,
+                    FirstName: null,
+                    LastName: null,
+                    Email: null,
+                    Phone: null,
+                    Country: null,
+                    City: null,
+                    Address: null,
+                    PostalCode: null,
+                    DrivingLicense: null,
+                    Nationality: null,
+                    PlaceOfBirth: null,
+                    DateOfBirth: null,
                 },
                 professionalSummarySec: {
                     sectionTitle: "Professional Summary",
@@ -281,12 +284,12 @@ export default new Vuex.Store({
                 },
             });
         },
-        async getResumes() {
+        async getResumes({ state }) {
             const resumesCollection = await db.collection('resumes');
             const allResumes = resumesCollection.get();
 
-            allResumes.forEach(() => {
-
+            allResumes.forEach((resume) => {
+                state.blogPosts.push(resume);
             })
         },
         async updateResume() {

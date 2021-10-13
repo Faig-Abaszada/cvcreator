@@ -11,6 +11,7 @@
         <!-- <router-link class="link" :to="{ name: 'EditCv' }"
           >+ Create New</router-link
         > -->
+
         <button @click="createCv">+ Create New</button>
       </h2>
     </div>
@@ -41,6 +42,14 @@ export default {
     profileId() {
       return this.$store.state.profileId;
     },
+  },
+  created() {
+    this.unwatch = this.$store.watch(
+      (state) => state.resumeDocName,
+      (newValue, oldValue) => {
+        console.log(newValue, oldValue);
+      },
+    );
   },
 };
 </script>
