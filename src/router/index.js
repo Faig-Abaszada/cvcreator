@@ -12,7 +12,7 @@ import BlogPreview from "../components/BlogPreview";
 import ViewBlog from "../views/ViewBlog";
 import EditBlog from "../views/EditBlog";
 import Resumes from "../views/Resumes";
-import EditCv from "../views/EditCv";
+import EditResume from "../views/EditResume";
 
 
 import firebase from "firebase/app";
@@ -136,9 +136,9 @@ const routes = [{
         props: true
     },
     {
-        path: "editcv",
-        name: "EditCv",
-        component: EditCv,
+        path: "/edit-resume/:resumeid",
+        name: "EditResume",
+        component: EditResume,
         meta: {
             title: "Edit CV",
             requiresAuth: false

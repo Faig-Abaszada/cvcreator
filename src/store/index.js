@@ -28,8 +28,7 @@ export default new Vuex.Store({
         profileInitials: null,
         // create cv page
         resumes: [],
-        resumeDocName: "test doc nameeeeeee"
-            // create cv page end
+        // create cv page end
 
 
     },
@@ -39,7 +38,14 @@ export default new Vuex.Store({
         },
         blogPostCards(state) {
             return state.blogPosts.slice(2, 6);
+        },
+        resumeGetterTest: (state) => (id) => {
+            // state.resumes.forEach((resume) => {
+            //     return resume;
+            // })
+            return state.resumes.find(resume => resume.resumeID === id);
         }
+
     },
     mutations: {
         //cv create start
@@ -153,17 +159,16 @@ export default new Vuex.Store({
         // 
         // Resume Actions Start
         // 
-        async createResume({ state }) {
+        async createResume() {
             const timestamp = await Date.now();
-            const resumesCollection = await db.collection('resumes').doc();
-            await resumesCollection.set({
-                resumeDocName: state.resumeDocName,
-                resumeID: resumesCollection.id,
+            const resumeDB = await db.collection('resumes').doc();
+            await resumeDB.set({
+                resumeID: resumeDB.id,
                 profileId: this.state.profileId,
                 date: timestamp,
                 personalDetailsSec: {
                     sectionTitle: "Personal Details",
-                    jobTitle: "frontend dev",
+                    jobTitle: "",
                     PhotoName: "",
                     PhotoFileURL: null,
                     PhotoPreview: null,
@@ -283,14 +288,20 @@ export default new Vuex.Store({
                     }]
                 },
             });
+            this.$router.push({
+                name: 'EditResume',
+                params: { resumeid: resumeDB.id },
+            });
         },
         async getResumes({ state }) {
-            const resumesCollection = await db.collection('resumes');
-            const allResumes = resumesCollection.get();
+            const resumesCollection = await db.collection('resumes').orderBy('date', 'desc');
+            const allResumes = await resumesCollection.get();
+
 
             allResumes.forEach((resume) => {
-                state.blogPosts.push(resume);
+                state.resumes.push(resume.data());
             })
+            console.log(state.resumes);
         },
         async updateResume() {
             // update resume here

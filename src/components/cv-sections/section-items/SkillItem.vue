@@ -7,8 +7,8 @@
         <DeleteIcon class="icon delete-icon" />
         <div class="header" @click="showJobDetail = !showJobDetail">
           <div>
-            <h2 class="title">{{ skillObj.skill }}</h2>
-            <span>{{ skillObj.skillLevel }}</span>
+            <h2 class="title">Html</h2>
+            <span>Expert</span>
           </div>
           <ArrowIcon class="icon" />
         </div>
@@ -17,12 +17,7 @@
         <div class="inputs">
           <div class="input">
             <label for="first-name">Skill</label>
-            <input
-              :blur="handleBlur"
-              type="text"
-              id="first-name"
-              v-model="skillObj.skill"
-            />
+            <input :blur="handleBlur" type="text" id="first-name" />
           </div>
           <div class="input">
             <label for="last-name">Level ---<span> Expert</span></label>

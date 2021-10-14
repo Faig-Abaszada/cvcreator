@@ -2,8 +2,7 @@
   <div class="section">
     <div class="section-header">
       <h2 class="title">
-        <MoveIcon class="icon move-icon" />{{ skillsSec.sectionTitle
-        }}<EditIcon class="icon" />
+        <MoveIcon class="icon move-icon" />Skills<EditIcon class="icon" />
       </h2>
       <h4 class="subtitle">
         You can add links to websites you want hiring managers to see! Perhaps
@@ -11,11 +10,9 @@
       </h4>
     </div>
     <div class="section-inner" ref="sectionInner">
-      <SkillItem
-        v-for="(skillObj, index) in skillsSec.skills"
-        :key="index"
-        :skillObj="skillObj"
-      />
+      <SkillItem />
+      <!-- v-for="(skillObj, index) in skillsSec.skills" :key="index"
+      :skillObj="skillObj" -->
     </div>
     <button @click="addSkill" class="btn add-skill">
       <PlusIcon class="icon" @click="addSkill" /> Add skill

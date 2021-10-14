@@ -9,6 +9,7 @@
           <div class="top">
             <p class="complete-percent">
               <span>25%</span> Profile completeness
+              <button @click="showConsole">Console</button>
             </p>
             <p class="percent">
               <span>+10%</span>Add profile summary<QuestionIcon
@@ -20,7 +21,7 @@
 
         <div class="cv-info-fill">
           <!-- section start -->
-          <PersonalDetailsSec />
+          <PersonalDetailsSec :resume="resume" />
           <!-- section end -->
           <!-- section start  -->
           <SummarySec />
@@ -70,6 +71,8 @@ import CustomSec from '../components/cv-sections/CustomSec.vue';
 
 import BasicTheme from '../components/templates/BasicTheme.vue';
 
+import { mapActions } from 'vuex';
+
 export default {
   name: 'CreateCv',
   components: {
@@ -85,6 +88,9 @@ export default {
   },
   data() {
     return {
+      resume: '',
+      routeID: null,
+      currentResume: null,
       blogHTML: '',
       customToolbar: [
         ['bold', 'italic', 'underline'],
@@ -92,11 +98,29 @@ export default {
       ],
     };
   },
+  async mounted() {
+    this.routeID = this.$route.params.resumeid;
+    this.currentResume = await this.$store.state.resumes.filter((resume) => {
+      return resume.resumeID === this.routeID;
+    });
+    this.resume = this.resumeGetterTest;
+    // this.$store.commit('setResumeState', this.currentResume[0]);
+  },
   methods: {
+    ...mapActions(['getResumes']),
     handleBlur(e) {
       console.log('blur', e.target.placeholder);
     },
+    showConsole() {
+      console.log(this.resume);
+    },
   },
+  computed: {
+    resumeGetterTest() {
+      return this.$store.getters.resumeGetterTest(this.routeID);
+    },
+  },
+  watch: {},
 };
 </script>
 <style lang="scss">
