@@ -28,20 +28,8 @@
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
 import Loading from "../components/common/Loading";
-
-// import Template from '../components/templates/BasicTheme.vue';
-// import { mapActions } from 'vuex';
-
 import { mapFields } from 'vuex-map-fields';
-
-// import BasicTheme from "../components/templates/BasicTheme";
-// import BasicThemeFuji from "../components/templates/BasicThemeFuji";
-
 import ResumeCard from "../components/ResumeCard";
-
-// import EditPage from "../components/EditPage";
-
-// import TestParentComponent from "../components/TestParentComponent";
 
 export default {
   name: 'Resumes',
@@ -70,8 +58,8 @@ export default {
           photoName: '',
           photoFileURL: null,
           photoPreview: null,
-          firstName: 'Faig',
-          lastName: 'Abaszada',
+          firstName: null,
+          lastName: null,
           email: null,
           phone: null,
           country: null,
@@ -245,7 +233,8 @@ export default {
   created() {},
   async mounted() {
     // await this.$store.dispatch('getResumes');
-    await this.$store.dispatch('getResumes');
+    await this.$store.dispatch('getCurrentUser');
+    await this.$store.dispatch('getResumes', this.profileId);
   },
 };
 </script>

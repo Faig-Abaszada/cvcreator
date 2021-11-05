@@ -469,7 +469,7 @@ export default new Vuex.Store({
                 params: { resumeid: resumeDB.id },
             });
         },
-        async getResumes({ state }) {
+        async getResumes({ state }, payload) {
             const resumesCollection = await db.collection('resumes').orderBy('date', 'desc');
             const allResumes = await resumesCollection.get();
 
@@ -481,10 +481,10 @@ export default new Vuex.Store({
             // bu yo ile ise sadece state-de olmayan resumelar state gedecek
             // statede olmayan resume varsa dbden state-a elave et
             allResumes.forEach((resume) => {
-                if (!state.resumes.some(stateResume => stateResume.resumeID === resume.id)) {
-                    state.resumes.push(resume.data());
+                if (!state.resumes.some(stateResume => stateResume.resumeID === resume.id) && payload === resume.data().profileId) {
+                        state.resumes.push(resume.data());
                 }
-            })
+            });
         },
         async updateResume() {
             // update resume here

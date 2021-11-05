@@ -44,7 +44,7 @@
           <!-- section end -->
         </div>
         <div class="save-btn">
-          <button class="save-btn">SAVE!</button>
+          <button @click="updateResume" class="save-btn">SAVE!</button>
         </div>
       </div>
     </div>
@@ -65,12 +65,13 @@ import EducationSec from '../components/cv-sections/EducationSec.vue';
 import SocialLinksSec from '../components/cv-sections/SocialLinksSec.vue';
 import SkillsSec from '../components/cv-sections/SkillsSec.vue';
 import CustomSec from '../components/cv-sections/CustomSec.vue';
-// import BasicTheme from '../components/templates/BasicTheme.vue';
-// import BasicThemeFuji from "../components/templates/BasicThemeFuji";
 
 import ResumePreview from "../components/ResumePreview";
 import Loading from "../components/common/Loading";
 import {mapFields} from "vuex-map-fields";
+
+import 'firebase/storage';
+import db from '../firebase/firebaseInit';
 
 export default {
   name: 'EditResume',
@@ -100,19 +101,7 @@ export default {
       loading: null,
     };
   },
-   mounted() {
-    // this.loading = true;
-    // this.routeID = this.$route.params.resumeid;
-    // setTimeout(() =>{
-    //   const currentResume =   this.$store.state.resumes.filter((resume) => {
-    //     return resume.resumeID === this.routeID
-    //   });
-    //   this.$store.commit('setResumeSate', currentResume);
-    //   this.loading = false;
-    // }, 2000)
-
-  },
-
+   mounted() {},
   methods: {
     async updateResume() {
       // buralari hell et
@@ -128,6 +117,13 @@ export default {
       zaten biz burada onu firebase gondereceyik!!!
 
        */
+      this.loading = true;
+      const resumeDB = await db.collection('resumes').doc(this.routeID);
+
+      await resumeDB.update(this.resume);
+      await this.$store.dispatch('getResumes');
+
+      this.loading = false;
     }
   },
   computed: {
