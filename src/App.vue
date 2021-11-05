@@ -3,7 +3,7 @@
     <div class="app" v-if="this.$store.state.postLoaded">
       <Navigation v-if="!navigation" />
       <router-view />
-      <Footer v-if="!navigation" />
+      <Footer class="footer" v-if="!navigation" />
     </div>
   </div>
 </template>
@@ -33,13 +33,13 @@ export default {
         this.$store.dispatch('getCurrentUser');
 
         setTimeout(() => {
-          console.log(this.$store.state.profileEmail);
         }, 2000);
       }
     });
 
     this.checkRoute();
     this.$store.dispatch('getPost');
+    this.$store.dispatch('getResumes');
   },
   mounted() {},
   methods: {
@@ -47,7 +47,8 @@ export default {
       if (
         this.$route.name === 'Login' ||
         this.$route.name === 'Register' ||
-        this.$route.name === 'ForgotPassword'
+        this.$route.name === 'ForgotPassword' ||
+          this.$route.name === 'EditResume'
       ) {
         this.navigation = true;
         return;
@@ -73,10 +74,12 @@ export default {
   font-family: 'Quicksand', sans-serif;
 }
 
+
+
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .container {
@@ -188,4 +191,6 @@ button,
     }
   }
 }
+
+
 </style>

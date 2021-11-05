@@ -2,7 +2,10 @@
   <div>
     <div class="section">
       <div class="section-header">
-        <h2 class="title">Personal Details<EditIcon class="icon" /></h2>
+        <h2 class="title">
+          static personal detail title
+          <EditIcon class="icon" />
+        </h2>
       </div>
 
       <div class="section-inner">
@@ -20,12 +23,14 @@
         </div>
         <div class="inputs">
           <div class="input">
-            <label for="first-name">First Name</label>
-            <input type="text" id="first-name" />
+            <label>First Name</label>
+<!--            <input type="text" id="first-name" v-model="FirstName"/>-->
+            <CommonInput :inputValue.sync="personalDetailsSec.firstName"/>
           </div>
           <div class="input">
-            <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" />
+            <label >Last Name</label>
+<!--            <input type="text" id="last-name" />-->
+            <CommonInput :inputValue.sync="personalDetailsSec.lastName"/>
           </div>
         </div>
         <div class="inputs">
@@ -97,16 +102,38 @@ import UserIcon from '../../assets/Icons/create-cv/upload-user.svg';
 import ArrowIcon from '../../assets/Icons/create-cv/arrow-right.svg';
 import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
 
+import CommonInput from "../CommonInput";
+// import CommonInputDirect from "../CommonInputDirect";
+import {mapFields} from "vuex-map-fields";
+
 export default {
+  name: 'PersonalDetailsSec',
   components: {
     UserIcon,
     ArrowIcon,
     EditIcon,
+    CommonInput,
   },
+  props: ['personalDetailsSec'],
   data() {
     return {
       showAdditionalDetails: false,
+      routeID: null,
     };
   },
+   created() {
+    //  this.routeID = this.$route.params.resumeid;
+    //  this.$store.dispatch('getResumes');
+    // const currentResume =   this.$store.state.resumes.filter((resume) => {
+    //   return resume.resumeID === this.routeID
+    // });
+    // this.$store.commit('setResumeSate', currentResume);
+  },
+  computed: {
+    ...mapFields([
+      'resumeDocName'
+    ]),
+  },
+
 };
 </script>

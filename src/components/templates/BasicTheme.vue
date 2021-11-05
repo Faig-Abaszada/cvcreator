@@ -1,36 +1,91 @@
 <template>
-  <div>
-    <ul>
-      <!-- <li>Job Title:{{ resumes[0].personalDetailsSec.jobTitle }}</li> -->
-      <li>First name:</li>
-      <li>Last name:</li>
-      <li>Email:</li>
-      <li>Phone:</li>
-      <li>Summary:</li>
-      <li>Employment:</li>
-      <li>Education:</li>
-      <li>Social Links:</li>
-      <li>
-        Skills:
-        <ul>
-          <!-- <li
-            v-for="(skill, index) in resumes[0].skillsSec.skills"
-            :key="index"
-          >
-            {{ skill.skill }}
-          </li> -->
-        </ul>
-      </li>
-    </ul>
+  <div class="resume-doc">
+    <h1>
+      {{ resume.personalDetailsSec.firstName }}
+      {{ resume.personalDetailsSec.lastName }}
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>end</li>
+      </ul>
+    </h1>
   </div>
 </template>
+
 <script>
-import { mapState } from 'vuex';
+// import { mapGetters } from 'vuex';
 export default {
-  computed: {
-    ...mapState(['resumes']),
-  },
+  name: 'BasicTheme',
+  props: ['resume'],
 };
 </script>
-<style lang="scss" scoped>
+<style>
+.resume-doc {
+  width: 21cm;
+  height: 29.7cm;
+  background-color: #98a1b3 !important;
+  color: #f2f7f6;
+  padding: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>

@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     blogPostFeed() {
-      return this.$$store.getters.blogPostFeed;
+      return this.$store.getters.blogPostFeed;
     },
     blogPostCards() {
       return this.$store.getters.blogPostCards;

@@ -126,7 +126,7 @@ const routes = [{
         }
     },
     {
-        path: "resumes",
+        path: "/resumes",
         name: "Resumes",
         component: Resumes,
         meta: {
@@ -141,7 +141,7 @@ const routes = [{
         component: EditResume,
         meta: {
             title: "Edit CV",
-            requiresAuth: false
+            requiresAuth: false,
         },
         props: true
 

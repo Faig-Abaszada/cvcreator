@@ -1,19 +1,25 @@
 <template>
   <div>
+    <Loading v-show="loading"/>
+
+<!--    <EditPage />-->
+
     <div class="cvbuilder-wrapper">
       <h1>Documents</h1>
       <div class="cvbuilder-nav">
         <button>Resumes</button>
-        <button>+ Create New</button>
+        <button @click="createResume">+ Create New</button>
       </div>
-      <Template />
-      <h2>
-        <!-- <router-link class="link" :to="{ name: 'EditCv' }"
-          >+ Create New</router-link
-        > -->
+
+
+      <div class="row resume-cards">
+          <ResumeCard class="col-md-6" v-for="(resume, index) in resumes" :key="index" :resume="resume" />
+      </div>
+
+<!--      <TestParentComponent></TestParentComponent>-->
 
         <button @click="createResume">+ Create New</button>
-      </h2>
+
     </div>
   </div>
 </template>
@@ -21,45 +27,61 @@
 // import firebase from 'firebase/app';
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
+import Loading from "../components/common/Loading";
 
-import Template from '../components/templates/BasicTheme.vue';
+// import Template from '../components/templates/BasicTheme.vue';
 // import { mapActions } from 'vuex';
+
+import { mapFields } from 'vuex-map-fields';
+
+// import BasicTheme from "../components/templates/BasicTheme";
+// import BasicThemeFuji from "../components/templates/BasicThemeFuji";
+
+import ResumeCard from "../components/ResumeCard";
+
+// import EditPage from "../components/EditPage";
+
+// import TestParentComponent from "../components/TestParentComponent";
 
 export default {
   name: 'Resumes',
-  components: { Template },
+  components: {Loading,  ResumeCard, },
   data() {
     return {
-      resumes: [],
+      loading: null,
     };
   },
   methods: {
     // ...mapActions(['getResumes']),
     async createResume() {
+      this.loading = true;
       const timestamp = await Date.now();
       const resumeDB = await db.collection('resumes').doc();
+
       await resumeDB.set({
         resumeID: resumeDB.id,
         profileId: this.profileId,
         date: timestamp,
+        templateName: "BasicTheme",
+        resumeDocName: "CV document Name 222222",
         personalDetailsSec: {
           sectionTitle: 'Personal Details',
           jobTitle: '',
-          PhotoName: '',
-          PhotoFileURL: null,
-          PhotoPreview: null,
-          FirstName: null,
-          LastName: null,
-          Email: null,
-          Phone: null,
-          Country: null,
-          City: null,
-          Address: null,
-          PostalCode: null,
-          DrivingLicense: null,
-          Nationality: null,
-          PlaceOfBirth: null,
-          DateOfBirth: null,
+          photoName: '',
+          photoFileURL: null,
+          photoPreview: null,
+          firstName: 'Faig',
+          lastName: 'Abaszada',
+          email: null,
+          phone: null,
+          country: null,
+          city: null,
+          address: null,
+          postalCode: null,
+          drivingLicense: null,
+          nationality: null,
+          placeOfBirth: null,
+          dateOfBirth: null,
         },
         professionalSummarySec: {
           sectionTitle: 'Professional Summary',
@@ -182,52 +204,69 @@ export default {
           ],
         },
       });
+
       await this.$store.dispatch('getResumes');
+
+      const currentResume = await this.$store.state.resumes.filter((resume) => {
+        return resume.resumeID === resumeDB.id;
+      });
+      this.$store.commit('setResumeSate', currentResume);
+
+      this.loading = false;
+
       this.$router.push({
         name: 'EditResume',
         params: { resumeid: resumeDB.id },
       });
     },
+    async editResume(id) {
+      this.loading = true;
+      const currentResume = await this.$store.state.resumes.filter((resume) => {
+        return resume.resumeID === id;
+      });
+      this.$store.commit('setResumeSate', currentResume);
+
+      this.loading = false;
+      this.$router.push({
+        name: 'EditResume',
+        params: { resumeid: id },
+      });
+    }
   },
   computed: {
     profileId() {
       return this.$store.state.profileId;
     },
+    // resumes() {
+    //   return this.$store.state.resumes;
+    // },
+    ...mapFields(['resumes'])
   },
-  created() {
-    this.unwatch = this.$store.watch(
-      (state) => state.resumeDocName,
-      (newValue, oldValue) => {
-        console.log(newValue, oldValue);
-      },
-    );
-  },
+  created() {},
   async mounted() {
+    // await this.$store.dispatch('getResumes');
     await this.$store.dispatch('getResumes');
   },
 };
 </script>
 <style lang="scss">
 .cvbuilder-wrapper {
-  padding: 100px;
-  height: 100vh;
+  padding: 0 20px;
+  margin: 20px auto;
 }
 .cvbuilder-nav {
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid #333;
   padding-bottom: 5px;
+  margin-bottom: 20px;
 }
 
-h2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70%;
-  a {
-    border: 1px solid #000;
-    padding: 10px;
-    border-radius: 10px;
-  }
+.resume-cards {
+  margin:  auto;
+
+
 }
+
+
 </style>

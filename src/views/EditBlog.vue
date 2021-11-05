@@ -113,6 +113,7 @@ export default {
         },
       );
     },
+
     async updateBlog() {
       const dataBase = await db.collection('blogPosts').doc(this.routeID);
       if (this.blogTitle.length !== 0 && this.blogHTML.length !== 0) {
@@ -152,11 +153,14 @@ export default {
           return;
         }
         this.loading = true;
+
         await dataBase.update({
           blogHTML: this.blogHTML,
           blogTitle: this.blogTitle,
         });
+
         await this.$store.dispatch('updatePost', this.routeID);
+
         this.loading = false;
         this.$router.push({
           name: 'ViewBlog',

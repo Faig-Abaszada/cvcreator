@@ -15,7 +15,7 @@
             <p class="percent">
               <span>+10%</span>Add profile summary<QuestionIcon
                 class="info-icon"
-              />
+            />
             </p>
           </div>
         </div>
@@ -48,11 +48,11 @@
         </div>
       </div>
     </div>
-<!--    <div class="preview-resume">-->
-<!--      <div class="doc">-->
-<!--        <component :is="this.resume.templateName" :resume="this.resume"></component>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <div class="preview-resume">-->
+    <!--      <div class="doc">-->
+    <!--        <component :is="this.resume.templateName" :resume="this.resume"></component>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <ResumePreview :resume="this.resume"/>
   </div>
 </template>
@@ -100,7 +100,8 @@ export default {
       loading: null,
     };
   },
-   mounted() {
+  //sjhss
+  mounted() {
     // this.loading = true;
     // this.routeID = this.$route.params.resumeid;
     // setTimeout(() =>{
@@ -271,7 +272,7 @@ export default {
           border: 1px solid rgb(226, 224, 224);
           margin: 10px 0;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-            0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
           .item {
             .header-wrapper {
@@ -487,7 +488,7 @@ export default {
 }
 
 .create-cv-wrapper {
-   display: flex;
+  display: flex;
 }
 .cv-info-fill .section .editor .quillWrapper .ql-snow.ql-toolbar button {
   width: auto;
@@ -499,4 +500,3 @@ export default {
 
 
 </style>
-

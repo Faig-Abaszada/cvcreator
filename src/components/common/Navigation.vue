@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="header">
     <!--    desktop menu-->
     <nav class="container">
       <div class="branding">
@@ -74,7 +74,7 @@
       <ul class="mobile-nav" v-show="mobileNav">
         <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
         <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-        <router-link v-show="admin" class="link" :to="{ name: 'CreateCv' }"
+        <router-link v-show="admin" class="link" :to="{ name: 'Resumes' }"
           >Create CV</router-link
         >
         <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }"
@@ -337,4 +337,5 @@ header {
     transform: translateX(-250px);
   }
 }
+
 </style>

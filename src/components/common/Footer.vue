@@ -3,7 +3,7 @@
     <div class="container">
       <div class="left">
         <div class="col-1">
-          <router-link class="header" :to="{ name: 'hHme' }"
+          <router-link class="header" :to="{ name: 'Home' }"
             >asan-cv</router-link
           >
           <ul>
@@ -75,6 +75,7 @@ footer {
   margin-top: auto;
   padding: 100px 25px;
   background-color: #303030;
+
 
   .container {
     display: flex;
@@ -193,4 +194,10 @@ footer {
     }
   }
 }
+//.footer {
+//  position: absolute;
+//  bottom: 0 !important;
+//  width: 100%;
+//}
+
 </style>
