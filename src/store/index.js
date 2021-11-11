@@ -14,6 +14,7 @@ export default new Vuex.Store({
         person: {
             name: 'Faig'
         },
+        mobile: null,
         blogPosts: [],
         postLoaded: null,
 
@@ -224,6 +225,9 @@ export default new Vuex.Store({
         updateCommonInput(state, payload) {
             this.state.person[payload.modelName] = payload.value;
             console.log('committed');
+        },
+        setScreenMobility(state, payload) {
+            state.mobile = payload;
         },
         //cv create end
         newBlogPost(state, payload) {

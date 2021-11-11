@@ -1,8 +1,9 @@
 <template>
 <div class="resume-preview">
-  <router-link class="link" :to="{ name: 'Resumes'}"
+  <router-link v-show="mobile" class="link" :to="{ name: 'Resumes'}"
   >Geri qayt</router-link>
   <button @click="downloadResume" class="button">download!</button>
+  <button class="exit" @click="exitPreview">X</button>
 
 <!--  <SelectTemplate />-->
 
@@ -31,7 +32,6 @@
 <script>
 import BasicTheme from '../components/templates/BasicTheme.vue';
 import BasicThemeFuji from "../components/templates/BasicThemeFuji";
-// import { jsPDF } from "jspdf";
 import VueHtml2pdf from 'vue-html2pdf'
 
 // import SelectTemplate from "./SelectTemplate";
@@ -39,6 +39,10 @@ import VueHtml2pdf from 'vue-html2pdf'
 export default {
   name: "ResumePreview",
   props: ['resume'],
+  data() {
+    return {
+    }
+  },
   components: {
     BasicTheme,
     BasicThemeFuji,
@@ -60,6 +64,15 @@ export default {
       // doc.save("a4.pdf");
       //
       this.$refs.html2Pdf.generatePdf()
+    },
+    exitPreview() {
+      this.$store.commit('setScreenMobility', false)
+      console.log(this.$store.state.mobile)
+    }
+  },
+  computed: {
+    mobile() {
+      return this.$store.state.mobile;
     }
   }
 }
@@ -89,7 +102,8 @@ export default {
 
   }
 }
-.link {
+.link,
+.exit{
   position: absolute;
   top: 40px;
   right: 40px;
@@ -104,6 +118,8 @@ export default {
   background-color: #f1f1f1;
   color: #222222;
 }
+
+
 
 //.s-temp {
 //  position: absolute;

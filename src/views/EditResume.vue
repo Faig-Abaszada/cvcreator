@@ -137,9 +137,12 @@ export default {
       this.windowWidth = window.innerWidth;
       if (this.windowWidth <= 800){
         this.showPreview = false;
+        this.$store.commit('setScreenMobility', false);
         return;
       }
       this.showPreview = true;
+      this.$store.commit('setScreenMobility', true);
+
     }
   },
   computed: {
