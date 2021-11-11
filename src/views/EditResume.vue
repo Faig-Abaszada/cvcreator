@@ -1,6 +1,7 @@
 <template>
   <div class="create-cv-wrapper">
     <Loading v-show="loading" />
+<!--    <SelectTemplate />-->
 
     <div class="create-cv">
       <div class="container">
@@ -42,10 +43,12 @@
           <!-- section start  -->
           <CustomSec />
           <!-- section end -->
+
         </div>
         <div class="save-btn">
           <button @click="updateResume" class="save-btn">SAVE!</button>
         </div>
+        <button @click="showPreview = !showPreview" class="button">Preview and Download</button>
       </div>
     </div>
 <!--    <div class="preview-resume">-->
@@ -53,7 +56,7 @@
 <!--        <component :is="this.resume.templateName" :resume="this.resume"></component>-->
 <!--      </div>-->
 <!--    </div>-->
-    <ResumePreview :resume="this.resume"/>
+    <ResumePreview v-show="showPreview" :resume="this.resume"/>
   </div>
 </template>
 <script>
@@ -69,6 +72,8 @@ import CustomSec from '../components/cv-sections/CustomSec.vue';
 import ResumePreview from "../components/ResumePreview";
 import Loading from "../components/common/Loading";
 import {mapFields} from "vuex-map-fields";
+
+// import SelectTemplate from "../components/SelectTemplate";
 
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
@@ -88,6 +93,7 @@ export default {
     // BasicThemeFuji,
     ResumePreview,
     Loading,
+    // SelectTemplate
   },
   data() {
     return {
@@ -99,6 +105,8 @@ export default {
         [{ list: 'ordered' }, { list: 'bullet' }],
       ],
       loading: null,
+      showPreview: true,
+      windowWidth: null,
     };
   },
    mounted() {},
@@ -124,6 +132,14 @@ export default {
       await this.$store.dispatch('getResumes');
 
       this.loading = false;
+    },
+    checkScreen() {
+      this.windowWidth = window.innerWidth;
+      if (this.windowWidth <= 800){
+        this.showPreview = false;
+        return;
+      }
+      this.showPreview = true;
     }
   },
   computed: {
@@ -151,7 +167,10 @@ export default {
       this.$store.commit('setResumeSate', currentResume);
       this.loading = false;
 
-    }, 2000)
+    }, 2000);
+
+    window.addEventListener('resize', this.checkScreen);
+    this.checkScreen();
   }
 };
 </script>
@@ -160,6 +179,9 @@ export default {
 .create-cv {
   width: 50%;
   padding: 50px;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
   // margin: 0 auto;
 
   .save-btn {
@@ -483,7 +505,8 @@ export default {
 }
 
 .create-cv-wrapper {
-   display: flex;
+   //display: flex;
+  position: relative;
 }
 .cv-info-fill .section .editor .quillWrapper .ql-snow.ql-toolbar button {
   width: auto;
@@ -491,7 +514,14 @@ export default {
 }
 
 
-
+.resume-preview {
+  @media (max-width: 800px) {
+    width: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
 
 
 </style>

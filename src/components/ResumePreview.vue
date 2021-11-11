@@ -4,6 +4,8 @@
   >Geri qayt</router-link>
   <button @click="downloadResume" class="button">download!</button>
 
+<!--  <SelectTemplate />-->
+
   <div class="resume-wrapper">
     <vue-html2pdf
         ref="html2Pdf"
@@ -32,13 +34,16 @@ import BasicThemeFuji from "../components/templates/BasicThemeFuji";
 // import { jsPDF } from "jspdf";
 import VueHtml2pdf from 'vue-html2pdf'
 
+// import SelectTemplate from "./SelectTemplate";
+
 export default {
   name: "ResumePreview",
   props: ['resume'],
   components: {
     BasicTheme,
     BasicThemeFuji,
-    VueHtml2pdf
+    VueHtml2pdf,
+    // SelectTemplate
   },
   methods: {
     downloadResume() {
@@ -72,9 +77,17 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
+
 }
+
 .resume-wrapper {
   transform: scale(0.5);
+  @media (max-width: 800px) {
+    transform: scale(0.4);
+    position: absolute;
+
+  }
 }
 .link {
   position: absolute;
@@ -91,4 +104,12 @@ export default {
   background-color: #f1f1f1;
   color: #222222;
 }
+
+//.s-temp {
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  z-index: 100;
+//}
+
 </style>
