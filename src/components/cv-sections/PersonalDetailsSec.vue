@@ -25,13 +25,13 @@
           <div class="input">
             <label>First Name</label>
 <!--            <input type="text" id="first-name" v-model="FirstName"/>-->
-<!--            <CommonInput :inputValue.sync="personalDetailsSec.firstName"/>-->
+            <CommonInput :inputValue.sync="personalDetailsSec.firstName"/>
             <CommonInput />
           </div>
           <div class="input">
             <label >Last Name</label>
 <!--            <input type="text" id="last-name" />-->
-<!--            <CommonInput :inputValue.sync="personalDetailsSec.lastName"/>-->
+            <CommonInput :inputValue.sync="personalDetailsSec.lastName"/>
             <CommonInput />
           </div>
         </div>
@@ -103,10 +103,7 @@
 import UserIcon from '../../assets/Icons/create-cv/upload-user.svg';
 import ArrowIcon from '../../assets/Icons/create-cv/arrow-right.svg';
 import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
-
 import CommonInput from "../CommonInput";
-// import CommonInputDirect from "../CommonInputDirect";
-import {mapFields} from "vuex-map-fields";
 
 export default {
   name: 'PersonalDetailsSec',
@@ -118,28 +115,13 @@ export default {
   },
   props: {
     personalDetailsSec: {
-      type: Object,
-      default: null
+      type: Object
     }
   },
   data() {
     return {
       showAdditionalDetails: false,
-      routeID: null,
     };
-  },
-   created() {
-    //  this.routeID = this.$route.params.resumeid;
-    //  this.$store.dispatch('getResumes');
-    // const currentResume =   this.$store.state.resumes.filter((resume) => {
-    //   return resume.resumeID === this.routeID
-    // });
-    // this.$store.commit('setResumeSate', currentResume);
-  },
-  computed: {
-    ...mapFields([
-      'resumeDocName'
-    ]),
   },
 
 };

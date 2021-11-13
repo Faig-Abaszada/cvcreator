@@ -24,8 +24,8 @@
 
         <div class="cv-info-fill">
           <!-- section start -->
-<!--          <PersonalDetailsSec :personalDetailsSec="this.personalDetailsSec"/>-->
-          <PersonalDetailsSec />
+          <PersonalDetailsSec :personalDetailsSec="this.personalDetailsSec"/>
+<!--          <PersonalDetailsSec />-->
           <!-- section end -->
           <!-- section start  -->
           <SummarySec />
@@ -58,8 +58,8 @@
 <!--        <component :is="this.resume.templateName" :resume="this.resume"></component>-->
 <!--      </div>-->
 <!--    </div>-->
-<!--      <ResumePreview v-show="mobilePreview" :mobile="mobile" :resume="this.resume" @close="mobilePreview = !mobilePreview"/>-->
-      <ResumePreview v-show="mobilePreview" :mobile="mobile" @close="mobilePreview = !mobilePreview"/>
+      <ResumePreview v-show="mobilePreview" :mobile="mobile" :resume="this.resume" @close="mobilePreview = !mobilePreview"/>
+<!--      <ResumePreview v-show="mobilePreview" :mobile="mobile" @close="mobilePreview = !mobilePreview"/>-->
   </div>
 </template>
 <script>
@@ -114,33 +114,18 @@ export default {
     };
   },
   async mounted() {
-
     this.loading = true;
-      this.routeID = this.$route.params.resumeid;
-      this.currentResume =  await this.$store.state.resumes.filter((resume) => {
-        return resume.resumeID === this.routeID
-      });
-      this.$store.commit('setResumeSate', this.currentResume);
-      this.loading = false;
+    await this.$store.dispatch('getResumes', this.$store.state.profileId);
+    this.routeID = this.$route.params.resumeid;
+
+    const currentResume =  await this.$store.state.resumes.filter((resume) => {
+      return resume.resumeID === this.routeID
+    });
+    this.$store.commit('setResumeSate', currentResume);
+    this.loading = false;
 
   },
   created() {
-    // await this.$store.dispatch('getResumes');
-    // this.loading = true;
-    //
-    //
-    //   this.routeID = this.$route.params.resumeid;
-    //   this.currentResume =  await this.$store.state.resumes.filter((resume) => {
-    //     return resume.resumeID === this.routeID
-    //   });
-    //   await this.$store.commit('setResumeSate', this.currentResume);
-    //   this.loading = false;
-    //
-    //
-    // console.log(this.personalDetailsSec + ' - personalDetailsSec');
-    // console.log(this.currentResume + ' - currentResume');
-
-
     window.addEventListener('resize', this.checkScreen);
     this.checkScreen();
   },

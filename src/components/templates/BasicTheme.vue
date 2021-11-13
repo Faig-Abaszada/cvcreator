@@ -3,7 +3,7 @@
   <div id="resume2" class="resume resume-doc">
     <div class="top-row">
           <span class="person-name">
-            {{ lastName }}
+          {{ resume.personalDetailsSec.firstName }}  {{ resume.personalDetailsSec.lastName }}
           </span>
       <span class="person-position">
 
@@ -84,23 +84,13 @@
       </div>
     </div>
   </div>
-
-
 </template>
 
 
 <script>
-import { mapFields } from "vuex-map-fields";
-
 export default {
   name: 'BasicTheme',
-  // props: ['resume'],
-  computed: {
-    ...mapFields([
-        'resume.personalDetailsSec.lastName'
-    ])
-  }
-
+  props: ['resume'],
 };
 </script>
 <style lang="scss" scoped>

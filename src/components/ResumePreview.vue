@@ -16,8 +16,7 @@
         pdf-format="a4"
     >
       <section slot="pdf-content">
-<!--        <component :is="resume.templateName" :resume="resume"></component>-->
-        <component :is="this.templateName" :resume="resumeObj"></component>
+        <component :is="resume.templateName" :resume="resume"></component>
       </section>
     </vue-html2pdf>
   </div>
@@ -74,7 +73,7 @@ export default {
   },
   computed: {
     ...mapFields({
-          resumeObj: 'resume',
+          // resumeObj: 'resume',
     }),
     templateName() {
       return this.$store.state.templateName;
