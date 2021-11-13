@@ -1,44 +1,47 @@
 <template>
-<div class="resume-preview">
-  <router-link v-show="mobile" class="link" :to="{ name: 'Resumes'}"
+<div class="resume-preview" >
+  <router-link v-show="mobile === false"  class="link" :to="{ name: 'Resumes'}"
   >Geri qayt</router-link>
   <button @click="downloadResume" class="button">download!</button>
-  <button class="exit" @click="exitPreview">X</button>
-
+  <button v-show="mobile === true" class="exit" @click="closePreview">X</button>
 <!--  <SelectTemplate />-->
-
   <div class="resume-wrapper">
     <vue-html2pdf
         ref="html2Pdf"
         :show-layout="false"
         :float-layout="false"
         :enable-download="true"
-        :preview-modal="true"
         filename="asan-cv"
         :manual-pagination="true"
         pdf-format="a4"
     >
       <section slot="pdf-content">
-        <component :is="resume.templateName" :resume="resume"></component>
+<!--        <component :is="resume.templateName" :resume="resume"></component>-->
+        <component :is="this.templateName" :resume="resumeObj"></component>
       </section>
     </vue-html2pdf>
   </div>
-
-
-
 </div>
 </template>
-
 <script>
 import BasicTheme from '../components/templates/BasicTheme.vue';
 import BasicThemeFuji from "../components/templates/BasicThemeFuji";
 import VueHtml2pdf from 'vue-html2pdf'
-
 // import SelectTemplate from "./SelectTemplate";
+import {mapFields} from "vuex-map-fields";
 
 export default {
   name: "ResumePreview",
-  props: ['resume'],
+
+  props: {
+    resume: {
+      type: Object,
+      default: null
+    },
+    mobile: {
+      type: Boolean
+    }
+  },
   data() {
     return {
     }
@@ -65,15 +68,21 @@ export default {
       //
       this.$refs.html2Pdf.generatePdf()
     },
-    exitPreview() {
-      this.$store.commit('setScreenMobility', false)
-      console.log(this.$store.state.mobile)
+    closePreview() {
+      this.$emit('close');
     }
   },
   computed: {
-    mobile() {
-      return this.$store.state.mobile;
+    ...mapFields({
+          resumeObj: 'resume',
+    }),
+    templateName() {
+      return this.$store.state.templateName;
     }
+  },
+  mounted() {
+    // console.log(this.resumeTemplateName);
+    console.log(this.$route.params.resumeid);
   }
 }
 </script>

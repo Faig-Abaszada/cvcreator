@@ -1,5 +1,6 @@
 <template>
-  <div class="create-cv-wrapper">
+<!--  <div class="create-cv-wrapper" v-if="this.$store.state.resumeLoaded">-->
+    <div class="create-cv-wrapper" >
     <Loading v-show="loading" />
 <!--    <SelectTemplate />-->
 
@@ -23,7 +24,8 @@
 
         <div class="cv-info-fill">
           <!-- section start -->
-          <PersonalDetailsSec :personalDetailsSec="this.resume.personalDetailsSec"/>
+<!--          <PersonalDetailsSec :personalDetailsSec="this.personalDetailsSec"/>-->
+          <PersonalDetailsSec />
           <!-- section end -->
           <!-- section start  -->
           <SummarySec />
@@ -48,7 +50,7 @@
         <div class="save-btn">
           <button @click="updateResume" class="save-btn">SAVE!</button>
         </div>
-        <button @click="showPreview = !showPreview" class="button">Preview and Download</button>
+        <button v-show="mobile === true" @click="mobilePreview = true" class="button">Preview and Download</button>
       </div>
     </div>
 <!--    <div class="preview-resume">-->
@@ -56,7 +58,8 @@
 <!--        <component :is="this.resume.templateName" :resume="this.resume"></component>-->
 <!--      </div>-->
 <!--    </div>-->
-    <ResumePreview v-show="showPreview" :resume="this.resume"/>
+<!--      <ResumePreview v-show="mobilePreview" :mobile="mobile" :resume="this.resume" @close="mobilePreview = !mobilePreview"/>-->
+      <ResumePreview v-show="mobilePreview" :mobile="mobile" @close="mobilePreview = !mobilePreview"/>
   </div>
 </template>
 <script>
@@ -105,11 +108,42 @@ export default {
         [{ list: 'ordered' }, { list: 'bullet' }],
       ],
       loading: null,
-      showPreview: true,
+      mobile: null,
+      mobilePreview: null,
       windowWidth: null,
     };
   },
-   mounted() {},
+  async mounted() {
+
+    this.loading = true;
+      this.routeID = this.$route.params.resumeid;
+      this.currentResume =  await this.$store.state.resumes.filter((resume) => {
+        return resume.resumeID === this.routeID
+      });
+      this.$store.commit('setResumeSate', this.currentResume);
+      this.loading = false;
+
+  },
+  created() {
+    // await this.$store.dispatch('getResumes');
+    // this.loading = true;
+    //
+    //
+    //   this.routeID = this.$route.params.resumeid;
+    //   this.currentResume =  await this.$store.state.resumes.filter((resume) => {
+    //     return resume.resumeID === this.routeID
+    //   });
+    //   await this.$store.commit('setResumeSate', this.currentResume);
+    //   this.loading = false;
+    //
+    //
+    // console.log(this.personalDetailsSec + ' - personalDetailsSec');
+    // console.log(this.currentResume + ' - currentResume');
+
+
+    window.addEventListener('resize', this.checkScreen);
+    this.checkScreen();
+  },
   methods: {
     async updateResume() {
       // buralari hell et
@@ -136,13 +170,18 @@ export default {
     checkScreen() {
       this.windowWidth = window.innerWidth;
       if (this.windowWidth <= 800){
-        this.showPreview = false;
-        this.$store.commit('setScreenMobility', false);
+        this.mobile = true;
+        this.mobilePreview = false;
+        // this.$store.commit('setScreenMobility', false);
         return;
       }
-      this.showPreview = true;
-      this.$store.commit('setScreenMobility', true);
+      this.mobile = false;
+      this.mobilePreview = true;
+      // this.$store.commit('setScreenMobility', true);
 
+    },
+    setAllData() {
+      console.log('windows reloaded');
     }
   },
   computed: {
@@ -158,23 +197,7 @@ export default {
     // }
 
   },
-  created() {
-    this.loading = true;
-    this.routeID = this.$route.params.resumeid;
 
-    setTimeout(() =>{
-      const currentResume =  this.$store.state.resumes.filter((resume) => {
-        return resume.resumeID === this.routeID
-      });
-
-      this.$store.commit('setResumeSate', currentResume);
-      this.loading = false;
-
-    }, 2000);
-
-    window.addEventListener('resize', this.checkScreen);
-    this.checkScreen();
-  }
 };
 </script>
 <style lang="scss">

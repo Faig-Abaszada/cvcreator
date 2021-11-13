@@ -1,11 +1,12 @@
 <template>
+<!--  here is 13 noyabr-->
   <div id="resume2" class="resume resume-doc">
     <div class="top-row">
           <span class="person-name">
-           {{ resume.personalDetailsSec.firstName }} {{ resume.personalDetailsSec.lastName }}
+            {{ lastName }}
           </span>
       <span class="person-position">
-            {{ resume.personalDetailsSec.firstName }}
+
           </span>
     </div>
     <div class="left-col">
@@ -15,9 +16,9 @@
         </div>
       </div>
       <div class="contact">
-        <h3>{{ resume.personalDetailsSec.firstName }}</h3>
+        <h3></h3>
         <div class="contact-row">
-          <a >{{ resume.personalDetailsSec.firstName }}</a>
+          <a ></a>
         </div>
         <div class="contact-row dots">
           <i class="fa fa-circle" aria-hidden="true"></i>
@@ -25,7 +26,7 @@
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="contact-row">
-          <a>{{ resume.personalDetailsSec.firstName }}</a>
+          <a></a>
         </div>
         <div class="contact-row dots">
           <i class="fa fa-circle" aria-hidden="true"></i>
@@ -33,7 +34,7 @@
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="contact-row">
-          {{ resume.personalDetailsSec.firstName }} <br> {{ resume.personalDetailsSec.firstName }}
+           <br>
         </div>
         <div  class="contact-row dots">
           <i class="fa fa-circle" aria-hidden="true"></i>
@@ -41,45 +42,45 @@
           <i class="fa fa-circle" aria-hidden="true"></i>
         </div>
         <div class="contact-row">
-          <a >{{ resume.personalDetailsSec.firstName }}</a>
+          <a ></a>
         </div>
       </div>
     </div>
     <div class="right-col">
       <div class="experience">
-        <h3>{{ resume.personalDetailsSec.firstName }}</h3>
+        <h3></h3>
         <div class="experience-block">
           <div class="row">
-            <span class="company"> {{ resume.personalDetailsSec.firstName }} -</span>
-            <span class="job-title"> {{ resume.personalDetailsSec.firstName }} </span>
+            <span class="company">  -</span>
+            <span class="job-title">  </span>
           </div>
           <div class="row">
-            <span class="time-period"> {{ resume.personalDetailsSec.firstName }}</span>
+            <span class="time-period"> </span>
           </div>
           <div class="row">
-            <span class="job-description"> {{ resume.personalDetailsSec.firstName }} </span>
+            <span class="job-description">  </span>
           </div>
         </div>
       </div>
       <div class="education">
-        <h3>{{ resume.personalDetailsSec.firstName }}</h3>
+        <h3></h3>
         <div class="education-block" >
           <div class="row">
-            <span class="degree">{{ resume.personalDetailsSec.firstName }}</span>
+            <span class="degree"></span>
           </div>
           <div class="row">
-            <span class="degree-description">{{ resume.personalDetailsSec.firstName }}</span>
+            <span class="degree-description"></span>
           </div>
         </div>
       </div>
       <div class="skills-block">
-        <h3>{{ resume.personalDetailsSec.firstName }}</h3>
+        <h3></h3>
         <div class="skills">
           <div class="skill">
-            <span class="skill-name">{{ resume.personalDetailsSec.firstName }}</span>
+            <span class="skill-name"></span>
           </div>
         </div>
-        <span class="skills-other"> {{ resume.personalDetailsSec.firstName }} </span>
+        <span class="skills-other">  </span>
       </div>
     </div>
   </div>
@@ -89,12 +90,17 @@
 
 
 <script>
-// import { mapGetters } from 'vuex';
+import { mapFields } from "vuex-map-fields";
+
 export default {
   name: 'BasicTheme',
-  props: ['resume'],
-// {{ resume.personalDetailsSec.firstName }}
-// {{ resume.personalDetailsSec.lastName }}
+  // props: ['resume'],
+  computed: {
+    ...mapFields([
+        'resume.personalDetailsSec.lastName'
+    ])
+  }
+
 };
 </script>
 <style lang="scss" scoped>

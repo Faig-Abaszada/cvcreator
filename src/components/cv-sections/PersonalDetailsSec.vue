@@ -25,12 +25,14 @@
           <div class="input">
             <label>First Name</label>
 <!--            <input type="text" id="first-name" v-model="FirstName"/>-->
-            <CommonInput :inputValue.sync="personalDetailsSec.firstName"/>
+<!--            <CommonInput :inputValue.sync="personalDetailsSec.firstName"/>-->
+            <CommonInput />
           </div>
           <div class="input">
             <label >Last Name</label>
 <!--            <input type="text" id="last-name" />-->
-            <CommonInput :inputValue.sync="personalDetailsSec.lastName"/>
+<!--            <CommonInput :inputValue.sync="personalDetailsSec.lastName"/>-->
+            <CommonInput />
           </div>
         </div>
         <div class="inputs">
@@ -114,7 +116,12 @@ export default {
     EditIcon,
     CommonInput,
   },
-  props: ['personalDetailsSec'],
+  props: {
+    personalDetailsSec: {
+      type: Object,
+      default: null
+    }
+  },
   data() {
     return {
       showAdditionalDetails: false,

@@ -37,9 +37,11 @@ export default new Vuex.Store({
         profileInitials: null,
         // create cv page
         resumes: [],
-
+        templateName: "BasicTheme",
         resume: {
-            resumeDocName: "CV document Name",
+            templateName: "BasicTheme",
+            resumeDocName: "CV document Name 222222",
+            // resumeDocName: "CV document Name",
             personalDetailsSec: {
                 sectionTitle: 'Personal Details',
                 jobTitle: '',
@@ -179,9 +181,10 @@ export default new Vuex.Store({
                     },
                 ],
             },
-        }
+        },
         // create cv page end
         // resume: null,
+        resumeLoaded: null,
 
     },
     getters: {
@@ -220,6 +223,7 @@ export default new Vuex.Store({
         },
         setResumeSate(state, payload) {
             state.resume = payload[0];
+            state.resumeLoaded = true;
             console.log('committed');
         },
         updateCommonInput(state, payload) {
@@ -489,6 +493,7 @@ export default new Vuex.Store({
                         state.resumes.push(resume.data());
                 }
             });
+            // state.resumeLoaded = true;
         },
         async updateResume() {
             // update resume here

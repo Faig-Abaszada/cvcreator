@@ -50,7 +50,7 @@ export default {
         resumeID: resumeDB.id,
         profileId: this.profileId,
         date: timestamp,
-        templateName: "BasicThemeFuji",
+        templateName: "BasicTheme",
         resumeDocName: "CV document Name 222222",
         personalDetailsSec: {
           sectionTitle: 'Personal Details',
