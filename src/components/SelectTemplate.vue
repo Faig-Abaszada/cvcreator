@@ -2,7 +2,7 @@
   <div class="wrapper s-p">
     <div class="overlayed">
       <header>
-        <a href="#">Back to editor</a>
+        <button  @click="$emit('templateIs', false)">Back to editor</button>
         <div class="colors">
           <div></div>
           <div></div>
@@ -61,6 +61,7 @@ export default {
   },
   methods: {
     async updateTemplateName(templateName) {
+      this.resume.templateName = templateName;
       const resumeDB = await db.collection('resumes').doc(this.$route.params.resumeid);
 
       await resumeDB.update({

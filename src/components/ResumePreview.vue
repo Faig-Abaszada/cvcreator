@@ -2,7 +2,10 @@
 <div class="resume-preview" >
   <router-link v-show="mobile === false"  class="link" :to="{ name: 'Resumes'}"
   >Geri qayt</router-link>
-  <button @click="downloadResume" class="button">download!</button>
+
+  <button @click="$emit('templateIs', true)" class="select-btn">templates</button>
+
+  <button @click="downloadResume"  class="button">download!</button>
   <button v-show="mobile === true" class="exit" @click="closePreview">X</button>
 <!--  <SelectTemplate />-->
   <div class="resume-wrapper">
@@ -129,7 +132,14 @@ export default {
   color: #222222;
 }
 
-
+.select-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 80%;
+  transform: translateX(50%);
+  background-color: #f1f1f1;
+  color: #222222;
+}
 
 //.s-temp {
 //  position: absolute;

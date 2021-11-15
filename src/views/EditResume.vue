@@ -2,7 +2,7 @@
 <!--  <div class="create-cv-wrapper" v-if="this.$store.state.resumeLoaded">-->
     <div class="create-cv-wrapper" >
     <Loading v-show="loading" />
-    <SelectTemplate v-show="selectheme"  @updatedTemplateName="getAndSetCurrentResume"/>
+    <SelectTemplate @templateIs="templateIs = $event" v-show="templateIs"  @updatedTemplateName="getAndSetCurrentResume"/>
 
     <div class="create-cv">
       <div class="container">
@@ -61,7 +61,9 @@
 <!--        <component :is="this.resume.templateName" :resume="this.resume"></component>-->
 <!--      </div>-->
 <!--    </div>-->
-      <ResumePreview v-show="mobilePreview" :mobile="mobile" :resume="this.resume" @close="mobilePreview = !mobilePreview"/>
+      <ResumePreview v-show="mobilePreview" :mobile="mobile" :resume="this.resume" @close="mobilePreview = !mobilePreview"
+      @templateIs="templateIs = $event"
+      />
 <!--      <ResumePreview v-show="mobilePreview" :mobile="mobile" @close="mobilePreview = !mobilePreview"/>-->
   </div>
 </template>
@@ -103,7 +105,7 @@ export default {
   },
   data() {
     return {
-      selectheme: false,
+      templateIs: null,
       routeID: null,
       currentResume: null,
       blogHTML: '',
