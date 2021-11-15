@@ -139,6 +139,8 @@ export default {
 
               await this.$store.dispatch('getPost');
 
+              this.$store.commit('resetBlogInputs');
+
               this.loading = false;
               this.$router.push({
                 name: 'ViewBlog',

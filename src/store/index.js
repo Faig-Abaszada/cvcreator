@@ -234,6 +234,12 @@ export default new Vuex.Store({
             state.mobile = payload;
         },
         //cv create end
+        resetBlogInputs(state) {
+                state.blogHTML = "Write your blog title here...";
+                state.blogTitle = "";
+                state.blogPhotoName = "";
+                state.blogPhotoFileURL = null;
+        },
         newBlogPost(state, payload) {
             state.blogHTML = payload;
         },
