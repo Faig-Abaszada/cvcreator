@@ -14,11 +14,13 @@
 </template>
 <script>
 import BasicTheme from "../components/templates/BasicTheme";
+import Sherlock from "./templates/Sherlock";
 import BasicThemeFuji from "../components/templates/BasicThemeFuji";
 export default {
   name: "ResumeCard",
   components: {
     BasicTheme,
+    Sherlock,
     BasicThemeFuji
   },
   props: ['resume'],

@@ -24,6 +24,7 @@
 </template>
 <script>
 import BasicTheme from '../components/templates/BasicTheme.vue';
+import Sherlock from "./templates/Sherlock";
 import BasicThemeFuji from "../components/templates/BasicThemeFuji";
 import VueHtml2pdf from 'vue-html2pdf'
 // import SelectTemplate from "./SelectTemplate";
@@ -47,6 +48,7 @@ export default {
   },
   components: {
     BasicTheme,
+    Sherlock,
     BasicThemeFuji,
     VueHtml2pdf,
     // SelectTemplate

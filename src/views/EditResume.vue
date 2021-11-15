@@ -2,11 +2,14 @@
 <!--  <div class="create-cv-wrapper" v-if="this.$store.state.resumeLoaded">-->
     <div class="create-cv-wrapper" >
     <Loading v-show="loading" />
-<!--    <SelectTemplate />-->
+    <SelectTemplate  @updatedTemplateName="getAndSetCurrentResume"/>
 
     <div class="create-cv">
       <div class="container">
         <h2 class="page-title">Create CV</h2>
+
+        <router-link v-show="mobile === true"  class="exit" :to="{ name: 'Resumes'}"
+        >X</router-link>
 
         <!-- percentages -->
         <div class="create-cv-header">
@@ -76,7 +79,7 @@ import ResumePreview from "../components/ResumePreview";
 import Loading from "../components/common/Loading";
 import {mapFields} from "vuex-map-fields";
 
-// import SelectTemplate from "../components/SelectTemplate";
+import SelectTemplate from "../components/SelectTemplate";
 
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
@@ -96,10 +99,11 @@ export default {
     // BasicThemeFuji,
     ResumePreview,
     Loading,
-    // SelectTemplate
+    SelectTemplate
   },
   data() {
     return {
+      testData: "hello guys",
       routeID: null,
       currentResume: null,
       blogHTML: '',
@@ -113,16 +117,17 @@ export default {
       windowWidth: null,
     };
   },
-  async mounted() {
-    this.loading = true;
-    await this.$store.dispatch('getResumes', this.$store.state.profileId);
-    this.routeID = this.$route.params.resumeid;
-
-    const currentResume =  await this.$store.state.resumes.filter((resume) => {
-      return resume.resumeID === this.routeID
-    });
-    this.$store.commit('setResumeSate', currentResume);
-    this.loading = false;
+  mounted() {
+    // this.loading = true;
+    // await this.$store.dispatch('getResumes', this.$store.state.profileId);
+    // this.routeID = this.$route.params.resumeid;
+    //
+    // const currentResume =  await this.$store.state.resumes.filter((resume) => {
+    //   return resume.resumeID === this.routeID
+    // });
+    // this.$store.commit('setResumeSate', currentResume);
+    // this.loading = false;
+    this.getAndSetCurrentResume();
 
   },
   created() {
@@ -130,6 +135,17 @@ export default {
     this.checkScreen();
   },
   methods: {
+    async getAndSetCurrentResume() {
+      this.loading = true;
+      await this.$store.dispatch('getResumes', this.$store.state.profileId);
+      this.routeID = this.$route.params.resumeid;
+
+      const currentResume =  await this.$store.state.resumes.filter((resume) => {
+        return resume.resumeID === this.routeID
+      });
+      this.$store.commit('setResumeSate', currentResume);
+      this.loading = false;
+    },
     async updateResume() {
       // buralari hell et
       /*
@@ -535,6 +551,23 @@ export default {
   }
 }
 
+.exit {
+  font-size: 24px;
+  text-decoration: none;
+  color: #fff;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background-color: #222222;
+  height: 30px;
+  width: 30px;
+}
+.s-p {
+  //display: none;
+}
 
+body.open {
+  overflow-y: hidden;
+}
 </style>
 
