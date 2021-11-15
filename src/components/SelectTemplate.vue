@@ -129,7 +129,6 @@ header {
   left: 0;
   height: 100%;
   width: 100%;
-  display: block;
 }
 
 .templates {
@@ -146,6 +145,5 @@ header {
     transform: scale(0.9) !important;
   }
 }
-
 
 </style>

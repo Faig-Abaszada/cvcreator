@@ -2,7 +2,7 @@
 <!--  <div class="create-cv-wrapper" v-if="this.$store.state.resumeLoaded">-->
     <div class="create-cv-wrapper" >
     <Loading v-show="loading" />
-    <SelectTemplate  @updatedTemplateName="getAndSetCurrentResume"/>
+    <SelectTemplate v-show="selectheme"  @updatedTemplateName="getAndSetCurrentResume"/>
 
     <div class="create-cv">
       <div class="container">
@@ -103,7 +103,7 @@ export default {
   },
   data() {
     return {
-      testData: "hello guys",
+      selectheme: false,
       routeID: null,
       currentResume: null,
       blogHTML: '',
@@ -562,12 +562,6 @@ export default {
   height: 30px;
   width: 30px;
 }
-.s-p {
-  //display: none;
-}
 
-body.open {
-  overflow-y: hidden;
-}
 </style>
 
