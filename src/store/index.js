@@ -216,6 +216,8 @@ export default new Vuex.Store({
 
     },
     mutations: {
+
+
         //cv create start
         updateField,
         addEmptySkillComp(state, payload) {
@@ -233,7 +235,16 @@ export default new Vuex.Store({
         setScreenMobility(state, payload) {
             state.mobile = payload;
         },
+        filterResumes(state, payload) {
+            state.resumes = state.resumes.filter((resume) => {
+                return resume.resumeID !== payload;
+            })
+        },
         //cv create end
+
+
+
+
         resetBlogInputs(state) {
                 state.blogHTML = "Write your blog title here...";
                 state.blogTitle = "";
@@ -504,8 +515,13 @@ export default new Vuex.Store({
         async updateResume() {
             // update resume here
         },
-        async deleteResume() {
-            // delete resume here
+        async deleteResume({commit}, payload) {
+            const getResume = await db.collection('resumes').doc(payload);
+            await getResume.delete();
+
+            // delete from local state
+            commit('filterResumes', payload);
+
         }
         //
         // Resume Actions End

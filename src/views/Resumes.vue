@@ -193,7 +193,7 @@ export default {
         },
       });
 
-      await this.$store.dispatch('getResumes');
+      await this.$store.dispatch('getResumes', this.profileId);
 
       const currentResume = await this.$store.state.resumes.filter((resume) => {
         return resume.resumeID === resumeDB.id;

@@ -6,9 +6,14 @@
     <div class="content">
       <h2>Senedin ismi</h2>
       <p>Updated 27 October, 14:08</p>
+
       <button @click="editResume(resume.resumeID)">
-        Edit
+        <EditIcon class="edticon" /> Edit
       </button>
+      <button @click="deleteResume(resume.resumeID)">
+        delete
+      </button>
+
     </div>
 </div>
 </template>
@@ -16,12 +21,15 @@
 import BasicTheme from "../components/templates/BasicTheme";
 import Sherlock from "./templates/Sherlock";
 import BasicThemeFuji from "../components/templates/BasicThemeFuji";
+
+import EditIcon from "../assets/Icons/edit-regular.svg"
 export default {
   name: "ResumeCard",
   components: {
     BasicTheme,
     Sherlock,
-    BasicThemeFuji
+    BasicThemeFuji,
+    EditIcon
   },
   props: ['resume'],
   methods: {
@@ -37,12 +45,20 @@ export default {
         name: 'EditResume',
         params: { resumeid: id },
       });
+    },
+    deleteResume(resumeID) {
+      this.$store.dispatch('deleteResume', resumeID)
     }
   }
 
 }
 </script>
 <style lang="scss" scoped>
+.edticon {
+  color: #1eb8b8;
+  width: 20px;
+  height: 20px;
+}
 .resume-card {
   width: 450px;
   height: 228px;
