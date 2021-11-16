@@ -51,7 +51,7 @@ export default {
         profileId: this.profileId,
         date: timestamp,
         templateName: "Sherlock",
-        resumeDocName: "CV document Name 222222",
+        resumeDocName: "cv doc name",
         personalDetailsSec: {
           sectionTitle: 'Personal Details',
           jobTitle: '',
