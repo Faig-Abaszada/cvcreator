@@ -8,12 +8,15 @@
       <div v-if="!editing">
         <h2>{{ resume.resumeDocName }} <EditIcon @click="enableEditing" class="edit-icon"/></h2>
       </div>
-      <div v-if="editing">
-        <input v-model="inputValue"
+      <div >
+        <label for="inputIsActive"  @click="enableEditing">hhhh</label>
+        <input v-if="editing" v-model="inputValue"
                @blur="disableEditing(); $emit('update')"
                @keyup.enter="disableEditing(); $emit('update')"
                autofocus
+               id="inputIsActive"
         >
+
       </div>
 <!--      :class="{ 'activated-input': editing }"-->
 <!--      @blur="disableEditing(); $emit('update')"-->
@@ -76,6 +79,8 @@ export default {
         this.inputValue = this.resume.resumeDocName;
         this.editing = true;
 
+        // this.$refs.inputIsActive.click();
+      window._document.querySelectorAll('#inputIsActive').click();
 
     },
     async disableEditing() {

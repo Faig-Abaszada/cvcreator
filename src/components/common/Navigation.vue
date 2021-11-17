@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <!--    desktop menu-->
-    <nav class="container">
+    <nav>
       <div class="branding">
         <router-link class="header" to="/">
           <img :src="logo" alt="" />
@@ -10,6 +10,7 @@
 
       <div class="nav-links">
         <ul v-show="!mobile">
+          <router-link class="link upgrade" :to="{ name: 'Home' }"><UpgradeIcon class="upgrade-icon" />Upgrade Now</router-link>
           <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
           <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
 
@@ -65,6 +66,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </nav>
 
@@ -95,6 +97,8 @@ import userIcon from '../../assets/Icons/user-alt-light.svg';
 import adminIcon from '../../assets/Icons/user-crown-light.svg';
 import signOutIcon from '../../assets/Icons/sign-out-alt-regular.svg';
 
+import UpgradeIcon from '../../assets/Icons/upgrade.svg';
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -105,6 +109,7 @@ export default {
     userIcon,
     signOutIcon,
     adminIcon,
+    UpgradeIcon
   },
   data() {
     return {
@@ -122,7 +127,7 @@ export default {
   methods: {
     checkScreen() {
       this.windownWidth = window.innerWidth;
-      if (this.windownWidth <= 750) {
+      if (this.windownWidth <= 1020) {
         this.mobile = true;
         return;
       }
@@ -172,8 +177,29 @@ header {
     }
   }
 
+  .upgrade {
+    //max-width: 100px;
+    background-color: #2196f3;
+    color: #fff;
+    padding: 6px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+
+  }
+  .upgrade-icon {
+    width: 30px;
+    height: 30px;
+
+  }
+
   nav {
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 25px 0;
 
     .branding {
@@ -196,6 +222,10 @@ header {
 
       ul {
         margin-right: 32px;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         .link {
           margin-right: 32px;
