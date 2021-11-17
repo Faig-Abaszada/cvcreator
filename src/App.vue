@@ -111,7 +111,6 @@ export default {
   }
 }
 
-button,
 .router-button {
   transition: 500ms ease all;
   cursor: pointer;
@@ -159,6 +158,34 @@ button,
   pointer-events: none !important;
   cursor: none !important;
   background-color: rgba(128, 128, 128, 0.5) !important;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  transition: 200ms ease all;
+
+  &:focus {
+    outline: none;
+  }
+}
+.primary-button {
+  transition: 500ms ease all;
+  cursor: pointer;
+  background-color: rgb(33, 150, 243);
+  color: #fff;
+  border-radius: 3px;
+  border: none;
+  font-size: 16px;
+  padding: 5px 7px;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: rgb(22, 138, 230);
+  }
 }
 
 .error {

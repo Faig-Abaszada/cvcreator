@@ -8,12 +8,21 @@
       <h1>Documents</h1>
       <div class="cvbuilder-nav">
         <button>Resumes</button>
-        <button @click="createResume">+ Create New</button>
+        <button class="primary-button" @click="createResume">+ Create New</button>
       </div>
 
 
-      <div class="row resume-cards">
+      <div class="row g-0 resume-cards">
           <ResumeCard class="col-md-6" v-for="(resume, index) in resumes" :key="index" :resume="resume" />
+          <div @click="createResume" class="static-resume-card">
+              <div class="doc-shadow">
+                  <plusIcon class="icon" />
+              </div>
+              <div class="doc-content">
+                <h2>New Resume</h2>
+                <p>Create a tailored resume for each job application. Double your chances of getting hired!</p>
+              </div>
+          </div>
       </div>
 
 <!--      <TestParentComponent></TestParentComponent>-->
@@ -25,6 +34,8 @@
 </template>
 <script>
 // import firebase from 'firebase/app';
+import plusIcon from "../assets/Icons/create-cv/plus-grey.svg"
+
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
 import Loading from "../components/common/Loading";
@@ -33,7 +44,7 @@ import ResumeCard from "../components/ResumeCard";
 
 export default {
   name: 'Resumes',
-  components: {Loading,  ResumeCard, },
+  components: {Loading,  ResumeCard, plusIcon},
   data() {
     return {
       loading: null,
@@ -253,7 +264,63 @@ export default {
 
 .resume-cards {
   margin:  auto;
+}
 
+.static-resume-card {
+  width: 450px;
+  height: 228px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+
+
+
+  .doc-shadow {
+    height: 100%;
+    width: 159px;
+    border-radius: 10px;
+    border: 1px solid #838383;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      color: #98a1b3;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s;
+    }
+
+  }
+  .doc-content {
+    width: 250px;
+    color: #98a1b3;
+    h2 {
+      font-size: 18px;
+      transition: all 0.5s;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  &:hover {
+
+    .icon {
+      background-color: #2196f3;
+      color: #fff;
+    }
+    .doc-content h2 {
+      color: #2196f3;
+    }
+
+  }
 
 }
 

@@ -3,9 +3,9 @@
   <router-link v-show="mobile === false"  class="link" :to="{ name: 'Resumes'}"
   >Geri qayt</router-link>
 
-  <button @click="$emit('templateIs', true)" class="select-btn">templates</button>
+  <button @click="$emit('templateIs', true)" class="select-btn primary-button">templates</button>
 
-  <button @click="downloadResume"  class="button">download!</button>
+  <button @click="downloadResume"  class="button primary-button">download!</button>
   <button v-show="mobile === true" class="exit" @click="closePreview">X</button>
 <!--  <SelectTemplate />-->
   <div class="resume-wrapper">

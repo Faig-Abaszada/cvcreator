@@ -4,30 +4,42 @@
     <component :is="resume.templateName" :resume="resume"></component>
   </div>
     <div class="content">
-<!--      editing false ise goster-->
-      <div v-if="!editing">
-        <h2>{{ resume.resumeDocName }} <EditIcon @click="enableEditing" class="edit-icon"/></h2>
-      </div>
-      <div >
-        <label for="inputIsActive"  @click="enableEditing">hhhh</label>
+      <div class="header">
+        <h2 v-if="!editing">{{ resume.resumeDocName }} </h2>
+        <label v-show="!editing" for="inputIsActive" @click="enableEditing"><EditIcon @click="enableEditing" class="edit-icon"/></label>
         <input v-if="editing" v-model="inputValue"
                @blur="disableEditing(); $emit('update')"
                @keyup.enter="disableEditing(); $emit('update')"
                autofocus
                id="inputIsActive"
         >
-
       </div>
-<!--      :class="{ 'activated-input': editing }"-->
-<!--      @blur="disableEditing(); $emit('update')"-->
-      <p>Updated 27 October, 14:08</p>
+      <p>Created:  {{ new Date(resume.date).toLocaleString('en-us', {dateStyle: "long"}) }}</p>
 
-      <button @click="editResume(resume.resumeID)">
-       Edit
-      </button>
-      <button @click="deleteResume(resume.resumeID)">
-        delete
-      </button>
+      <div class="card-buttons">
+        <button  @click="editResume(resume.resumeID)">
+          <EditIcon @click="enableEditing" class="icon"/>Edit
+        </button>
+        <button>
+          <ShareIcon class="icon" />Share a link
+        </button>
+        <button>
+          <DownloadIcon class="icon"/>Download PDF
+        </button>
+
+        <button
+            @click="showMoreBtns = !showMoreBtns"
+            @blur="closeMoreButtons(); $emit('update')"
+        >
+          <DotsIcon class="icon pt-1"/> More
+        </button>
+
+        <div v-show="showMoreBtns" class="sub-buttons">
+          <button @click="deleteResume(resume.resumeID)">
+            <DeleteIcon class="icon" />delete
+          </button>
+        </div>
+      </div>
 
     </div>
 </div>
@@ -37,7 +49,12 @@ import BasicTheme from "../components/templates/BasicTheme";
 import Sherlock from "./templates/Sherlock";
 import BasicThemeFuji from "../components/templates/BasicThemeFuji";
 
-import EditIcon from "../assets/Icons/edit-regular.svg"
+import EditIcon from "../assets/Icons/create-cv/edit-light.svg"
+import DeleteIcon from "../assets/Icons/create-cv/delete.svg"
+import ShareIcon from "../assets/Icons/create-cv/shareicon.svg"
+import CopyIcon from "../assets/Icons/create-cv/duplicate.svg"
+import DownloadIcon from "../assets/Icons/create-cv/download.svg"
+import DotsIcon from "../assets/Icons/create-cv/dots.svg"
 // import vClickOutside from 'v-click-outside';
 
 import 'firebase/storage';
@@ -49,13 +66,19 @@ export default {
     BasicTheme,
     Sherlock,
     BasicThemeFuji,
-    EditIcon
+    EditIcon,
+    DeleteIcon,
+    ShareIcon,
+    CopyIcon,
+    DownloadIcon,
+    DotsIcon
   },
   props: ['resume'],
   data() {
     return {
       editing: false,
-      inputValue: null
+      inputValue: null,
+      showMoreBtns: false,
     }
   },
   methods: {
@@ -97,17 +120,23 @@ export default {
       // this.inputValue = null;
 
     },
+    closeMoreButtons() {
+      // if (e.className !== 'sub-buttons'){
+      //   this.showMoreBtns = !this.showMoreBtns
+      // }
+      setTimeout(() => {
+        this.showMoreBtns = false
+      }, 200);
+
+      // console.log(event.target.classList.contains('add-employment'))
+
+    }
   }
 
 }
 </script>
 <style lang="scss" scoped>
-.edit-icon {
-  color: #1eb8b8;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
+
 .resume-card {
   width: 450px;
   height: 228px;
@@ -127,6 +156,66 @@ export default {
   .content {
     position: absolute;
     right: 40px;
+
+    h2 {
+      margin-bottom: 0px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      //line-height: 60px;
+
+      label {
+        display: flex;
+        align-items: center;
+      }
+      .edit-icon {
+        color: #98a1b3;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        margin-left: 5px;
+
+        &:hover {
+          color: rgb(33, 150, 243)
+        }
+      }
+      input {
+        width: 100% !important;
+      }
+    }
+
+
+  }
+  .card-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    button {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .icon {
+        width: 25px;
+        height: 25px;
+        color: rgb(33, 150, 243);
+      }
+
+      &:hover {
+        color: rgb(33, 150, 243);
+      }
+    }
+
+    .sub-buttons {
+      border: 2px solid #000;
+      width: 100%;
+      height: 100px;
+    }
   }
 }
 
