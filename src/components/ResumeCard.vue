@@ -41,6 +41,8 @@
           <button @click="deleteResume(resume.resumeID)">
             <DeleteIcon class="icon" />delete
           </button>
+
+          <CompressIcon class="compress-button"/>
         </div>
       </div>
 
@@ -58,6 +60,7 @@ import ShareIcon from "../assets/Icons/create-cv/shareicon.svg"
 import CopyIcon from "../assets/Icons/create-cv/duplicate.svg"
 import DownloadIcon from "../assets/Icons/create-cv/download.svg"
 import DotsIcon from "../assets/Icons/create-cv/dots.svg"
+import CompressIcon from "../assets/Icons/create-cv/compress-icon.svg"
 // import vClickOutside from 'v-click-outside';
 
 import 'firebase/storage';
@@ -75,13 +78,14 @@ export default {
     CopyIcon,
     DownloadIcon,
     DotsIcon,
+    CompressIcon
   },
   props: ['resume'],
   data() {
     return {
       editing: false,
       inputValue: null,
-      showMoreBtns: false,
+      showMoreBtns: true,
     }
   },
   methods: {
@@ -196,10 +200,10 @@ export default {
   }
   @media (max-width: 800px ) {
     .resume-doc {
-      transform: scale(0.2);
+      transform: scale(0.18);
     }
     .content {
-      right: 10px;
+      right: 0px;
       h2 {
         font-size: 18px;
         text-align: left;
@@ -242,6 +246,10 @@ export default {
       //display: flex;
       padding: 20px 10px;
       background-color: #fff;
+
+      .compress-button {
+        display: none;
+      }
     }
     @media (max-width: 800px) {
       .sub-buttons {
@@ -249,6 +257,20 @@ export default {
         bottom: 0;
         width: 100%;
         height: 100%;
+
+        .compress-button {
+          display: block;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          //left: 50%;
+          //transform: translateX(-50%);
+          padding: 15px;
+
+          color: #838383;
+          width: 60px;
+          height: 60px;
+        }
       }
     }
   }
