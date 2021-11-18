@@ -85,7 +85,7 @@ export default {
     return {
       editing: false,
       inputValue: null,
-      showMoreBtns: true,
+      showMoreBtns: false,
     }
   },
   methods: {
