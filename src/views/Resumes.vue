@@ -25,10 +25,6 @@
           </div>
       </div>
 
-<!--      <TestParentComponent></TestParentComponent>-->
-
-        <button @click="createResume">+ Create New</button>
-
     </div>
   </div>
 </template>

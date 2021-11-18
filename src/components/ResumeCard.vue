@@ -36,6 +36,9 @@
 
         <div v-show="showMoreBtns" class="sub-buttons">
           <button @click="deleteResume(resume.resumeID)">
+            <CopyIcon class="icon" />Make a copy
+          </button>
+          <button @click="deleteResume(resume.resumeID)">
             <DeleteIcon class="icon" />delete
           </button>
         </div>
@@ -71,7 +74,7 @@ export default {
     ShareIcon,
     CopyIcon,
     DownloadIcon,
-    DotsIcon
+    DotsIcon,
   },
   props: ['resume'],
   data() {
@@ -101,10 +104,6 @@ export default {
     enableEditing() {
         this.inputValue = this.resume.resumeDocName;
         this.editing = true;
-
-        // this.$refs.inputIsActive.click();
-      window._document.querySelectorAll('#inputIsActive').click();
-
     },
     async disableEditing() {
        this.editing = false;
@@ -138,6 +137,12 @@ export default {
 <style lang="scss" scoped>
 
 .resume-card {
+  @media (max-width: 800px ) {
+    .resume-doc {
+      transform: scale(0.1);
+    }
+  }
+
   width: 450px;
   height: 228px;
   position: relative;
@@ -163,7 +168,7 @@ export default {
 
     .header {
       display: flex;
-      justify-content: center;
+      //justify-content: center;
       align-items: center;
       //line-height: 60px;
 
@@ -189,6 +194,23 @@ export default {
 
 
   }
+  @media (max-width: 800px ) {
+    .resume-doc {
+      transform: scale(0.15);
+    }
+    .content {
+      right: 0px;
+      h2 {
+        font-size: 18px;
+        text-align: left;
+      }
+    }
+    .content * {
+      font-size: 0.9rem;
+    }
+
+  }
+
   .card-buttons {
     display: flex;
     flex-direction: column;
@@ -198,7 +220,9 @@ export default {
     button {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
+      padding: 3px 0;
+
 
       .icon {
         width: 25px;
@@ -212,12 +236,31 @@ export default {
     }
 
     .sub-buttons {
-      border: 2px solid #000;
-      width: 100%;
-      height: 100px;
+      //border: 2px solid #000;
+      width: 80%;
+      box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1), 0px 2px 5px -1px rgba(0,0,0,0.3);
+      //display: flex;
+      padding: 20px 10px;
+      background-color: #fff;
+    }
+    @media (max-width: 800px) {
+      .sub-buttons {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
+@media (max-width: 800px ) {
+  .resume-card {
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px -2px rgba(0,0,0,0.3);
+    //margin: 5px 0;
+    //padding: 5px 0;
+  }
 
+}
 
 </style>
