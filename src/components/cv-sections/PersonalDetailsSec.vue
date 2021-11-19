@@ -12,7 +12,7 @@
         <div class="inputs">
           <div class="input">
             <label for="job-title">Wanted Job Title</label>
-            <input type="text" id="job-title" />
+            <CommonInput :inputValue.sync="personalDetailsSec.jobTitle"/>
           </div>
           <div class="input">
             <input type="file" id="upload-photo" />
@@ -26,23 +26,23 @@
             <label>First Name</label>
 <!--            <input type="text" id="first-name" v-model="FirstName"/>-->
             <CommonInput :inputValue.sync="personalDetailsSec.firstName"/>
-            <CommonInput />
+
           </div>
           <div class="input">
             <label >Last Name</label>
 <!--            <input type="text" id="last-name" />-->
             <CommonInput :inputValue.sync="personalDetailsSec.lastName"/>
-            <CommonInput />
+
           </div>
         </div>
         <div class="inputs">
           <div class="input">
             <label for="email">Email</label>
-            <input type="text" id="email" />
+            <CommonInput :inputValue.sync="personalDetailsSec.email"/>
           </div>
           <div class="input">
             <label for="phone">Phone</label>
-            <input type="text" id="phone" />
+            <CommonInput :inputValue.sync="personalDetailsSec.phone"/>
           </div>
         </div>
         <transition name="additional-details">

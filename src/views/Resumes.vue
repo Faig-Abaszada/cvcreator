@@ -65,14 +65,14 @@ export default {
         resumeDocName: "cv doc name",
         personalDetailsSec: {
           sectionTitle: 'Personal Details',
-          jobTitle: '',
+          jobTitle: 'Frontend',
           photoName: '',
           photoFileURL: null,
           photoPreview: null,
           firstName: 'Faig',
           lastName: 'Abaszada',
-          email: null,
-          phone: null,
+          email: 'faik.abaszada@gmail.com',
+          phone: '055 277 94 97',
           country: null,
           city: null,
           address: null,
@@ -88,7 +88,11 @@ export default {
         },
         skillsSec: {
           sectionTitle: 'Skills',
-          skills: [],
+          skills: [
+            {
+              name: null,
+            }
+          ],
         },
         educationSec: {
           sectionTitle: 'Education',
@@ -116,13 +120,13 @@ export default {
           sectionTitle: 'Employment History',
           employmentHistories: [
             {
-              jobTitle: null,
-              employer: null,
+              position: null,
+              company: null,
               startDate: null,
               endDate: null,
               startAndEndDate: null,
               city: null,
-              jobDescHTML: null,
+              description: null,
             },
           ],
         },
