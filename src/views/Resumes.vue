@@ -313,7 +313,7 @@ export default {
     height: 100%;
     width: 159px;
     border-radius: 10px;
-    border: 1px solid #838383;
+    border: 1px solid #e5e5e5;
 
     display: flex;
     justify-content: center;

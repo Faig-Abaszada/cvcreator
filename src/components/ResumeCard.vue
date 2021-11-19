@@ -159,7 +159,7 @@ export default {
     left: 0;
     transform: scale(0.2);
     transform-origin: 0 0;
-    border: 2px solid #000;
+    border: 5px solid #e5e5e5;
     border-radius: 30px;
     cursor: pointer;
   }
@@ -247,6 +247,7 @@ export default {
       //display: flex;
       padding: 20px 10px;
       background-color: #fff;
+      z-index: 103;
 
       .compress-button {
         display: none;
