@@ -25,9 +25,9 @@
 
 <!--        experience donguye girmelidir-->
         <div class="experience" v-for="experience in resume.employmentHistorySec.employmentHistories" :key="experience.employer">
-          <h2 class="company">{{experience.company}}</h2>
+          <h2 class="company">{{experience.employer}}</h2>
           <p class="job-info"><span class="job-title">{{experience.position}} | </span><span class="experience-timeperiod">January 2015 - December 2015</span></p>
-          <p class="job-description" >{{experience.description}}</p>
+          <p class="job-description" >{{experience.city}}</p>
 <!--          <ul v-if="experience.list" >-->
 <!--            <li v-for="(item, index) in experience.list" :key="index">-->
 <!--                      <span class="list-item-black">-->

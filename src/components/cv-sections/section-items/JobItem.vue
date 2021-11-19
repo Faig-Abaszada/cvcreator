@@ -5,7 +5,7 @@
         <MoveIcon class="icon move-icon" />
         <DeleteIcon class="icon delete-icon" />
         <div class="header" @click="showJobDetail = !showJobDetail">
-          <h2 class="title">Unibank Bank</h2>
+          <h2 class="title">{{experience.position}}</h2>
           <ArrowIcon class="icon" />
         </div>
       </div>
@@ -13,13 +13,14 @@
         <div class="inputs">
           <div class="inputs">
             <div class="input">
-              <label for="first-name">Job title</label>
-              <input type="text" id="first-name" />
+              <label >Job title</label>
+              <CommonInput :inputValue.sync="experience.position"/>
             </div>
             <div class="input">
-              <label for="last-name">Employer</label>
-              <input type="text" id="last-name" />
+              <label >Company</label>
+              <CommonInput :inputValue.sync="experience.employer"/>
             </div>
+
           </div>
         </div>
         <div class="inputs">
@@ -30,7 +31,7 @@
               <form>
                 <DatePicker
                   class="date-input"
-                  v-model="this.date"
+                  v-model="experience.startAndEndDate"
                   lang="en"
                   type="month"
                   format="MMMM-YYYY"
@@ -46,7 +47,7 @@
             </div>
             <div class="input">
               <label for="last-name">City</label>
-              <input type="text" id="last-name" />
+              <CommonInput :inputValue.sync="experience.city"/>
             </div>
           </div>
         </div>
@@ -67,13 +68,17 @@ import DeleteIcon from '../../../assets/Icons/create-cv/delete.svg';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 
+import CommonInput from "../../CommonInput";
+
 export default {
   components: {
     MoveIcon,
     ArrowIcon,
     DeleteIcon,
     DatePicker,
+    CommonInput
   },
+  props: ['experience'],
   data() {
     return {
       blogHTML: '',

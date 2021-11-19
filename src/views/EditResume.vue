@@ -34,7 +34,7 @@
           <SummarySec />
           <!-- section end -->
           <!-- section start  -->
-          <EmploymentSec />
+          <EmploymentSec :employmentHistorySec="this.employmentHistorySec"/>
           <!-- section end -->
           <!-- section start  -->
           <EducationSec />
@@ -193,7 +193,8 @@ export default {
     // },
     ...mapFields([
       'resume',
-      'resume.personalDetailsSec'
+      'resume.personalDetailsSec',
+      'resume.employmentHistorySec',
     ]),
     // resume() {
     //   return this.$store.getters.resume;

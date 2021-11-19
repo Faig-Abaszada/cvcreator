@@ -119,15 +119,15 @@ export default {
         employmentHistorySec: {
           sectionTitle: 'Employment History',
           employmentHistories: [
-            {
-              position: null,
-              company: null,
-              startDate: null,
-              endDate: null,
-              startAndEndDate: null,
-              city: null,
-              description: null,
-            },
+            // {
+            //   position: 'frontend',
+            //   company: null,
+            //   startDate: '2015',
+            //   endDate: null,
+            //   startAndEndDate: null,
+            //   city: 'baku',
+            //   description: null,
+            // },
           ],
         },
         hobbiesSec: {

@@ -95,7 +95,7 @@ export default new Vuex.Store({
                 sectionTitle: 'Employment History',
                 employmentHistories: [
                     {
-                        jobTitle: null,
+                        position: null,
                         employer: null,
                         startDate: null,
                         endDate: null,
@@ -239,6 +239,19 @@ export default new Vuex.Store({
             state.resumes = state.resumes.filter((resume) => {
                 return resume.resumeID !== payload;
             })
+        },
+        addItemObject(state, payload) {
+            if (payload === 'jobItem') {
+                state.resume.employmentHistorySec.employmentHistories.push({
+                    position: 'not specified',
+                    employer: null,
+                    startDate: null,
+                    endDate: null,
+                    startAndEndDate: null,
+                    city: null,
+                    description: null,
+                })
+            }
         },
         //cv create end
 
