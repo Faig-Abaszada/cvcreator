@@ -44,6 +44,7 @@
 
           <CompressIcon class="compress-button"/>
         </div>
+
       </div>
 
     </div>
@@ -278,7 +279,7 @@ export default {
 @media (max-width: 800px ) {
   .resume-card {
     border-radius: 10px;
-    box-shadow: 0px 2px 5px -2px rgba(0,0,0,0.3);
+    //box-shadow: 0px 2px 5px -2px rgba(0,0,0,0.3);
 
   }
 

@@ -6,13 +6,17 @@
 
     <div class="cvbuilder-wrapper">
       <h1>Documents</h1>
+
       <div class="cvbuilder-nav">
-        <button>Resumes</button>
-        <button class="primary-button" @click="createResume">+ Create New</button>
+<!--        <button>Resumes</button>-->
+        <button class="primary-button desktop-new-resume" @click="createResume">+ Create New</button>
       </div>
 
 
       <div class="row g-0 resume-cards">
+
+        <button class="primary-button mobile-new-resume" @click="createResume">+ Create New</button>
+
           <ResumeCard class="col-md-6" v-for="(resume, index) in resumes" :key="index" :resume="resume" />
           <div @click="createResume" class="static-resume-card">
               <div class="doc-shadow">
@@ -249,17 +253,51 @@ export default {
 .cvbuilder-wrapper {
   padding: 0 20px;
   margin: 20px auto;
+
+  h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 800px) {
+  .cvbuilder-wrapper {
+    padding: 0 10px;
+
+  }
 }
 .cvbuilder-nav {
   display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid #333;
-  padding-bottom: 5px;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #e3e3e3;
+  //padding-bottom: 5px;
   margin-bottom: 20px;
+
+
+  .desktop-new-resume {
+    margin-bottom: 10px;
+  }
+  @media (max-width: 768px) {
+    .desktop-new-resume {
+      display: none;
+    }
+  }
 }
 
 .resume-cards {
   margin:  auto;
+
+  .mobile-new-resume {
+    display: none;
+    margin-bottom: 25px;
+    padding: 14px;
+  }
+  @media (max-width: 768px) {
+    .mobile-new-resume {
+      display: block;
+    }
+  }
 }
 
 .static-resume-card {
@@ -318,6 +356,11 @@ export default {
 
   }
 
+}
+@media (max-width: 1000px) {
+  .static-resume-card {
+    display: none;
+  }
 }
 
 
