@@ -1,7 +1,23 @@
 <template>
 <div class="resume-card">
   <div @click="editResume(resume.resumeID)">
-    <component :is="resume.templateName" :resume="resume"></component>
+<!--    <component :is="resume.templateName" :resume="resume"></component>-->
+    <vue-html2pdf
+        ref="html2Pdf"
+        :show-layout="false"
+        :float-layout="false"
+        :enable-download="true"
+        :filename="resume.resumeDocName"
+        :manual-pagination="true"
+        pdf-format="a4"
+    >
+
+      <section slot="pdf-content">
+        <component :is="resume.templateName" :resume="resume"></component>
+      </section>
+
+    </vue-html2pdf>
+
   </div>
     <div class="content">
       <div class="header">
@@ -23,8 +39,8 @@
         <button>
           <ShareIcon class="icon" />Share a link
         </button>
-        <button>
-          <DownloadIcon class="icon"/>Download PDF
+        <button @click="downloadResume">
+          <DownloadIcon  class="icon"/>Download PDF
         </button>
 
         <button
@@ -66,6 +82,7 @@ import CompressIcon from "../assets/Icons/create-cv/compress-icon.svg"
 
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
+import VueHtml2pdf from 'vue-html2pdf'
 
 export default {
   name: "ResumeCard",
@@ -79,7 +96,8 @@ export default {
     CopyIcon,
     DownloadIcon,
     DotsIcon,
-    CompressIcon
+    CompressIcon,
+    VueHtml2pdf
   },
   props: ['resume'],
   data() {
@@ -134,7 +152,12 @@ export default {
 
       // console.log(event.target.classList.contains('add-employment'))
 
-    }
+    },
+    downloadResume() {
+      console.log('clikced');
+
+      this.$refs.html2Pdf.generatePdf()
+    },
   }
 
 }
