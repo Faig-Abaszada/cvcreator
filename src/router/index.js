@@ -131,7 +131,7 @@ const routes = [{
         component: Resumes,
         meta: {
             title: "Resumes",
-            requiresAuth: false
+            requiresAuth: true
         },
         props: true
     },
@@ -141,7 +141,7 @@ const routes = [{
         component: EditResume,
         meta: {
             title: "Edit CV",
-            requiresAuth: false,
+            requiresAuth: true,
         },
         props: true
 

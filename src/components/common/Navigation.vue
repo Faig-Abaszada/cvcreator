@@ -10,13 +10,15 @@
 
       <div class="nav-links">
         <ul v-show="!mobile">
-          <router-link class="link upgrade" :to="{ name: 'Home' }"><UpgradeIcon class="upgrade-icon" />Upgrade Now</router-link>
+          <router-link v-show="this.$route.name === 'Resumes'" class="link upgrade" :to="{ name: 'Home' }">
+            <UpgradeIcon class="upgrade-icon" />Upgrade Now
+          </router-link>
           <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
           <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
 
           <!-- v-show="admin"    idi bunu sildik biz hele sehife uzerinde ishleyirik!! -->
           <!--  ve bize admin deyi adi user de giris etdikde create cv gorunsun isteyirik ona gore basqa condition yarat -->
-          <router-link class="link" :to="{ name: 'Resumes' }"
+          <router-link v-show="user" class="link" :to="{ name: 'Resumes' }"
             >Create My CV</router-link
           >
           <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }"
@@ -76,7 +78,7 @@
       <ul class="mobile-nav" v-show="mobileNav">
         <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
         <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-        <router-link v-show="admin" class="link" :to="{ name: 'Resumes' }"
+        <router-link v-show="user" class="link" :to="{ name: 'Resumes' }"
           >Create CV</router-link
         >
         <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }"
@@ -145,6 +147,7 @@ export default {
     },
     signOut() {
       firebase.auth().signOut();
+      // this.$router.push({name: 'Home'});
       window.location.reload();
     },
   },

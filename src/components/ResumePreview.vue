@@ -133,7 +133,7 @@ export default {
 }
 
 .resume-wrapper {
-  transform: scale(0.53);
+  transform: scale(0.5);
   @media (max-width: 800px) {
     transform: scale(0.4);
     position: absolute;

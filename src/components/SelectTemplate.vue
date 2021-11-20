@@ -2,7 +2,7 @@
   <div class="wrapper s-p">
     <div class="overlayed">
       <header>
-        <button  @click="$emit('templateIs', false)">Back to editor</button>
+        <button class="primary-button"  @click="$emit('templateIs', false)">Back to editor</button>
         <div class="colors">
           <div></div>
           <div></div>
@@ -81,6 +81,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #000;
+  //padding: 20px 0;
+  color: #fff;
 
   .colors {
     display: flex;
@@ -110,7 +113,7 @@ header {
 }
 
 .wrapper {
-  background-color: rgb(34, 34, 34,);
+  background-color: rgb(122, 133, 153);
   position: fixed;
   top: 0;
   right: 0;

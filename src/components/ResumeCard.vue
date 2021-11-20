@@ -30,9 +30,10 @@
                id="inputIsActive"
         >
       </div>
-      <p>Created:  {{ new Date(resume.date).toLocaleString('en-us', {dateStyle: "long"}) }}</p>
+
 
       <div class="card-buttons">
+        <p>Created:  {{ new Date(resume.date).toLocaleString('en-us', {dateStyle: "long"}) }}</p>
         <button  @click="editResume(resume.resumeID)">
           <EditIcon @click="enableEditing" class="icon"/>Edit
         </button>
@@ -190,9 +191,8 @@ export default {
     position: absolute;
     right: 40px;
 
-    h2 {
-      margin-bottom: 0px;
-    }
+
+
 
     .header {
       display: flex;
@@ -216,7 +216,19 @@ export default {
         }
       }
       input {
-        width: 100% !important;
+        //width: 100% !important;
+        font-size: 20px;
+        //outline: none;
+        padding: 5px;
+        box-sizing: border-box;
+        line-height: 20px;
+
+      }
+      h2 {
+        margin-bottom: 0px;
+        font-size: 20px;
+        padding: 5px;
+        line-height: 20px;
       }
     }
 
