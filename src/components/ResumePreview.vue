@@ -10,6 +10,7 @@
 
   <div class="resume-and-content-container">
     <div class="resume-wrapper">
+
       <vue-html2pdf
           ref="html2Pdf"
           :show-layout="false"
@@ -25,6 +26,7 @@
         </section>
 
       </vue-html2pdf>
+
       <div class="edit-resume-buttons">
         <button @click="$emit('templateIs', true)" class="select-btn primary-button">
           <SquaresIcon class="icon" />Select template
@@ -131,7 +133,7 @@ export default {
 }
 
 .resume-wrapper {
-  transform: scale(0.5);
+  transform: scale(0.53);
   @media (max-width: 800px) {
     transform: scale(0.4);
     position: absolute;
@@ -177,6 +179,11 @@ export default {
   color: #fff;
   display: flex;
   align-items: center;
+  border-radius: 50px;
+
+  &:hover {
+    background-color: #303030;
+  }
   .icon {
     width: 50px;
   }
@@ -192,7 +199,8 @@ export default {
   justify-content: space-between;
 
   button {
-    font-size: 40px;
+    font-size: 35px;
+    padding: 10px 30px;
   }
 
   .help-gadget {
