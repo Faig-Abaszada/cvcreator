@@ -23,7 +23,7 @@
         </div>
 
         <div class="input">
-          <input type="text" placeholder="Email" v-model="email" />
+          <input type="email" placeholder="Email" v-model="email" />
           <emailIcon class="icon" />
         </div>
         <div class="input">
