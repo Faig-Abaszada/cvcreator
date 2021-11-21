@@ -537,6 +537,7 @@ export default {
 .create-cv-wrapper {
    //display: flex;
   position: relative;
+  overflow: scroll;
 }
 .cv-info-fill .section .editor .quillWrapper .ql-snow.ql-toolbar button {
   width: auto;

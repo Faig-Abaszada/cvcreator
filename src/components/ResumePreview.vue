@@ -139,8 +139,6 @@ export default {
     position: absolute;
 
   }
-
-
 }
 
 .link,
@@ -164,16 +162,6 @@ export default {
     height: 30px;
   }
 }
-
-.button {
-  //position: absolute;
-  //bottom: 10px;
-  //right: 50%;
-  //transform: translateX(50%);
-  //background-color: #f1f1f1;
-  //color: #222222;
-}
-
 .select-btn {
   background-color: transparent;
   color: #fff;
@@ -188,7 +176,6 @@ export default {
     width: 50px;
   }
 }
-
 .edit-resume-buttons {
   width: 100%;
   position: absolute;

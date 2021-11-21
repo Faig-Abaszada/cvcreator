@@ -25,16 +25,15 @@ export default {
 .help-gadget {
   background-color: #2196f3;
   border-radius: 50%;
-  padding: 30px;
+  padding: 20px;
 
   &:hover {
     background-color: rgb(27, 138, 228);
-
   }
   .icon {
     color: #fff;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 }
 </style>

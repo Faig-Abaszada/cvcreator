@@ -165,6 +165,9 @@ button {
   background-color: transparent;
   font-size: 16px;
   transition: 200ms ease all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:focus {
     outline: none;
