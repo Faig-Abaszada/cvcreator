@@ -34,7 +34,7 @@
         <div v-show="error" class="error">{{ this.errorMsg }}</div>
       </div>
 
-      <button @click.prevent="register">Sign Up</button>
+      <button class="primary-button" @click.prevent="register">Sign Up</button>
 
       <div class="angle"></div>
     </form>
@@ -108,6 +108,9 @@ export default {
 .register {
   h2 {
     max-width: 350px;
+  }
+  .primary-button:focus {
+    outline: 2px solid #000;
   }
 }
 </style>
