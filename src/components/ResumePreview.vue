@@ -28,9 +28,11 @@
       </vue-html2pdf>
 
       <div class="edit-resume-buttons">
+
         <button @click="$emit('templateIs', true)" class="select-btn primary-button">
           <SquaresIcon class="icon" />Select template
         </button>
+
         <button @click="downloadResume"  class="button primary-button">
           Download PDF
         </button>
@@ -129,17 +131,17 @@ export default {
   justify-content: center;
   align-items: center;
 
+  .resume-wrapper {
+    transform: scale(0.5);
+    @media (max-width: 800px) {
+      transform: scale(0.4);
+      position: absolute;
 
-}
-
-.resume-wrapper {
-  transform: scale(0.5);
-  @media (max-width: 800px) {
-    transform: scale(0.4);
-    position: absolute;
-
+    }
   }
 }
+
+
 
 .link,
 .exit{

@@ -23,7 +23,7 @@
         >Forgot your Password</router-link
       >
 
-      <button @click.prevent="signIn">Sign In</button>
+      <button @click.prevent="signIn" class="primary-button">Sign In</button>
 
       <div class="angle"></div>
     </form>

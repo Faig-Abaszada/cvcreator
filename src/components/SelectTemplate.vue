@@ -3,9 +3,11 @@
 <!--    Help Gadget Component for positiong-->
     <HelpGadget />
       <header>
+
         <button class="button-back"  @click="$emit('templateIs', false)">
           <ArrowIcon class="icon" />Back to editor
         </button>
+
         <div class="btn-actions">
           <button @click="downloadResume" class="primary-button">Download PDF</button>
         </div>
@@ -13,7 +15,7 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-3">
+          <div class="col-3 d-none">
             <div class="templates">
               <div class="row">
 
@@ -36,12 +38,11 @@
                     </div>
                   </div>
                 </div>
-                <div class="test-height"></div>
               </div>
             </div>
           </div>
-          <div class="col-9">
-            <div class="select-page-preview preview">
+          <div class="col-12">
+            <div class="select-page-preview">
               <div class="resume-wrapper">
                 <vue-html2pdf
                     ref="html2Pdf"
@@ -116,12 +117,22 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 @media (max-width: 800px) {
 
 
 }
 
+.select-template-page {
+  background-color: rgb(79, 82, 89);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+}
 .help-gadget {
   position: absolute;
   bottom: 30px;
@@ -144,6 +155,19 @@ export default {
   .resume-doc {
     //transform: scale(0.9) !important;
   }
+
+
+    @media(max-width: 800px) {
+      align-items: end;
+      .resume-wrapper {
+        transform: scale(0.4) !important;
+        position: relative;
+        top: 70px;
+      }
+
+
+    }
+
 }
 
 header {
@@ -154,16 +178,8 @@ header {
   padding: 15px 25px;
   color: #fff;
 
-  //position: fixed;
-  //top: 0;
-  //left: 0;
-  //right: 0;
-  //z-index: 103;
-  //display: none;
-
   .colors {
     display: flex;
-
     * {
       height: 32px;
       width: 32px;
@@ -183,18 +199,6 @@ header {
       transform: rotate(180deg);
     }
   }
-}
-
-.select-template-page {
-  background-color: rgb(79, 82, 89);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 110;
-  display: flex;
-  flex-direction: column;
 }
 
 .templates {
@@ -251,15 +255,7 @@ header {
         display: block;
       }
     }
-
-
   }
-
-
-  .test-height {
-    height: 2000px;
-  }
-
 }
 
 .select-template-page {
