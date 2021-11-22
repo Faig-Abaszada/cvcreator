@@ -2,18 +2,10 @@
   <div class="select-template-page">
 <!--    Help Gadget Component for positiong-->
     <HelpGadget />
-
-
       <header>
         <button class="button-back"  @click="$emit('templateIs', false)">
           <ArrowIcon class="icon" />Back to editor
         </button>
-<!--        <div class="colors">-->
-<!--          <div></div>-->
-<!--          <div></div>-->
-<!--          <div></div>-->
-<!--          <div></div>-->
-<!--        </div>-->
         <div class="btn-actions">
           <button @click="downloadResume" class="primary-button">Download PDF</button>
         </div>
@@ -25,11 +17,11 @@
             <div class="templates">
               <div class="row">
 
-                <div class="col-lg-6">
+                <div class="col-lg-6 mb-2">
                   <div class="template-card" @click="updateTemplateName('Sherlock')" >
                     <h2>Sherlock</h2>
                     <div class="img-container" :class="{ active: this.resume.templateName === 'Sherlock' }">
-                      <img  :src='require("@/assets/templates/cvform.webp")'>
+                      <img :src='require("@/assets/templates/cvform.webp")'>
                       <TickIcon class="icon"/>
                     </div>
                   </div>
@@ -125,36 +117,32 @@ export default {
 </script>
 <style lang="scss" scoped>
 
+@media (max-width: 800px) {
+
+
+}
+
 .help-gadget {
   position: absolute;
   bottom: 30px;
   right: 30px;
 }
 .select-page-preview {
-  position: fixed;
-  right: 0;
-  top: 0;
+  //position: fixed;
+  //right: 0;
+  //top: 0;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 80px;
+  overflow-y: scroll !important;
 
   .resume-wrapper {
     transform: scale(0.7);
   }
-}
-.preview {
-  position: initial;
-  width: 100%;
-  overflow-y: scroll !important;
-  //border-radius: 10px !important;
-
-
   .resume-doc {
     //transform: scale(0.9) !important;
-    //border-radius: 10px !important;
-
   }
 }
 

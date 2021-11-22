@@ -3,13 +3,19 @@
     <div class="create-cv-wrapper" >
     <Loading v-show="loading" />
     <SelectTemplate @templateIs="templateIs = $event" v-show="templateIs"  @updatedTemplateName="getAndSetCurrentResume"/>
+      <button v-show="mobile === true" @click="mobilePreview = true" class="prev-and-down-button">
+        Preview & Download <DocIcon class="icon"/>
+      </button>
 
-    <div class="create-cv">
-      <div class="container">
+
+      <div class="create-cv">
+
+        <div class="container">
         <h2 class="page-title">Create CV</h2>
 
-        <router-link v-show="mobile === true"  class="exit" :to="{ name: 'Resumes'}"
-        >X</router-link>
+        <router-link v-show="mobile === true"  class="exit" :to="{ name: 'Resumes'}">
+          <XIcon class="icon" />
+        </router-link>
 
         <!-- percentages -->
         <div class="create-cv-header">
@@ -51,9 +57,8 @@
 
         </div>
         <div class="save-btn">
-          <button @click="updateResume" class="save-btn">SAVE!</button>
+          <button @click="updateResume" class="save-btn primary-button">SAVE!</button>
         </div>
-        <button v-show="mobile === true" @click="mobilePreview = true" class="button">Preview and Download</button>
       </div>
     </div>
 <!--    <div class="preview-resume">-->
@@ -69,6 +74,8 @@
 </template>
 <script>
 import QuestionIcon from '../assets/Icons/create-cv/question.svg';
+import DocIcon from '../assets/Icons/create-cv/doc.svg';
+import XIcon from '../assets/Icons/create-cv/close-x.svg';
 import PersonalDetailsSec from '../components/cv-sections/PersonalDetailsSec.vue';
 import SummarySec from '../components/cv-sections/SummarySec.vue';
 import EmploymentSec from '../components/cv-sections/EmploymentSec.vue';
@@ -90,6 +97,8 @@ export default {
   name: 'EditResume',
   components: {
     QuestionIcon,
+    DocIcon,
+    XIcon,
     PersonalDetailsSec,
     SummarySec,
     EmploymentSec,
@@ -205,10 +214,31 @@ export default {
 };
 </script>
 <style lang="scss">
+.prev-and-down-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 103;
+  background-color: rgb(33, 150, 243);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 30px;
+
+  .icon {
+    width: 40px;
+  }
+
+}
 
 .create-cv {
   width: 50%;
   padding: 50px;
+  height: 100vh;
+  overflow: scroll;
+  //height: 100%;
+
+
+
   @media (max-width: 800px) {
     width: 100%;
   }
@@ -542,6 +572,8 @@ export default {
    //display: flex;
   position: relative;
   overflow: scroll;
+
+
 }
 .cv-info-fill .section .editor .quillWrapper .ql-snow.ql-toolbar button {
   width: auto;
@@ -560,15 +592,25 @@ export default {
 }
 
 .exit {
-  font-size: 24px;
   text-decoration: none;
   color: #fff;
   position: absolute;
   top: 40px;
   right: 40px;
-  background-color: #222222;
-  height: 30px;
-  width: 30px;
+  z-index: 103;
+  background-color: rgba(34, 34, 34, 0.4);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+  &:hover {
+    background-color: rgba(34, 34, 34, 0.58);
+  }
+
 }
 
 </style>
