@@ -26,11 +26,14 @@
               <div class="row">
 
                 <div class="col-lg-6">
-                  <div class="template-card" @click="updateTemplateName('Sherlock')">
+                  <div class="template-card" @click="updateTemplateName('Sherlock')" >
                     <h2>Sherlock</h2>
-                    <img  :src='require("@/assets/templates/cvform.webp")'>
+                    <div class="img-container">
+                      <img :class="{ active: this.resume.templateName === 'Sherlock' }" :src='require("@/assets/templates/cvform.webp")'>
+                    </div>
                   </div>
                 </div>
+
                 <div class="col-lg-6">
                   <div class="template-card" @click="updateTemplateName('BasicTheme')">
                     <h2>BasicTheme</h2>
@@ -115,6 +118,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.active {
+  border: 4px solid rgb(33, 150, 243);
+  inset: -4px;
+  border-radius: 5px;
+}
 .help-gadget {
   position: absolute;
   bottom: 30px;
@@ -128,7 +136,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 80px;
   .resume-wrapper {
     transform: scale(0.7);
   }
@@ -137,7 +145,7 @@ export default {
   position: initial;
   width: 100%;
   overflow-y: scroll !important;
-  padd
+
 
   .resume-doc {
     //transform: scale(0.9) !important;
@@ -184,14 +192,12 @@ header {
 }
 
 .select-template-page {
-  background-color: rgb(122, 133, 153);
+  background-color: rgb(79, 82, 89);
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  //width: 100%;
-  //height: auto;
   z-index: 110;
   display: flex;
   flex-direction: column;
@@ -210,7 +216,7 @@ header {
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
-  padding-top: 100px;
+  padding-top: 20px;
   padding-right: 20px;
   border-right: 1px solid #abaaaa;
 
