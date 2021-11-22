@@ -239,7 +239,6 @@ export default {
       color:white;
     }
   }
-
 }
 
 .spacer {

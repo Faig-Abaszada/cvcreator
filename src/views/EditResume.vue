@@ -359,6 +359,9 @@ export default {
                 transform: translateY(-50%);
                 visibility: hidden;
               }
+              .icon {
+                width: 30px;
+              }
             }
             .header-wrapper:hover {
               .header {
@@ -484,6 +487,7 @@ export default {
 
         .icon {
           transform: translateX(0px) rotate(90deg);
+          width: 30px;
         }
       }
 

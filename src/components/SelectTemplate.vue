@@ -8,12 +8,12 @@
         <button class="button-back"  @click="$emit('templateIs', false)">
           <ArrowIcon class="icon" />Back to editor
         </button>
-        <div class="colors">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+<!--        <div class="colors">-->
+<!--          <div></div>-->
+<!--          <div></div>-->
+<!--          <div></div>-->
+<!--          <div></div>-->
+<!--        </div>-->
         <div class="btn-actions">
           <button @click="downloadResume" class="primary-button">Download PDF</button>
         </div>
@@ -28,8 +28,9 @@
                 <div class="col-lg-6">
                   <div class="template-card" @click="updateTemplateName('Sherlock')" >
                     <h2>Sherlock</h2>
-                    <div class="img-container">
-                      <img :class="{ active: this.resume.templateName === 'Sherlock' }" :src='require("@/assets/templates/cvform.webp")'>
+                    <div class="img-container" :class="{ active: this.resume.templateName === 'Sherlock' }">
+                      <img  :src='require("@/assets/templates/cvform.webp")'>
+                      <TickIcon class="icon"/>
                     </div>
                   </div>
                 </div>
@@ -37,7 +38,10 @@
                 <div class="col-lg-6">
                   <div class="template-card" @click="updateTemplateName('BasicTheme')">
                     <h2>BasicTheme</h2>
-                    <img  :src='require("@/assets/templates/cvform2.webp")'>
+                    <div class="img-container" :class="{ active: this.resume.templateName === 'BasicTheme' }">
+                      <img  :src='require("@/assets/templates/cvform2.webp")'>
+                      <TickIcon class="icon"/>
+                    </div>
                   </div>
                 </div>
                 <div class="test-height"></div>
@@ -82,6 +86,7 @@ import Sherlock from "./templates/Sherlock";
 import VueHtml2pdf from 'vue-html2pdf';
 import HelpGadget from "./common/HelpGadget";
 import ArrowIcon from "../assets/Icons/create-cv/arrow-right.svg";
+import TickIcon from "../assets/Icons/create-cv/tick.svg";
 
 export default {
   name: "SelectTemplate",
@@ -91,7 +96,8 @@ export default {
     Sherlock,
     VueHtml2pdf,
     HelpGadget,
-    ArrowIcon
+    ArrowIcon,
+    TickIcon
   },
   computed: {
     ...mapFields([
@@ -118,11 +124,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.active {
-  border: 4px solid rgb(33, 150, 243);
-  inset: -4px;
-  border-radius: 5px;
-}
+
 .help-gadget {
   position: absolute;
   bottom: 30px;
@@ -137,6 +139,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding-top: 80px;
+
   .resume-wrapper {
     transform: scale(0.7);
   }
@@ -145,10 +148,13 @@ export default {
   position: initial;
   width: 100%;
   overflow-y: scroll !important;
+  //border-radius: 10px !important;
 
 
   .resume-doc {
     //transform: scale(0.9) !important;
+    //border-radius: 10px !important;
+
   }
 }
 
@@ -202,22 +208,13 @@ header {
   display: flex;
   flex-direction: column;
 }
-//.overlayed {
-//  position: absolute;
-//  top: 0;
-//  right: 0;
-//  bottom: 0;
-//  left: 0;
-//  height: 100%;
-//  width: 100%;
-//}
 
 .templates {
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
-  padding-top: 20px;
-  padding-right: 20px;
+  padding: 20px 30px 20px 20px;
+
   border-right: 1px solid #abaaaa;
 
   .template-card {
@@ -230,10 +227,47 @@ header {
       color: #fff;
     }
 
-    img {
-      width: 100%;
+    .img-container {
+      position: relative;
+      border-radius: 5px;
+
+      &:hover {
+        box-shadow: 0 0 1px 3px rgb(33, 150, 243);
+      }
+
+      img {
+        position: relative;
+        width: 100%;
+        border-radius: 5px;
+
+      }
+      .icon {
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        background-color: rgb(33, 150, 243);
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+      }
+
     }
+    .active {
+      box-shadow: 0 0 1px 3px rgb(33, 150, 243);
+
+      .icon {
+        display: block;
+      }
+    }
+
+
   }
+
+
   .test-height {
     height: 2000px;
   }
