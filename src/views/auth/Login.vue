@@ -10,7 +10,7 @@
       <h2>Login to asan-cv</h2>
       <div class="inputs">
         <div class="input">
-          <input type="text" placeholder="Email" v-model="email" />
+          <input type="email" placeholder="Email" v-model="email" />
           <emailIcon class="icon" />
         </div>
         <div class="input">
