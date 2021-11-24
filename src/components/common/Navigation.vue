@@ -3,7 +3,7 @@
     <!--    desktop menu-->
     <nav>
       <div class="branding">
-        <router-link class="header" to="/">
+        <router-link to="/">
           <img :src="logo" alt="" />
         </router-link>
       </div>
@@ -15,6 +15,7 @@
           </router-link>
           <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
           <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
+
 
           <!-- v-show="admin"    idi bunu sildik biz hele sehife uzerinde ishleyirik!! -->
           <!--  ve bize admin deyi adi user de giris etdikde create cv gorunsun isteyirik ona gore basqa condition yarat -->
@@ -30,7 +31,7 @@
         </ul>
 
         <div
-          v-if="user"
+          v-if="user && !this.mobile"
           @click="toggleProfileMenu"
           class="profile"
           ref="profile"
@@ -75,18 +76,50 @@
     <!--    mobile menu-->
     <menuIcon @click="toggleMobileNav" class="menu-icon" v-show="mobile" />
     <transition name="mobile-nav">
+
       <ul class="mobile-nav" v-show="mobileNav">
-        <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
-        <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
-        <router-link v-show="user" class="link" :to="{ name: 'Resumes' }"
+
+        <div class="branding">
+            <img :src="logo" alt="" />
+        </div>
+
+        <XIcon @click="toggleMobileNav" class="close-icon" v-show="mobile" />
+
+        <h2 class="user-title">
+            {{ this.$store.state.profileFirstName }}
+            {{ this.$store.state.profileLastName }}
+        </h2>
+
+        <router-link v-show="this.$route.name === 'Resumes'" class="upgrade" :to="{ name: 'Home' }">
+          <UpgradeIcon class="upgrade-icon" />Upgrade Now
+        </router-link>
+
+        <router-link class="link"
+                     router-link-exact-active
+                     :to="{ name: 'Home' }">
+          Home
+        </router-link>
+        <router-link class="link" router-link-exact-active :to="{ name: 'Blogs' }">Blogs</router-link>
+        <router-link v-show="user" class="link" router-link-exact-active :to="{ name: 'Resumes' }"
           >Create CV</router-link
         >
-        <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }"
+        <router-link v-show="admin" class="link" router-link-exact-active :to="{ name: 'CreatePost' }"
           >Create Post</router-link
         >
-        <router-link v-show="!user" class="link" :to="{ name: 'Login' }"
+        <router-link v-show="!user" class="link" router-link-exact-active :to="{ name: 'Login' }"
           >Login/Register
         </router-link>
+
+        <div v-if="user" class="mt-5">
+          <router-link class="option" :to="{ name: 'Profile' }">
+            <userIcon class="icon" />
+            <p>Account Settings</p>
+          </router-link>
+          <div @click="signOut" class="option">
+            <signOutIcon class="icon" />
+            <p>Log Out</p>
+          </div>
+        </div>
       </ul>
     </transition>
   </header>
@@ -95,6 +128,7 @@
 <script>
 import logo from '../../assets/logo.png';
 import menuIcon from '../../assets/Icons/bars-regular.svg';
+import XIcon from '../../assets/Icons/create-cv/close-x.svg';
 import userIcon from '../../assets/Icons/user-alt-light.svg';
 import adminIcon from '../../assets/Icons/user-crown-light.svg';
 import signOutIcon from '../../assets/Icons/sign-out-alt-regular.svg';
@@ -111,7 +145,8 @@ export default {
     userIcon,
     signOutIcon,
     adminIcon,
-    UpgradeIcon
+    UpgradeIcon,
+    XIcon
   },
   data() {
     return {
@@ -121,6 +156,11 @@ export default {
       mobileNav: null, //  if mobile nav is open
       windownWidth: null,
     };
+  },
+  watch:{
+    $route (){
+      this.mobileNav = false;
+    }
   },
   created() {
     window.addEventListener('resize', this.checkScreen); // ekran olculeri deyisen kimi checkscreen ishe dussun
@@ -170,6 +210,15 @@ header {
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 99;
 
+
+  .branding {
+    display: flex;
+    align-items: center;
+    img {
+      width: 100px;
+    }
+  }
+
   .link {
     font-weight: 500;
     padding: 0 8px;
@@ -205,16 +254,7 @@ header {
     align-items: center;
     padding: 25px 0;
 
-    .branding {
-      display: flex;
-      align-items: center;
 
-      .header {
-        img {
-          width: 100px;
-        }
-      }
-    }
 
     .nav-links {
       position: relative;
@@ -328,38 +368,84 @@ header {
   .menu-icon {
     cursor: pointer;
     position: absolute;
-    top: 40px;
-    right: 25px;
-    height: 25px;
+    top: 30px;
+    right: 30px;
+    height: 40px;
     width: auto;
   }
 
+
   .mobile-nav {
-    padding: 20px;
-    width: 70%;
-    max-width: 250px;
+    padding-top: 120px;
+    width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
-    position: fixed;
+    justify-content: start;
+    align-items: start;
     height: 100%;
-    background-color: #303030;
+    background-color: #fff;
+    position: fixed;
     top: 0;
     left: 0;
 
     .link {
-      padding: 15px 0;
-      color: #fff;
+      padding: 10px 0;
+      margin-bottom: 2px;
+      color: #000;
+    }
+    .upgrade {
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .user-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .icon {
+      width: 20px;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #000;
+      padding-bottom: 20px;
+      p {
+        margin-bottom: 0;
+        margin-left: 10px;
+        font-weight: 500;
+      }
+    }
+    .router-link-exact-active {
+      //border-bottom: 2px solid #2196f3;
+      color: #2196f3;
+    }
+    .close-icon {
+      border: 1px solid #e7e5e5;
+      cursor: pointer;
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      height: 40px;
+      width: auto;
+    }
+    .branding {
+      position: absolute;
+      top: 30px;
+      left: 20px;
     }
   }
 
   .mobile-nav-enter-active,
   .mobile-nav-leave-active {
-    transition: all 1s ease;
+    transition: all 0.5s ease;
   }
 
   // transition burda sehifeden kenar baslayir
   .mobile-nav-enter {
-    transform: translateX(-250px);
+    transform: translateX(-100%);
   }
   // transition burda sehife icinde bitir
   .mobile-nav-enter-to {
@@ -367,7 +453,7 @@ header {
   }
   // transition burda sehifeden geri cekilir yani menu geri qayidir
   .mobile-nav-leave-to {
-    transform: translateX(-250px);
+    transform: translateX(-100%);
   }
 }
 
