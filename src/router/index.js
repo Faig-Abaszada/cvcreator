@@ -18,6 +18,7 @@ import EditResume from "../views/EditResume";
 import firebase from "firebase/app";
 import "firebase/auth";
 import db from "../firebase/firebaseInit";
+import TestPage from "../views/TestPage";
 
 Vue.use(VueRouter);
 
@@ -146,6 +147,11 @@ const routes = [{
         props: true
 
     },
+    {
+        path: "/test-page",
+        name: "TestPage",
+        component: TestPage
+    }
 ];
 
 const router = new VueRouter({
