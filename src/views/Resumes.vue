@@ -15,16 +15,18 @@
 
       <div class="row g-0 resume-cards">
 
-        <button class="primary-button mobile-new-resume" @click="createResume">+ Create New</button>
+        <button v-show="resumes.length !== 0" class="primary-button mobile-new-resume" @click="createResume">+ Create New</button>
 
           <ResumeCard class="col-md-6" v-for="(resume, index) in resumes" :key="index" :resume="resume" />
-          <div @click="createResume" class="static-resume-card">
+          <div v-show="resumes.length === 0" @click="createResume" class="static-resume-card">
               <div class="doc-shadow">
-                  <plusIcon class="icon" />
+                  <PlusIcon v-show="resumes.length !== 0" class="icon" />
+                  <NoResumeImg v-show="resumes.length === 0" />
               </div>
               <div class="doc-content">
                 <h2>New Resume</h2>
                 <p>Create a tailored resume for each job application. Double your chances of getting hired!</p>
+                <button v-show="resumes.length === 0" class="primary-button mobile-new-resume" @click="createResume">+ Create New</button>
               </div>
           </div>
       </div>
@@ -34,7 +36,8 @@
 </template>
 <script>
 // import firebase from 'firebase/app';
-import plusIcon from "../assets/Icons/create-cv/plus-grey.svg"
+import PlusIcon from "../assets/Icons/create-cv/plus-grey.svg"
+import NoResumeImg from "../assets/Icons/create-cv/no-resumes.svg"
 
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
@@ -44,7 +47,7 @@ import ResumeCard from "../components/ResumeCard";
 
 export default {
   name: 'Resumes',
-  components: {Loading,  ResumeCard, plusIcon},
+  components: {Loading,  ResumeCard, PlusIcon, NoResumeImg},
   data() {
     return {
       loading: null,
@@ -361,9 +364,9 @@ export default {
   }
 
 }
-@media (max-width: 1000px) {
+@media (min-width: 1000px) {
   .static-resume-card {
-    display: none;
+    display: flex !important;
   }
 }
 

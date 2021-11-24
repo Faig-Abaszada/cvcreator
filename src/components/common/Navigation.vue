@@ -377,6 +377,8 @@ header {
 
   .mobile-nav {
     padding-top: 120px;
+    padding-left: 20px;
+    padding-right: 20px;
     width: 100%;
     max-width: 100%;
     display: flex;
@@ -397,6 +399,7 @@ header {
     .upgrade {
       text-decoration: none;
       font-weight: 600;
+      margin-bottom: 30px;
     }
     .user-title {
       font-size: 28px;
