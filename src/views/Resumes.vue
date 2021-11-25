@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loading v-show="loading"/>
-    <ResumeLimitModal v-if="upgradeModal" :close-modal="closeUpgradeModal"/>
+    <ResumeLimitModal v-if="upgradeModal" @close-modal="closeUpgradeModal"/>
 
 <!--    <EditPage />-->
 
@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       loading: null,
-      upgradeModal: false,
+      upgradeModal: null,
     };
   },
   methods: {
@@ -70,170 +70,176 @@ export default {
       const timestamp = await Date.now();
       const resumeDB = await db.collection('resumes').doc();
 
-      await resumeDB.set({
-        resumeID: resumeDB.id,
-        profileId: this.profileId,
-        date: timestamp,
-        templateName: "Sherlock",
-        resumeDocName: "cv doc name",
-        personalDetailsSec: {
-          sectionTitle: 'Personal Details',
-          jobTitle: 'Frontend',
-          photoName: '',
-          photoFileURL: null,
-          photoPreview: null,
-          firstName: 'Faig',
-          lastName: 'Abaszada',
-          email: 'faik.abaszada@gmail.com',
-          phone: '055 277 94 97',
-          country: null,
-          city: null,
-          address: null,
-          postalCode: null,
-          drivingLicense: null,
-          nationality: null,
-          placeOfBirth: null,
-          dateOfBirth: null,
-        },
-        professionalSummarySec: {
-          sectionTitle: 'Professional Summary',
-          summaryHTML: null,
-        },
-        skillsSec: {
-          sectionTitle: 'Skills',
-          skills: [
-            {
-              name: null,
-            }
-          ],
-        },
-        educationSec: {
-          sectionTitle: 'Education',
-          educations: [
-            {
-              school: null,
-              degree: null,
-              startDate: null,
-              endDate: null,
-              startAndEndDate: null,
-              description: null,
-            },
-          ],
-        },
-        socialLinksSec: {
-          sectionTitle: 'Websites & Social Links',
-          socialLinks: [
-            {
-              label: null,
-              link: null,
-            },
-          ],
-        },
-        employmentHistorySec: {
-          sectionTitle: 'Employment History',
-          employmentHistories: [
-            // {
-            //   position: 'frontend',
-            //   company: null,
-            //   startDate: '2015',
-            //   endDate: null,
-            //   startAndEndDate: null,
-            //   city: 'baku',
-            //   description: null,
-            // },
-          ],
-        },
-        hobbiesSec: {
-          sectionTitle: 'Hobbies',
-          hobbiesText: null,
-        },
-        coursesSec: {
-          sectionTitle: 'Courses',
-          courses: [
-            {
-              courseName: null,
-              institution: null,
-              startDate: null,
-              endDate: null,
-              startAndEndDate: null,
-            },
-          ],
-        },
-        internshipsSec: {
-          sectionTitle: 'Internships',
-          internships: [
-            {
-              jobTitle: null,
-              employer: null,
-              startDate: null,
-              endDate: null,
-              startAndEndDate: null,
-              city: null,
-              jobDescHTML: null,
-            },
-          ],
-        },
-        languagesSec: {
-          sectionTitle: 'Languages',
-          languagesSec: [
-            {
-              language: null,
-              level: null,
-            },
-          ],
-        },
-        referencesSec: {
-          sectionTitle: 'References',
-          references: [
-            {
-              referentsFullName: null,
-              company: null,
-              phone: null,
-              email: null,
-            },
-          ],
-        },
-        extraActivitiesSec: {
-          sectionTitle: 'Extra-curricular Activities',
-          extraActivities: [
-            {
-              functionTitle: null,
-              employer: null,
-              startDate: null,
-              endDate: null,
-              startAndEndDate: null,
-              city: null,
-              jobDescHTML: null,
-            },
-          ],
-        },
-        customSectionSec: {
-          sectionTitle: 'Untitled Edit Me!',
-          customSectionSec: [
-            {
-              itemName: null,
-              city: null,
-              startDate: null,
-              endDate: null,
-              startAndEndDate: null,
-            },
-          ],
-        },
-      });
+      if (this.resumes.length === 0) {
+        await resumeDB.set({
+          resumeID: resumeDB.id,
+          profileId: this.profileId,
+          date: timestamp,
+          templateName: "Sherlock",
+          resumeDocName: "cv doc name",
+          personalDetailsSec: {
+            sectionTitle: 'Personal Details',
+            jobTitle: 'Frontend',
+            photoName: '',
+            photoFileURL: null,
+            photoPreview: null,
+            firstName: 'Faig',
+            lastName: 'Abaszada',
+            email: 'faik.abaszada@gmail.com',
+            phone: '055 277 94 97',
+            country: null,
+            city: null,
+            address: null,
+            postalCode: null,
+            drivingLicense: null,
+            nationality: null,
+            placeOfBirth: null,
+            dateOfBirth: null,
+          },
+          professionalSummarySec: {
+            sectionTitle: 'Professional Summary',
+            summaryHTML: null,
+          },
+          skillsSec: {
+            sectionTitle: 'Skills',
+            skills: [
+              {
+                name: null,
+              }
+            ],
+          },
+          educationSec: {
+            sectionTitle: 'Education',
+            educations: [
+              {
+                school: null,
+                degree: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+                description: null,
+              },
+            ],
+          },
+          socialLinksSec: {
+            sectionTitle: 'Websites & Social Links',
+            socialLinks: [
+              {
+                label: null,
+                link: null,
+              },
+            ],
+          },
+          employmentHistorySec: {
+            sectionTitle: 'Employment History',
+            employmentHistories: [
+              // {
+              //   position: 'frontend',
+              //   company: null,
+              //   startDate: '2015',
+              //   endDate: null,
+              //   startAndEndDate: null,
+              //   city: 'baku',
+              //   description: null,
+              // },
+            ],
+          },
+          hobbiesSec: {
+            sectionTitle: 'Hobbies',
+            hobbiesText: null,
+          },
+          coursesSec: {
+            sectionTitle: 'Courses',
+            courses: [
+              {
+                courseName: null,
+                institution: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+              },
+            ],
+          },
+          internshipsSec: {
+            sectionTitle: 'Internships',
+            internships: [
+              {
+                jobTitle: null,
+                employer: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+                city: null,
+                jobDescHTML: null,
+              },
+            ],
+          },
+          languagesSec: {
+            sectionTitle: 'Languages',
+            languagesSec: [
+              {
+                language: null,
+                level: null,
+              },
+            ],
+          },
+          referencesSec: {
+            sectionTitle: 'References',
+            references: [
+              {
+                referentsFullName: null,
+                company: null,
+                phone: null,
+                email: null,
+              },
+            ],
+          },
+          extraActivitiesSec: {
+            sectionTitle: 'Extra-curricular Activities',
+            extraActivities: [
+              {
+                functionTitle: null,
+                employer: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+                city: null,
+                jobDescHTML: null,
+              },
+            ],
+          },
+          customSectionSec: {
+            sectionTitle: 'Untitled Edit Me!',
+            customSectionSec: [
+              {
+                itemName: null,
+                city: null,
+                startDate: null,
+                endDate: null,
+                startAndEndDate: null,
+              },
+            ],
+          },
+        });
+        await this.$store.dispatch('getResumes', this.profileId);
 
-      await this.$store.dispatch('getResumes', this.profileId);
+        const currentResume = await this.$store.state.resumes.filter((resume) => {
+          return resume.resumeID === resumeDB.id;
+        });
+        this.$store.commit('setResumeSate', currentResume);
 
-      const currentResume = await this.$store.state.resumes.filter((resume) => {
-        return resume.resumeID === resumeDB.id;
-      });
-      this.$store.commit('setResumeSate', currentResume);
+        this.loading = false;
 
-      this.loading = false;
+        this.$router.push({
+          name: 'EditResume',
+          params: { resumeid: resumeDB.id },
+        });
+      } else {
+        this.loading = false;
+        this.upgradeModal = true
+      }
 
-      this.$router.push({
-        name: 'EditResume',
-        params: { resumeid: resumeDB.id },
-      });
+
     },
     async editResume(id) {
       this.loading = true;
