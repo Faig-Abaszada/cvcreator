@@ -1,6 +1,7 @@
 <template>
   <div>
     <Loading v-show="loading"/>
+    <ResumeLimitModal v-if="upgradeModal" :close-modal="closeUpgradeModal"/>
 
 <!--    <EditPage />-->
 
@@ -17,7 +18,8 @@
 
         <button v-show="resumes.length !== 0" class="primary-button mobile-new-resume" @click="createResume">+ Create New</button>
 
-          <ResumeCard class="col-md-6" v-for="(resume, index) in resumes" :key="index" :resume="resume" />
+        <ResumeCard class="col-md-6" v-for="(resume, index) in resumes" :key="index" :resume="resume" />
+<!--        <ResumeCard v-for="(resume, index) in resumes" :key="index" :resume="resume" />-->
           <div v-show="resumes.length === 0" @click="createResume" class="static-resume-card">
               <div class="doc-shadow">
                   <PlusIcon v-show="resumes.length !== 0" class="icon" />
@@ -26,7 +28,7 @@
               <div class="doc-content">
                 <h2>New Resume</h2>
                 <p>Create a tailored resume for each job application. Double your chances of getting hired!</p>
-                <button v-show="resumes.length === 0" class="primary-button mobile-new-resume" @click="createResume">+ Create New</button>
+                <button v-show="resumes.length === 0" class="primary-button mobile-new-resume">+ Create New</button>
               </div>
           </div>
       </div>
@@ -44,13 +46,21 @@ import db from '../firebase/firebaseInit';
 import Loading from "../components/common/Loading";
 import { mapFields } from 'vuex-map-fields';
 import ResumeCard from "../components/ResumeCard";
+import ResumeLimitModal from "../components/common/ResumeLimitModal";
 
 export default {
   name: 'Resumes',
-  components: {Loading,  ResumeCard, PlusIcon, NoResumeImg},
+  components: {
+    Loading,
+    ResumeCard,
+    PlusIcon,
+    NoResumeImg,
+    ResumeLimitModal,
+  },
   data() {
     return {
       loading: null,
+      upgradeModal: false,
     };
   },
   methods: {
@@ -237,6 +247,9 @@ export default {
         name: 'EditResume',
         params: { resumeid: id },
       });
+    },
+    closeUpgradeModal() {
+      this.upgradeModal = false;
     }
   },
   computed: {
@@ -340,6 +353,7 @@ export default {
   }
   .doc-content {
     width: 250px;
+    padding-left: 15px;
     color: #98a1b3;
     h2 {
       font-size: 18px;

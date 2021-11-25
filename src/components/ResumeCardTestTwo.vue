@@ -10,18 +10,17 @@
         :filename="resume.resumeDocName"
         :manual-pagination="true"
         pdf-format="a4"
+        class="html2pdf"
     >
 
       <section slot="pdf-content">
-
          <component :is="resume.templateName" :resume="resume"></component>
-
       </section>
 
     </vue-html2pdf>
 
   </div>
-    <div class="content">
+  <div class="content">
       <div class="header">
         <h2 v-if="!editing">{{ resume.resumeDocName }} </h2>
         <label v-show="!editing" for="inputIsActive" @click="enableEditing"><EditIcon @click="enableEditing" class="edit-icon"/></label>
@@ -174,32 +173,37 @@ export default {
     }
   }
 
-  width: 450px;
-  height: 228px;
+  //width: 450px;
+  //height: 228px;
   position: relative;
-  margin-bottom: 20px;
-  margin-right: 40px;
+  //margin-bottom: 20px;
+  //margin-right: 40px;
+  display: flex;
+  justify-content: start;
+
   .resume-doc {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform-origin: 0 0;
-    transform: scale(0.2);
-
-
+    //position: absolute;
+    //top: 0;
+    //left: 0;
     //transform-origin: 0 0;
-    //margin-right: calc(21cm * -0.2);
-    //margin-bottom: calc(29.7cm * -0.2);
+    //transform: scale(0.2);
 
-    border: 5px solid #e5e5e5;
-    border-radius: 30px;
-    cursor: pointer;
+    transform: scale(0.2);
+    transform-origin: 0 0;
+    //margin-right: calc(21cm * -0.8);
+    //margin-bottom: calc(29.7cm * -0.8);
+
+
+  }
+  .html2pdf {
+    margin-right: calc(21cm * -0.8);
+    margin-bottom: calc(29.7cm * -0.8);
   }
 
 
   .content {
-    position: absolute;
-    right: 40px;
+    //position: absolute;
+    //right: 40px;
 
 
 

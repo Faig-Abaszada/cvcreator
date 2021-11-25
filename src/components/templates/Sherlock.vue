@@ -89,6 +89,13 @@ export default {
 .resume-doc {
   width: 21cm;
   height: 29.7cm;
+  //width: 2480px;
+  //height: 3508px;
+  //height: 842pt;
+  //width: 595pt;
+  //595 X 842
+  //width: 595px;
+  //height: 842px;
   background-color: #ffffff;
 }
 

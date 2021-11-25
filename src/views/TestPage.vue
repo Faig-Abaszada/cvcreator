@@ -1,28 +1,54 @@
 <template>
-  <div class="cards">
-          <div class="card">
-            <div class="pdf-wrapper">
-              <Pdf />
-            </div>
-            <div class="content">
-              <p>Faig Abaszada</p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="pdf-wrapper">
-              <Pdf />
-            </div>
-          </div>
+  <div>
+<!--    <div class="cards">-->
+<!--      <div class="card">-->
+<!--        <div class="pdf-wrapper">-->
+<!--          <Pdf />-->
+<!--        </div>-->
+<!--        <div class="content">-->
+<!--          <p>Faig Abaszada</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="card">-->
+<!--        <div class="pdf-wrapper">-->
+<!--          <Pdf />-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="resume-cards">
+      <div class="resume-card">
+        <div class="pdf-container">
+          <ResumeCardTest v-for="(resume, index) in resumes" :key="index" :resume="resume"/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Pdf from "../components/test/Pdf";
+// import Pdf from "../components/test/Pdf";
+import ResumeCardTest from "../components/ResumeCardTestTwo";
+import {mapFields} from "vuex-map-fields";
 export default {
   name: "TestPage",
   components: {
-    Pdf
-  }
+    // Pdf,
+    ResumeCardTest,
+  },
+  computed: {
+    profileId() {
+      return this.$store.state.profileId;
+    },
+    // resumes() {
+    //   return this.$store.state.resumes;
+    // },
+    ...mapFields(['resumes'])
+  },
+  async mounted() {
+    // await this.$store.dispatch('getResumes');
+    await this.$store.dispatch('getCurrentUser');
+    await this.$store.dispatch('getResumes', this.profileId);
+  },
 }
 </script>
 
@@ -60,6 +86,11 @@ export default {
     }
   }
 }
+.resume-cards {
+  display: flex;
 
+  .pdf-container {
+  }
+}
 
 </style>
