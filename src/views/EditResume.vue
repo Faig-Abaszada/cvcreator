@@ -9,19 +9,20 @@
 <!--      <button v-show="mobile === true" @click="mobilePreview = true" class="prev-and-down-button">-->
 <!--        Preview & Download <DocIcon class="icon"/>-->
 <!--      </button>-->
-      <button v-show="mobile === true" @click="templateIs = true" class="prev-and-down-button">
-        Preview & Download <DocIcon class="icon"/>
+      <button ref="mobilePreviewBtn" v-show="mobile === true" @click="templateIs = true" class="prev-and-down-button">
+        <span v-show="scrolledToBottom">Preview & Download </span><DocIcon class="icon"/>
       </button>
 
 
-      <div class="create-cv">
+      <div class="create-cv" @scroll="onScroll">
+        <router-link v-show="mobile === true"  class="exit" :to="{ name: 'Resumes'}">
+          <XIcon class="icon" />
+        </router-link>
 
         <div>
         <h2 class="page-title">Create CV</h2>
 
-        <router-link v-show="mobile === true"  class="exit" :to="{ name: 'Resumes'}">
-          <XIcon class="icon" />
-        </router-link>
+
 
         <!-- percentages -->
         <div class="create-cv-header">
@@ -62,7 +63,7 @@
           <!-- section end -->
 
         </div>
-        <div class="save-btn">
+        <div>
           <button @click="updateResume" class="save-btn primary-button">SAVE!</button>
         </div>
       </div>
@@ -130,6 +131,7 @@ export default {
       loading: null,
       mobile: null,
       mobilePreview: null,
+      scrolledToBottom: false,
       windowWidth: null,
     };
   },
@@ -199,7 +201,22 @@ export default {
     },
     setAllData() {
       console.log('windows reloaded');
+    },
+    onScroll ({ target: { scrollTop, clientHeight, scrollHeight }}) {
+      if (scrollTop + clientHeight >= scrollHeight) {
+        this.$refs.mobilePreviewBtn.classList.add('scrolledToBottom');
+        this.scrolledToBottom = false;
+        console.log('hello scrolled)')
+      } else {
+        this.scrolledToBottom = true;
+        this.$refs.mobilePreviewBtn.classList.remove('scrolledToBottom');
+
+      }
+
     }
+    // onScroll ({ target: { scrollTop, clientHeight, scrollHeight }}) {
+    //   this.scrolledToBottom = true;
+    // }
   },
   computed: {
     // resumeGetterTest() {
@@ -223,31 +240,14 @@ export default {
   //display: flex;
   position: relative;
   overflow: scroll;
-
-
-}
-.prev-and-down-button {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  z-index: 103;
-  background-color: rgb(33, 150, 243);
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 30px;
-
-  .icon {
-    width: 40px;
-  }
-
 }
 
 .exit {
   text-decoration: none;
   color: #fff;
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 20px;
+  right: 20px;
   z-index: 103;
   background-color: rgba(34, 34, 34, 0.4);
   border-radius: 50%;
@@ -270,12 +270,15 @@ export default {
   z-index: 103;
   background-color: rgb(33, 150, 243);
   color: #fff;
-  padding: 10px 15px;
+  padding: 10px;
   border-radius: 30px;
-
+  box-shadow: 0 0px 10px -1px rgba(0, 0, 0, 0.5);
   .icon {
     width: 40px;
   }
+}
+.scrolledToBottom {
+  box-shadow: 0 0px 15px -1px rgba(0, 0, 0, 0.5);
 
 }
 
@@ -283,9 +286,8 @@ export default {
   width: 50%;
   height: 100vh;
   overflow: scroll;
-  //height: 100%;
-
-
+  position: relative;
+  padding: 20px 50px;
 
   @media (max-width: 1280px) {
     width: 100%;
@@ -294,14 +296,11 @@ export default {
 
   .save-btn {
     text-align: center;
+    margin: 0 auto;
+    font-size: 28px;
+    padding: 5px 35px;
 
-    button {
-      font-size: 2rem;
-      padding: 20px 50px;
-      border-radius: 40px;
-      text-align: center;
-      //background-color: #2196f3;
-    }
+
 
   }
 
@@ -569,29 +568,27 @@ export default {
         }
       }
 
+      //QUIL Wrapper
       .editor {
-        // height: 60vh;
         display: flex;
         flex-direction: column;
-
         .quilWrapper {
           position: relative;
           display: flex;
           flex-direction: column;
           //   height: 100%;
         }
-
         .ql-container {
           display: flex;
           flex-direction: column;
           height: 100%;
           overflow: scroll;
         }
-
         .ql-editor {
           padding: 20px 16px 30px;
         }
       }
+      //QUIL Wrapper end
     }
   }
 }
@@ -601,7 +598,6 @@ export default {
 .additional-details-leave-active {
   transition: all 0.4s ease;
 }
-
 // transition burda sehifeden kenar baslayir
 .additional-details-enter {
   transform: translateY(0%);
@@ -617,15 +613,10 @@ export default {
   transform: translateY(0%);
   opacity: 0;
 }
-
-
 .cv-info-fill .section .editor .quillWrapper .ql-snow.ql-toolbar button {
   width: auto;
   height: auto;
 }
-
-
-
 
 </style>
 
