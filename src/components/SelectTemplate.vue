@@ -3,6 +3,9 @@
     <Loading v-show="loading"/>
 <!--    Help Gadget Component for positiong-->
     <HelpGadget />
+
+<!--    Mobile Template Select Resume Cards || Settings in other word-->
+    <SelectTemplateSettings />
       <header>
 
         <button class="button-back"  @click="$emit('templateIs', false)">
@@ -84,6 +87,7 @@ import ArrowIcon from "../assets/Icons/create-cv/arrow-right.svg";
 import TickIcon from "../assets/Icons/create-cv/tick.svg";
 
 import Loading from "./common/Loading";
+import SelectTemplateSettings from "./SelectTemplateSettings";
 
 export default {
   name: "SelectTemplate",
@@ -95,7 +99,8 @@ export default {
     HelpGadget,
     ArrowIcon,
     TickIcon,
-    Loading
+    Loading,
+    SelectTemplateSettings,
   },
   data() {
     return {
@@ -271,6 +276,7 @@ header {
     }
   }
 }
+
 
 .select-template-page {
   .edit-resume-buttons {
