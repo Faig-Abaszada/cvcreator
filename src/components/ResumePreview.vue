@@ -3,6 +3,10 @@
   <router-link v-show="mobile === false"  class="link" :to="{ name: 'Resumes'}">
     <XIcon class="icon"/>
   </router-link>
+  <Loading v-show="loading"/>
+
+
+
 
 
   <button v-show="mobile === true" class="exit" @click="closePreview">X</button>
@@ -10,6 +14,7 @@
 
   <div class="resume-and-content-container">
     <div class="resume-wrapper">
+
 
       <vue-html2pdf
           ref="html2Pdf"
@@ -19,6 +24,7 @@
           :filename="resume.resumeDocName"
           :manual-pagination="true"
           pdf-format="a4"
+          @hasDownloaded="hasDownloaded($event)"
       >
 
         <section slot="pdf-content">
@@ -56,6 +62,8 @@ import XIcon from "../assets/Icons/create-cv/close-x.svg";
 import SquaresIcon from "../assets/Icons/create-cv/squares.svg";
 import HelpGadget from "./common/HelpGadget";
 
+import Loading from "./common/Loading";
+
 
 export default {
   name: "ResumePreview",
@@ -71,6 +79,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
     }
   },
   components: {
@@ -82,6 +91,7 @@ export default {
     XIcon,
     SquaresIcon,
     HelpGadget,
+    Loading,
   },
   methods: {
     downloadResume() {
@@ -97,7 +107,11 @@ export default {
       // doc.text(downloadFile, 100, 100);
       // doc.save("a4.pdf");
       //
+      this.loading = true;
       this.$refs.html2Pdf.generatePdf()
+    },
+    hasDownloaded() {
+      this.loading = false;
     },
     closePreview() {
       this.$emit('close');

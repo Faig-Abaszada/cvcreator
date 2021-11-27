@@ -1,5 +1,6 @@
 <template>
   <div class="select-template-page">
+    <Loading v-show="loading"/>
 <!--    Help Gadget Component for positiong-->
     <HelpGadget />
       <header>
@@ -52,6 +53,7 @@
                     :filename="this.resume.resumeDocName"
                     :manual-pagination="true"
                     pdf-format="a4"
+                    @hasDownloaded="hasDownloaded($event)"
                 >
                   <section slot="pdf-content">
                   <component :is="this.resume.templateName" :resume="this.resume"></component>
@@ -81,6 +83,8 @@ import HelpGadget from "./common/HelpGadget";
 import ArrowIcon from "../assets/Icons/create-cv/arrow-right.svg";
 import TickIcon from "../assets/Icons/create-cv/tick.svg";
 
+import Loading from "./common/Loading";
+
 export default {
   name: "SelectTemplate",
   components: {
@@ -90,7 +94,13 @@ export default {
     VueHtml2pdf,
     HelpGadget,
     ArrowIcon,
-    TickIcon
+    TickIcon,
+    Loading
+  },
+  data() {
+    return {
+      loading: null,
+    }
   },
   computed: {
     ...mapFields([
@@ -109,7 +119,11 @@ export default {
 
     },
     downloadResume() {
-      this.$refs.html2Pdf.generatePdf()
+      this.loading = true;
+      this.$refs.html2Pdf.generatePdf();
+    },
+    hasDownloaded() {
+      this.loading = false;
     }
 
   }
