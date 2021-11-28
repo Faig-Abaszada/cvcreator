@@ -5,21 +5,33 @@
     <HelpGadget />
 
 <!--    Mobile Template Select Resume Cards || Settings in other word-->
-    <SelectTemplateSettings />
+    <SelectTemplateSettings v-show="templateSettings && mobile"/>
+
       <header>
 
-        <button class="button-back"  @click="$emit('templateIs', false)">
+        <button v-show="!mobile" class="button-back"  @click="$emit('templateIs', false)">
           <ArrowIcon class="icon" />Back to editor
         </button>
+
+        <div v-show="mobile" class="btn-actions">
+          <button @click="templateSettings = !templateSettings" class="primary-button">
+            <SettingIcon class="icon"/>
+          </button>
+        </div>
 
         <div class="btn-actions">
           <button @click="downloadResume" class="primary-button">Download PDF</button>
         </div>
+
+        <button v-show="mobile" class="button-close"  @click="$emit('templateIs', false)">
+          <XIcon class="icon"/>
+        </button>
+
       </header>
 
       <div class="container">
         <div class="row">
-          <div class="col-3 d-none">
+          <div class="col-3" v-show="!mobile">
             <div class="templates">
               <div class="row">
 
@@ -45,7 +57,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12">
+          <div class="col-md-9">
             <div class="select-page-preview">
               <div class="resume-wrapper">
                 <vue-html2pdf
@@ -85,6 +97,8 @@ import VueHtml2pdf from 'vue-html2pdf';
 import HelpGadget from "./common/HelpGadget";
 import ArrowIcon from "../assets/Icons/create-cv/arrow-right.svg";
 import TickIcon from "../assets/Icons/create-cv/tick.svg";
+import SettingIcon from "../assets/Icons/create-cv/setting.svg";
+import XIcon from "../assets/Icons/create-cv/close-x.svg";
 
 import Loading from "./common/Loading";
 import SelectTemplateSettings from "./SelectTemplateSettings";
@@ -99,18 +113,26 @@ export default {
     HelpGadget,
     ArrowIcon,
     TickIcon,
+    SettingIcon,
+    XIcon,
     Loading,
     SelectTemplateSettings,
   },
   data() {
     return {
       loading: null,
+      mobile: null,
+      templateSettings: false,
     }
   },
   computed: {
     ...mapFields([
       'resume'
     ])
+  },
+  created() {
+    window.addEventListener('resize', this.checkScreen);
+    this.checkScreen();
   },
   methods: {
     async updateTemplateName(templateName) {
@@ -129,7 +151,20 @@ export default {
     },
     hasDownloaded() {
       this.loading = false;
-    }
+    },
+    checkScreen() {
+      this.windowWidth = window.innerWidth;
+      if (this.windowWidth <= 768){
+        this.mobile = true;
+        this.mobilePreview = false;
+        // this.$store.commit('setScreenMobility', false);
+        return;
+      }
+      this.mobile = false;
+      this.mobilePreview = true;
+      // this.$store.commit('setScreenMobility', true);
+
+    },
 
   }
 
@@ -206,18 +241,18 @@ header {
       border-radius: 50%;
     }
   }
+  .button-close,
   .button-back {
     color: #fff;
-    border-radius: 50px;
-    padding: 5px 15px;
     &:hover {
       background-color: #303030;
     }
     .icon {
-      width: 25px;
       transform: rotate(180deg);
+      width: 35px;
     }
   }
+
 }
 
 .templates {
