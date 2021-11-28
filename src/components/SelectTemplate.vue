@@ -23,7 +23,9 @@
           <button @click="downloadResume" class="primary-button">Download PDF</button>
         </div>
 
-        <button v-show="mobile" class="button-close"  @click="$emit('templateIs', false)">
+        <button v-show="mobile"
+                class="button-close"
+                @click="$emit('templateIs', false); templateSettings = false">
           <XIcon class="icon"/>
         </button>
 
@@ -133,6 +135,9 @@ export default {
   created() {
     window.addEventListener('resize', this.checkScreen);
     this.checkScreen();
+  },
+  mounted() {
+    this.templateSettings = false;
   },
   methods: {
     async updateTemplateName(templateName) {
