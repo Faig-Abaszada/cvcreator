@@ -5,7 +5,10 @@
     <HelpGadget />
 
 <!--    Mobile Template Select Resume Cards || Settings in other word-->
-    <SelectTemplateSettings v-show="templateSettings && mobile"/>
+    <SelectTemplateSettings
+        v-show="templateSettings && mobile"
+        @changeTemplateNameEmit="updateTemplateName($event)"
+    />
 
       <header>
 

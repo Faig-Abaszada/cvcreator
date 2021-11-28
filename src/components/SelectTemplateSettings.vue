@@ -1,59 +1,17 @@
 <template>
 <div class="settings">
   <VueSlickCarousel v-bind="settings">
-    <div class="template-card" >
+    <div class="template-card" @click="$emit('changeTemplateNameEmit', 'Sherlock')">
       <h2>Sherlock</h2>
       <div class="img-container">
         <img :src='require("@/assets/templates/cvform.webp")'>
         <TickIcon class="icon"/>
       </div>
     </div>
-    <div class="template-card" >
-      <h2>Sherlock</h2>
+    <div class="template-card" @click="$emit('changeTemplateNameEmit', 'BasicTheme')">
+      <h2>Basic</h2>
       <div class="img-container">
-        <img :src='require("@/assets/templates/cvform.webp")'>
-        <TickIcon class="icon"/>
-      </div>
-    </div>
-    <div class="template-card" >
-      <h2>Sherlock</h2>
-      <div class="img-container">
-        <img :src='require("@/assets/templates/cvform.webp")'>
-        <TickIcon class="icon"/>
-      </div>
-    </div>
-    <div class="template-card" >
-      <h2>Sherlock</h2>
-      <div class="img-container">
-        <img :src='require("@/assets/templates/cvform.webp")'>
-        <TickIcon class="icon"/>
-      </div>
-    </div>
-    <div class="template-card" >
-      <h2>Sherlock</h2>
-      <div class="img-container">
-        <img :src='require("@/assets/templates/cvform.webp")'>
-        <TickIcon class="icon"/>
-      </div>
-    </div>
-    <div class="template-card" >
-      <h2>Sherlock</h2>
-      <div class="img-container">
-        <img :src='require("@/assets/templates/cvform.webp")'>
-        <TickIcon class="icon"/>
-      </div>
-    </div>
-    <div class="template-card" >
-      <h2>Sherlock</h2>
-      <div class="img-container">
-        <img :src='require("@/assets/templates/cvform.webp")'>
-        <TickIcon class="icon"/>
-      </div>
-    </div>
-    <div class="template-card" >
-      <h2>Sherlock</h2>
-      <div class="img-container">
-        <img :src='require("@/assets/templates/cvform.webp")'>
+        <img :src='require("@/assets/templates/cvform2.webp")'>
         <TickIcon class="icon"/>
       </div>
     </div>
@@ -76,14 +34,13 @@ export default {
   data() {
     return {
       settings : {
-        "centerMode": true,
-        "centerPadding": "20px",
+        "dots": true,
         "focusOnSelect": true,
         "infinite": true,
-        "slidesToShow": 3,
         "speed": 500,
-        "useCSS": true,
-        "useTransform": true,
+        "slidesToShow": 3,
+        "slidesToScroll": 3,
+        "touchThreshold": 5
       }
     }
   }
@@ -92,7 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 .settings {
-  height: 300px;
+  height: 200px;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -104,32 +61,13 @@ export default {
 
   .slick-slider {
     height: 100%;
-    display: flex;
-    align-items: end;
-    padding-bottom: 10px;
+    //margin-top: 100px;
 
-    .slick-slide {
-    }
 
     .slick-current {
-
       .template-card {
-        padding: 0 5px;
-
         img {
           box-shadow: 0 0 3px 5px greenyellow;
-
-        }
-
-
-        &:after {
-          content: "";
-          display: block;
-          height: 0;
-          width: 100%;
-          margin-top: 10px;
-          background-color: transparent;
-          //box-shadow: 0 2px 50px 10px #98a1b3;
         }
       }
     }
@@ -139,7 +77,7 @@ export default {
 
 }
 .template-card {
-  padding: 0 20px;
+  padding: 6px 20px;
 
 
   height: 100%;
@@ -156,14 +94,13 @@ export default {
     border-radius: 5px;
 
     &:hover {
-      box-shadow: 0 0 1px 3px rgb(33, 150, 243);
+      //box-shadow: 0 0 1px 3px rgb(33, 150, 243);
     }
 
     img {
       position: relative;
       border-radius: 5px;
       width: 100%;
-
 
     }
     .icon {
@@ -182,7 +119,7 @@ export default {
 
   }
   .active {
-    box-shadow: 0 0 1px 3px rgb(33, 150, 243);
+    //box-shadow: 0 0 1px 3px rgb(33, 150, 243);
 
     .icon {
       display: block;
