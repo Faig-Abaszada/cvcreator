@@ -1,15 +1,28 @@
 <template>
   <div class="section">
     <div class="section-header">
-      <h2 class="title">
-        <MoveIcon class="icon move-icon" />Employment History<EditIcon
-          class="icon"
-        />
+      <MoveIcon class="icon move-icon" />
+      <h2 class="title" v-if="!editing">
+        {{ employmentHistorySec.sectionTitle }}
       </h2>
-      <h4 class="subtitle">
-        Include your last 10 years of relevant experience and dates in this
-        section. List your most recent position first.
-      </h4>
+<!--            <h4 class="subtitle">-->
+<!--              Include your last 10 years of relevant experience and dates in this-->
+<!--              section. List your most recent position first.-->
+<!--            </h4>-->
+      <label v-show="!editing"
+             for="personalDetailsSec"
+             @click="enableEditing"
+      >
+        <EditIcon class="icon" />
+      </label>
+      <input class="title-input"
+             type="text"
+             v-if="editing"
+             id="personalDetailsSec"
+             @blur="disableEditing"
+             @keyup.enter="disableEditing"
+             v-model="sectionTitleValue"
+      >
     </div>
 
     <div class="section-inner" ref="sectionInner">
@@ -34,9 +47,10 @@ import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 // import Vue from 'vue';
 
 import JobItem from './section-items/JobItem.vue';
+import {mapFields} from "vuex-map-fields";
 
 export default {
-  props: ['employmentHistorySec'],
+  // props: ['employmentHistorySec'],
   components: {
     EditIcon,
     MoveIcon,
@@ -44,7 +58,10 @@ export default {
     JobItem,
   },
   data() {
-    return {};
+    return {
+      editing: false,
+      sectionTitleValue: null,
+    };
   },
   methods: {
     addEmployment() {
@@ -63,7 +80,22 @@ export default {
       this.$store.commit('addItemObject', 'jobItem');
 
     },
+    enableEditing() {
+      this.sectionTitleValue = this.employmentHistorySec.sectionTitle;
+      this.editing = true;
+    },
+    disableEditing() {
+      this.editing = false;
+      this.resume.employmentHistorySec.sectionTitle = this.sectionTitleValue;
+    }
   },
+  computed: {
+    ...mapFields([
+      'resume',
+      'resume.employmentHistorySec'
+
+    ])
+  }
 };
 </script>
 <style lang="scss">

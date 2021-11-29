@@ -24,7 +24,9 @@
     <div class="content">
       <div class="header">
         <h2 v-if="!editing">{{ resume.resumeDocName }} </h2>
-        <label v-show="!editing" for="inputIsActive" @click="enableEditing"><EditIcon @click="enableEditing" class="edit-icon"/></label>
+        <label v-show="!editing" for="inputIsActive" @click="enableEditing">
+          <EditIcon @click="enableEditing" class="edit-icon"/>
+        </label>
         <input v-if="editing" v-model="inputValue"
                @blur="disableEditing(); $emit('update')"
                @keyup.enter="disableEditing(); $emit('update')"

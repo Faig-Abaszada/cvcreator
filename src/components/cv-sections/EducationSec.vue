@@ -1,14 +1,31 @@
 <template>
   <div class="section">
     <div class="section-header">
-      <h2 class="title">
-        <MoveIcon class="icon move-icon" />Education<EditIcon class="icon" />
+      <MoveIcon class="icon move-icon" />
+      <h2 class="title" v-if="!editing">
+        {{ educationSec.sectionTitle }}
       </h2>
-      <h4 class="subtitle">
-        If relevant, include your most recent educational achievments and the
-        dates here.
-      </h4>
+<!--      <h4 class="subtitle">-->
+<!--        If relevant, include your most recent educational achievments and the-->
+<!--        dates here.-->
+<!--      </h4>-->
+      <label v-show="!editing"
+             for="personalDetailsSec"
+             @click="enableEditing"
+      >
+        <EditIcon class="icon" />
+      </label>
+      <input class="title-input"
+             type="text"
+             v-if="editing"
+             id="personalDetailsSec"
+             @blur="disableEditing"
+             @keyup.enter="disableEditing"
+             v-model="sectionTitleValue"
+      >
     </div>
+
+
 
     <div class="section-inner">
       <EduItem />
@@ -22,6 +39,7 @@ import MoveIcon from '../../assets/Icons/create-cv/movement.svg';
 import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 
 import EduItem from './section-items/EduItem.vue';
+import {mapFields} from "vuex-map-fields";
 
 export default {
   components: {
@@ -31,9 +49,28 @@ export default {
     EditIcon,
   },
   data() {
-    return {};
+    return {
+      editing: false,
+      sectionTitleValue: null,
+    };
   },
-  methods: {},
+  methods: {
+    enableEditing() {
+      this.sectionTitleValue = this.educationSec.sectionTitle;
+      this.editing = true;
+    },
+    disableEditing() {
+      this.editing = false;
+      this.resume.educationSec.sectionTitle = this.sectionTitleValue;
+    }
+  },
+  computed: {
+    ...mapFields([
+      'resume',
+      'resume.educationSec'
+
+    ])
+  }
 };
 </script>
 <style lang="scss">

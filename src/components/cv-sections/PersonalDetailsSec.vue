@@ -2,10 +2,23 @@
   <div>
     <div class="section">
       <div class="section-header">
-        <h2 class="title">
-          static personal detail title
-          <EditIcon class="icon" />
+        <h2 class="title" v-if="!editing">
+          {{ personalDetailsSec.sectionTitle }}
         </h2>
+        <label v-show="!editing"
+               for="personalDetailsSec"
+               @click="enableEditing"
+        >
+          <EditIcon class="icon" />
+        </label>
+        <input class="title-input"
+               type="text"
+               v-if="editing"
+               id="personalDetailsSec"
+               @blur="disableEditing"
+               @keyup.enter="disableEditing"
+               v-model="sectionTitleValue"
+        >
       </div>
 
       <div class="section-inner">
@@ -105,6 +118,8 @@ import ArrowIcon from '../../assets/Icons/create-cv/arrow-right.svg';
 import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
 import CommonInput from "../CommonInput";
 
+import { mapFields } from 'vuex-map-fields';
+
 export default {
   name: 'PersonalDetailsSec',
   components: {
@@ -121,8 +136,29 @@ export default {
   data() {
     return {
       showAdditionalDetails: false,
+      editing: false,
+      sectionTitleValue: null,
     };
   },
+  methods: {
+    enableEditing() {
+      this.sectionTitleValue = this.personalDetailsSec.sectionTitle;
+      this.editing = true;
+    },
+    disableEditing() {
+      this.editing = false;
+      this.resume.personalDetailsSec.sectionTitle = this.sectionTitleValue;
+    }
+  },
+  computed: {
+    ...mapFields([
+        'resume'
+    ])
+  }
+
 
 };
 </script>
+<style lang="scss" scoped>
+
+</style>
