@@ -1,6 +1,6 @@
 <template>
 <div>
-  <input v-model="commonInputValue" type="text" id="last-name" />
+  <input ref="customInputComp" v-model="commonInputValue" type="text" id="last-name" />
 </div>
 </template>
 
@@ -23,6 +23,11 @@ export default {
       this.commonInputValue = this.inputValue;
 
     },2000)
+  },
+  methods: {
+    focusInput() {
+      this.$refs.customInputComp.focus();
+    }
   }
 }
 </script>

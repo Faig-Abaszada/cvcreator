@@ -27,10 +27,15 @@
 
     <div class="section-inner" ref="sectionInner">
 
-      <JobItem v-for="experience in employmentHistorySec.employmentHistories"
-               :key="experience.company"
+      <JobItem v-for="(experience, index) in employmentHistorySec.employmentHistories"
+               :key="index"
                :experience="experience"
+               :index="index"
+               ref="jobItemComp"
+               :should-toggle="index === employmentHistorySec.employmentHistories.length - 1"
+               :addEmploymentFired="addEmploymentFired"
       />
+<!--      :should-toggle="index === employmentHistorySec.employmentHistories.length - 1"-->
 
     </div>
 
@@ -61,6 +66,7 @@ export default {
     return {
       editing: false,
       sectionTitleValue: null,
+      addEmploymentFired: false,
     };
   },
   methods: {
@@ -78,8 +84,10 @@ export default {
       //   // event.target.parentNode.appendChild(jobItemInstance.$el);
       // }
       this.$store.commit('addItemObject', 'jobItem');
-
+      // this.$refs.jobItemComp.shouldToggleFunc();
+      this.addEmploymentFired = true;
     },
+
     enableEditing() {
       this.sectionTitleValue = this.employmentHistorySec.sectionTitle;
       this.editing = true;

@@ -188,7 +188,7 @@ export default {
     },
     checkScreen() {
       this.windowWidth = window.innerWidth;
-      if (this.windowWidth <= 1280){
+      if (this.windowWidth <= 1020){
         this.mobile = true;
         this.mobilePreview = false;
         // this.$store.commit('setScreenMobility', false);
@@ -287,9 +287,10 @@ export default {
   height: 100vh;
   overflow: scroll;
   position: relative;
-  padding: 20px 50px;
+  padding: 20px 40px;
+  //margin-right: 200px;
 
-  @media (max-width: 1280px) {
+  @media (max-width: 1020px) {
     width: 100%;
   }
   // margin: 0 auto;
@@ -402,6 +403,7 @@ export default {
       }
 
       .section-inner {
+
         .item-wrapper {
           position: relative;
           border: 1px solid rgb(226, 224, 224);
@@ -437,7 +439,8 @@ export default {
                 // right: calc(100% + 8px);
                 right: 100%;
                 transform: translateY(-50%);
-                visibility: hidden;
+                //visibility: hidden;
+                opacity: 0;
               }
               .delete-icon {
                 position: absolute;
@@ -445,7 +448,9 @@ export default {
                 // left: calc(100% + 8px);
                 left: 100%;
                 transform: translateY(-50%);
-                visibility: hidden;
+                cursor: pointer;
+                //visibility: hidden;
+                opacity: 0;
               }
               .icon {
                 width: 30px;
@@ -457,7 +462,8 @@ export default {
               }
               .move-icon,
               .delete-icon {
-                visibility: initial;
+                //visibility: initial;
+                opacity: 1;
               }
             }
 

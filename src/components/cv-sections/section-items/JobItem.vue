@@ -1,10 +1,13 @@
 <template>
   <div class="item-wrapper">
+
+    <DeleteModal v-show="deleteModal" @close-modal="deleteModal = false" :deleteModal="true" @deleteEmployment="deleteEmployment"/>
+
     <div class="item">
       <div class="header-wrapper">
         <MoveIcon class="icon move-icon" />
-        <DeleteIcon class="icon delete-icon" />
-        <div class="header" @click="showJobDetail = !showJobDetail">
+        <DeleteIcon class="icon delete-icon" @click="deleteModal = true"/>
+        <div class="header" @click="toggleItem">
           <h2 class="title">{{experience.position}}</h2>
           <ArrowIcon class="icon" />
         </div>
@@ -14,7 +17,7 @@
           <div class="inputs">
             <div class="input">
               <label >Job title</label>
-              <CommonInput :inputValue.sync="experience.position"/>
+              <CommonInput ref="commonInputComp" :inputValue.sync="experience.position"/>
             </div>
             <div class="input">
               <label >Company</label>
@@ -70,15 +73,24 @@ import 'vue2-datepicker/index.css';
 
 import CommonInput from "../../CommonInput";
 
+import DeleteModal from "../../common/DeleteModal";
+
 export default {
   components: {
     MoveIcon,
     ArrowIcon,
     DeleteIcon,
     DatePicker,
-    CommonInput
+    CommonInput,
+
+    DeleteModal
   },
-  props: ['experience'],
+  props: [
+      'experience',
+      'index',
+      'shouldToggle',
+      'addEmploymentFired'
+  ],
   data() {
     return {
       blogHTML: '',
@@ -88,13 +100,60 @@ export default {
       ],
       showJobDetail: false,
       date: '',
+      deleteModal: false,
     };
   },
   methods: {
     // customFormatter(date) {
     //   return moment(date).format('MMMM Do YYYY, h:mm:ss a');
     // },
+    deleteEmployment(){
+      // this.$store.commit('deleteItemObject', {
+      //   itemType: 'jobItem',
+      //   index: this.experience.index
+      // })
+      this.$store.commit('deleteItemObject', {
+        itemType: 'jobItem',
+        index: this.index
+      });
+    },
+    toggleItem(){
+      this.showJobDetail = !this.showJobDetail;
+      setTimeout(()=> {
+        this.$refs.commonInputComp.focusInput();
+      },10)
+    },
+    // shouldToggleFunc() {
+    //   setTimeout(() => {
+    //     if (this.shouldToggle) {
+    //       this.showJobDetail = !this.showJobDetail;
+    //     } else {
+    //       this.showJobDetail = false;
+    //     }
+    //   });
+    // }
   },
+  mounted() {
+    setTimeout(() => {
+      if (this.shouldToggle && this.addEmploymentFired) {
+        this.toggleItem();
+      } else {
+        this.showJobDetail = false;
+      }
+    }, 10);
+  },
+  // watch: {
+  //     items(){
+  //       if (this.shouldToggle) {
+  //         this.toggleItem();
+  //       }
+  //     }
+  // },
+  // computed: {
+  //   items() {
+  //     return this.$store.state.resume.employmentHistorySec.employmentHistories;
+  //   }
+  // }
 };
 </script>
 <style lang="scss" scoped>

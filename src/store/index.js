@@ -253,6 +253,14 @@ export default new Vuex.Store({
                 })
             }
         },
+        deleteItemObject(state, payload) {
+            if(payload.itemType === 'jobItem') {
+                console.log(payload.index);
+                state.resume.employmentHistorySec.employmentHistories = state.resume.employmentHistorySec.employmentHistories.filter((jobItem, index) => {
+                    return index !== payload.index;
+                });
+            }
+        },
         //cv create end
 
 

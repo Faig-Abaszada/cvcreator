@@ -1,51 +1,53 @@
 <template>
 <div class="resume-preview" >
-  <router-link v-show="mobile === false"  class="link" :to="{ name: 'Resumes'}">
-    <XIcon class="icon"/>
-  </router-link>
-  <Loading v-show="loading"/>
+  <div class="preview-center">
+    <router-link v-show="mobile === false"  class="link" :to="{ name: 'Resumes'}">
+      <XIcon class="icon"/>
+    </router-link>
+    <Loading v-show="loading"/>
 
 
 
 
 
-  <button v-show="mobile === true" class="exit" @click="closePreview">X</button>
-<!--  <SelectTemplate />-->
+    <button v-show="mobile === true" class="exit" @click="closePreview">X</button>
+    <!--  <SelectTemplate />-->
 
-  <div class="resume-and-content-container">
-    <div class="resume-wrapper">
+    <div class="resume-and-content-container">
+      <div class="resume-wrapper">
 
 
-      <vue-html2pdf
-          ref="html2Pdf"
-          :show-layout="false"
-          :float-layout="false"
-          :enable-download="true"
-          :filename="resume.resumeDocName"
-          :manual-pagination="true"
-          pdf-format="a4"
-          @hasDownloaded="hasDownloaded($event)"
-      >
+        <vue-html2pdf
+            ref="html2Pdf"
+            :show-layout="false"
+            :float-layout="false"
+            :enable-download="true"
+            :filename="resume.resumeDocName"
+            :manual-pagination="true"
+            pdf-format="a4"
+            @hasDownloaded="hasDownloaded($event)"
+        >
 
-        <section slot="pdf-content">
-          <component :is="resume.templateName" :resume="resume"></component>
-        </section>
+          <section slot="pdf-content">
+            <component :is="resume.templateName" :resume="resume"></component>
+          </section>
 
-      </vue-html2pdf>
+        </vue-html2pdf>
 
-      <div class="edit-resume-buttons">
+        <div class="edit-resume-buttons">
 
-        <button @click="$emit('templateIs', true)" class="select-btn primary-button">
-          <SquaresIcon class="icon" />Select template
-        </button>
+          <button @click="$emit('templateIs', true)" class="select-btn primary-button">
+            <SquaresIcon class="icon" />Select template
+          </button>
 
-        <button @click="downloadResume"  class="button primary-button">
-          Download PDF
-        </button>
-        <HelpGadget />
+          <button @click="downloadResume"  class="button primary-button">
+            Download PDF
+          </button>
+          <HelpGadget />
+        </div>
+
+
       </div>
-
-
     </div>
   </div>
 </div>
@@ -134,16 +136,29 @@ export default {
 
 <style lang="scss" scoped>
 .resume-preview {
-  height: 100vh;
-  width: 50%;
+  //height: 100vh;
+  //width: 50vw;
   background-color: rgb(122, 133, 153);
   position: fixed;
   right: 0;
   top: 0;
   transform-origin: 0 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+
+  .preview-center {
+
+  }
+  .resume-and-content-container {
+    height: 100vh;
+    width: 50vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
 
   .resume-wrapper {
     transform: scale(0.5);
