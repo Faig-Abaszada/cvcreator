@@ -7,12 +7,13 @@
       <div class="header-wrapper">
         <MoveIcon class="icon move-icon" />
         <DeleteIcon class="icon delete-icon" @click="deleteModal = true"/>
-        <div class="header" @click="toggleItem">
+        <div class="header" @click="handleClick">
+<!--          <div class="header" @click="toggleItem">-->
           <h2 class="title">{{experience.position}}</h2>
           <ArrowIcon class="icon" />
         </div>
       </div>
-      <div class="info" v-show="showJobDetail">
+      <div class="info" v-show="iAmSelected">
         <div class="inputs">
           <div class="inputs">
             <div class="input">
@@ -74,7 +75,6 @@ import 'vue2-datepicker/index.css';
 import CommonInput from "../../CommonInput";
 
 import DeleteModal from "../../common/DeleteModal";
-
 export default {
   components: {
     MoveIcon,
@@ -85,12 +85,6 @@ export default {
 
     DeleteModal
   },
-  props: [
-      'experience',
-      'index',
-      'shouldToggle',
-      'addEmploymentFired'
-  ],
   data() {
     return {
       blogHTML: '',
@@ -103,19 +97,25 @@ export default {
       deleteModal: false,
     };
   },
+  props: [
+      'experience',
+      'index',
+      'shouldToggle',
+      'addEmploymentFired',
+      'isSelected'
+  ],
+  computed:{
+    iAmSelected () {
+      return this.isSelected === this.index;
+    }
+  },
   methods: {
-    // customFormatter(date) {
-    //   return moment(date).format('MMMM Do YYYY, h:mm:ss a');
-    // },
-    deleteEmployment(){
-      // this.$store.commit('deleteItemObject', {
-      //   itemType: 'jobItem',
-      //   index: this.experience.index
-      // })
-      this.$store.commit('deleteItemObject', {
-        itemType: 'jobItem',
-        index: this.index
-      });
+    handleClick () {
+      this.$emit('selected', this.index);
+      setTimeout(()=> {
+        this.$refs.commonInputComp.focusInput();
+      },10)
+      console.log(this.isSelected)
     },
     toggleItem(){
       this.showJobDetail = !this.showJobDetail;
@@ -123,38 +123,31 @@ export default {
         this.$refs.commonInputComp.focusInput();
       },10)
     },
-    // shouldToggleFunc() {
-    //   setTimeout(() => {
-    //     if (this.shouldToggle) {
-    //       this.showJobDetail = !this.showJobDetail;
-    //     } else {
-    //       this.showJobDetail = false;
-    //     }
-    //   });
-    // }
+    // customFormatter(date) {
+    //   return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+    // },
+    deleteEmployment(){
+      this.$store.commit('deleteItemObject', {
+        itemType: 'jobItem',
+        index: this.index
+      });
+    },
+
   },
   mounted() {
     setTimeout(() => {
       if (this.shouldToggle && this.addEmploymentFired) {
-        this.toggleItem();
-      } else {
-        this.showJobDetail = false;
+        this.handleClick();
       }
+      // else {
+      //   this.showJobDetail = false;
+      // }
     }, 10);
   },
-  // watch: {
-  //     items(){
-  //       if (this.shouldToggle) {
-  //         this.toggleItem();
-  //       }
-  //     }
-  // },
-  // computed: {
-  //   items() {
-  //     return this.$store.state.resume.employmentHistorySec.employmentHistories;
-  //   }
-  // }
 };
 </script>
 <style lang="scss" scoped>
+.isActive{
+  color:green
+}
 </style>

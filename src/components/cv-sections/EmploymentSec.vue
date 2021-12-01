@@ -28,12 +28,14 @@
     <div class="section-inner" ref="sectionInner">
 
       <JobItem v-for="(experience, index) in employmentHistorySec.employmentHistories"
-               :key="index"
+               :key="experience.id"
                :experience="experience"
                :index="index"
                ref="jobItemComp"
                :should-toggle="index === employmentHistorySec.employmentHistories.length - 1"
                :addEmploymentFired="addEmploymentFired"
+               :is-selected="selectedItem"
+               @selected="handleSelected($event)"
       />
 <!--      :should-toggle="index === employmentHistorySec.employmentHistories.length - 1"-->
 
@@ -67,9 +69,19 @@ export default {
       editing: false,
       sectionTitleValue: null,
       addEmploymentFired: false,
+      selectedItem: false,
     };
   },
   methods: {
+    handleSelected (id) {
+
+
+      if(id === this.selectedItem) {
+        this.selectedItem = false;
+      } else {
+        this.selectedItem = id;
+      }
+    },
     addEmployment() {
       // if (event.target && event.target.classList.contains('add-employment')) {
       //   const JobItemClass = Vue.extend(JobItem);
@@ -96,6 +108,16 @@ export default {
       this.editing = false;
       this.resume.employmentHistorySec.sectionTitle = this.sectionTitleValue;
     }
+  },
+  created() {
+    // let count = 0;
+    //
+    // this.employmentHistorySec.employmentHistories.forEach(item => {
+    //   item.index = count;
+    //   count++;
+    // });
+
+    // console.log(this.items);
   },
   computed: {
     ...mapFields([
