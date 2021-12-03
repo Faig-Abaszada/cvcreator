@@ -1,22 +1,28 @@
 <template>
-    <div class="blog-wrapper" :class="{'no-user': !user}">
+    <div class="blog-wrapper" :class="{'no-user': post.welcomeScreen}">
       <div class="blog-content">
         <div>
           <!-- sadece postdan welcomeScreen - true olarsa onu welcomescreende gostermek ucun v-if dedik-->
           <h2 v-if="post.welcomeScreen">{{post.title}}</h2>
+          <h2 v-if="post.userLoggedInScreen">{{post.title}}</h2>
           <h2 v-else>{{post.blogTitle}}</h2>
           <p v-if="post.welcomeScreen">{{post.blogPost}}</p>
+          <p v-if="post.userLoggedInScreen">{{post.blogPost}}</p>
           <p class="content-preview" v-else v-html="post.blogHTML"></p>
           <router-link class="link link-light" v-if="post.welcomeScreen" :to="{name: 'Login'}">
             Login/Register<Arrow class="arrow arrow-light" />
           </router-link>
-          <router-link class="link" v-else :to="{ name: 'ViewBlog', params: { blogid: this.post.blogID }}">
+          <router-link class="link link-light home-create-button" v-if="post.userLoggedInScreen" :to="{name: 'Resumes'}">
+            Create CV Now<Arrow class="arrow arrow-light" />
+          </router-link>
+          <router-link class="link" v-if="!post.welcomeScreen && !post.userLoggedInScreen" :to="{ name: 'ViewBlog', params: { blogid: this.post.blogID }}">
             View The Post<Arrow class="arrow" />
           </router-link>
         </div>
       </div>
       <div class="blog-photo">
         <img v-if="post.welcomeScreen" :src="require(`../assets/blogPhotos/${post.photo}.png`)" alt="">
+        <img v-if="post.userLoggedInScreen" :src="require(`../assets/blogPhotos/${post.photo}.png`)" alt="">
         <img v-else :src="post.blogCoverPhoto"  alt="">
       </div>
     </div>
@@ -104,12 +110,21 @@ export default {
       padding-bottom: 4px;
       border-bottom: 1px solid transparent;
       transition: .5s ease-in all;
+      color: #000;
 
       &:hover {
         border-bottom-color: #303030;
       }
     }
 
+    .home-create-button {
+      background-color: #2196f3;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 3px;
+      font-size: 24px;
+
+    }
     .link-light {
 
       &:hover {
@@ -151,8 +166,12 @@ export default {
 
 .no-user:first-child {
   .blog-content {
-    background-color: #303030;
+    background-color: #0F141F;
     color: #fff;
+
+    .link {
+      color: #fff;
+    }
   }
 }
 

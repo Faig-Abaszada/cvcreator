@@ -1,7 +1,12 @@
 <template>
   <div class="home">
+    <BlogPost v-if="user" :post="userLoggedInScreen" />
+
     <BlogPost v-if="!user" :post="welcomeScreen" />
+
+
     <BlogPost :post="post" v-for="(post, index) in blogPostCards" :key="index" />
+
     <div class="blog-card-wrap">
       <div class="container">
         <h3>View More Recent Blogs</h3>
@@ -43,6 +48,14 @@ export default {
             "employers love.",
         welcomeScreen: true,
         photo: "resumes",
+      },
+      userLoggedInScreen: {
+        userLoggedInScreen: true,
+        title: "You are ready to build your CV!",
+        blogPost:
+            "Only in 15 minutes !",
+        photo: "resumes",
+
       },
       sampleBlogPost: [
         {

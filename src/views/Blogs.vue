@@ -1,7 +1,7 @@
 <template>
   <div class="blog-card-wrap">
     <div class="blog-cards container">
-      <div class="toogle-edit">
+      <div class="toogle-edit" v-if="admin">
         <span>Toggle Editing Post</span>
         <input type="checkbox" v-model="editPost">
       </div>
@@ -29,7 +29,13 @@ export default {
       set(payload) {
         this.$store.commit('toggleEditPost', payload);
       }
-    }
+    },
+    user() {
+      return this.$store.state.user;
+    },
+    admin() {
+      return this.$store.state.admin;
+    },
   },
   beforeDestroy() {
     this.$store.commit('toggleEditPost', false);
