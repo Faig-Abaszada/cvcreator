@@ -12,8 +12,8 @@
     </div>
     <div v-if="!user" class="updates">
       <div class="container">
-        <h2>never miss a post. Register for your free account today!</h2>
-        <router-link class="router-button" to="#">
+        <h2>Register for your free account today!</h2>
+        <router-link class="router-button" :to="{ name: 'Register'}">
           Register for asan-cv <Arrow class="arrow arrow-light"/>
         </router-link>
       </div>
@@ -36,11 +36,13 @@ export default {
   data() {
     return {
       welcomeScreen: {
-        title: "Welcome!",
+        title: "Welcome !",
         blogPost:
-          "Weekly blog articles with all things programming including HTML, CSS.",
+          "Try our professional Resume builder now. Save time with our easy 3-step resume builder." +
+            " No more writer’s block or formatting difficulties in Word. Rapidly make a perfect resume " +
+            "employers love.",
         welcomeScreen: true,
-        photo: "coding",
+        photo: "resumes",
       },
       sampleBlogPost: [
         {
