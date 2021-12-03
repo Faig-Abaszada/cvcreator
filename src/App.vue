@@ -1,8 +1,13 @@
 <template>
   <div class="app-wrapper">
-    <div class="app" v-if="this.$store.state.postLoaded">
+    <div class="app">
       <Navigation v-if="!navigation" />
-      <router-view />
+      <router-view v-if="this.$store.state.postLoaded"/>
+      <div class="waiting-gif" v-if="!this.$store.state.postLoaded">
+        <div>
+          <img :src='require("@/assets/loading-fast.gif")' alt="">
+        </div>
+      </div>
       <Footer class="footer" v-if="!navigation" />
     </div>
   </div>
@@ -11,6 +16,7 @@
 <script>
 import Navigation from './components/common/Navigation';
 import Footer from './components/common/Footer.vue';
+// import WaitOneMin from './assets/mona-loading-dark.gif';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -20,6 +26,7 @@ export default {
   components: {
     Navigation,
     Footer,
+    // WaitOneMin
   },
   data() {
     return {
@@ -74,6 +81,16 @@ export default {
   font-family: 'Quicksand', sans-serif;
 }
 
+.waiting-gif {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 200px;
+    margin: 50px auto;
+  }
+}
 
 
 .app {
