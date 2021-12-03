@@ -1,63 +1,76 @@
 <template>
   <footer>
     <div class="container">
-      <div class="left">
-        <div class="col-1">
-          <router-link class="header" :to="{ name: 'Home' }"
-            >asan-cv</router-link
-          >
-          <ul>
-            <li>
-              <a href="#"><youTube class="svg-icon" /></a>
-            </li>
-            <li>
-              <a href="#"><twitter class="svg-icon" /></a>
-            </li>
-            <li>
-              <a href="#"><instagram class="svg-icon" /></a>
-            </li>
-            <li>
-              <a href="#"><linkedin class="svg-icon" /></a>
-            </li>
-          </ul>
+      <div class="title-button"  v-show="this.$route.name !== 'Resumes'">
+          <button class="primary-button">Create a Resume</button>
+      </div>
+      <div class="middle">
+        <div class="social-links">
+          <h2>Connect with us on social media</h2>
+          <div class="icons">
+            <a href="#" class="footer-icon linkedin">
+              <Linkedin class="icon-svg"/>
+            </a>
+            <a href="#" class="footer-icon instagram">
+              <Instagram class="icon-svg"/>
+            </a>
+            <a href="#" class="footer-icon youtube">
+              <YouTube class="icon-svg"/>
+            </a>
+            <a href="#" class="footer-icon facebook">
+              <Facebook class="icon-svg"/>
+            </a>
+          </div>
+
+
         </div>
-        <div class="col-2">
-          <ul>
-            <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
-            <router-link class="link" :to="{ name: 'Blogs' }"
-              >Blogs</router-link
-            >
-            <router-link
-              v-show="admin"
-              class="link"
-              :to="{ name: 'CreatePost' }"
-              >Create Post</router-link
-            >
-            <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
-              >Login In / Register</router-link
-            >
-          </ul>
+        <div class="nav">
+          <div class="links">
+            <router-link v-show="this.$route.name === 'Resumes'" class="link upgrade" :to="{ name: 'Home' }" router-link-exact-active>
+              <UpgradeIcon class="upgrade-icon" />Upgrade Now
+            </router-link>
+            <router-link v-show="!user" class="link" :to="{ name: 'Login' }" router-link-exact-active
+            >Login/Register
+            </router-link>
+            <router-link v-show="user" class="link" :to="{ name: 'Resumes' }" router-link-exact-active
+            >Create My CV</router-link>
+
+            <router-link class="link" :to="{ name: 'Home' }" router-link-exact-active>Home</router-link>
+            <router-link class="link" :to="{ name: 'Blogs' }" router-link-exact-active>Blogs</router-link>
+            <router-link v-show="admin" class="link" :to="{ name: 'CreatePost' }" router-link-exact-active
+            >Create Post</router-link>
+          </div>
         </div>
       </div>
-      <div class="right">
-        <p>Copyright 2021 All Rights Reserved</p>
+      <div class="language">
+          <div class="lang">
+            <img :src='require("@/assets/lang.jpeg")'>
+            <p class="name">International</p>
+          </div>
       </div>
+
+      <div class="copyright">
+        <p>Copyright 2021 - asan-cv.com</p>
+      </div>
+
     </div>
   </footer>
 </template>
 
 <script>
-import youTube from '../../assets/Icons/youtube-brands.svg';
-import twitter from '../../assets/Icons/twitter-brands.svg';
-import instagram from '../../assets/Icons/instagram-brands.svg';
-import linkedin from '../../assets/Icons/linkedin-brands.svg';
+import YouTube from '../../assets/Icons/youtube-brands.svg';
+import Facebook from '../../assets/Icons/facebook-brands.svg';
+import Instagram from '../../assets/Icons/instagram-brands.svg';
+import Linkedin from '../../assets/Icons/linkedin-brands.svg';
+import UpgradeIcon from '../../assets/Icons/upgrade.svg';
 export default {
   name: 'Footer',
   components: {
-    youTube,
-    twitter,
-    instagram,
-    linkedin,
+    YouTube,
+    Facebook,
+    Instagram,
+    Linkedin,
+    UpgradeIcon
   },
   computed: {
     user() {
@@ -73,131 +86,171 @@ export default {
 <style lang="scss" scoped>
 footer {
   margin-top: auto;
-  padding: 100px 25px;
-  background-color: #303030;
-
-
+  padding: 0 25px;
+  background-color: #0F141F;
+  color: #fff;
   .container {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+    //display: flex;
+    //flex-direction: column;
+    //align-items: center;
 
-    @media (min-width: 800px) {
-      flex-direction: row;
-      gap: 0px;
-    }
-
-    > div {
+    .middle {
       display: flex;
-      flex: 1;
-    }
+      justify-content: space-between;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-top: 40px;
 
-    .left {
-      gap: 32px;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      @media (min-width: 800px) {
-        flex-direction: row;
-        align-items: initial;
-        gap: 0;
-      }
-
-      .header {
-        text-align: center;
-        font-size: 24px;
-        color: #fff;
-        text-decoration: none;
-        font-weight: 600;
-        @media (min-width: 800px) {
-          text-align: initial;
-        }
-      }
-      ul {
-        gap: 16px;
-        list-style: none;
-        display: flex;
-      }
-
-      .col-1,
-      .col-2 {
-        gap: 32px;
-        display: flex;
-        flex: 1;
-
-        @media (min-width: 800px) {
-          gap: 0;
-        }
-      }
-
-      .col-1 {
+      @media (max-width: 800px) {
         flex-direction: column;
-
-        h2 {
-          text-align: center;
-
-          @media (min-width: 800px) {
-            text-align: center;
-          }
-        }
-        ul {
-          margin-top: auto;
-
-          li {
-            display: flex;
-            align-items: center;
-
-            .svg-icon {
-              width: 24px;
-              height: auto;
-              color: #fff;
-            }
-          }
-        }
-      }
-
-      .col-2 {
-        ul {
-          height: 100%;
-          justify-content: center;
-          flex-direction: row;
-          flex-wrap: wrap;
-
-          @media (min-width: 800px) {
-            flex-direction: column;
-          }
-          .link {
-            font-size: 16px;
-            font-weight: 500;
-            color: #fff;
-            text-decoration: none;
-          }
-        }
+        align-items: center;
       }
     }
-    .right {
-      gap: 32px;
-      color: #fff;
+  }
+
+  .title-button {
+    border-bottom: 1px solid #2f2f2f;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      //margin: 0 auto;
+      background-color: transparent;
+      font-size: 2.5rem;
+
+    }
+  }
+  .social-links {
+    max-width: 400px;
+
+    h2 {
+      font-size: 24px;
+    }
+
+    .icons {
+      display: flex;
+      //justify-content: center;
+    }
+    @media (max-width: 800px) {
+      h2 {
+        text-align: center;
+      }
+      .icons {
+        justify-content: center;
+      }
+    }
+
+    .footer-icon {
+      background-color: #303030;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      display: flex;
+      justify-content: center;
       align-items: center;
-      flex-direction: column;
+      margin-right: 10px;
 
-      @media (min-width: 800px) {
-        align-items: flex-end;
-        gap: 0;
+      .icon-svg {
+        height: 25px;
+        width: 25px;
+        color: #fff;
+
+      }
+      &:hover {
+
       }
     }
+    .instagram:hover {
+      background-image: linear-gradient(45deg,#f9d86b,#ed634a 50.52%,#ba46a5);
+    }
+    .youtube:hover {
+      background-color: red;
+    }
+    .facebook:hover {
+      background-color: #3b5998;
+    }
+    .linkedin:hover {
+      background-color: #0077b5;
+    }
+  }
+  .nav {
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      @media (max-width: 800px) {
+        margin-top: 40px;
+        padding-left: 15px;
+        border-left: 1px solid #2196f3;
+      }
+
+      .link {
+        color: #fff;
+        padding-bottom: 10px;
+      }
+      .router-link-exact-active {
+        color: #2196f3;
+      }
+      .upgrade {
+        //max-width: 100px;
+        background-color: #2196f3;
+        color: #fff;
+        padding: 6px;
+        padding-right: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        margin-bottom: 20px;
+
+      }
+      .upgrade-icon {
+        width: 30px;
+        height: 30px;
+
+      }
+    }
+
+  }
+  .language {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+
+    .lang {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      img {
+        width: 22px;
+        height: 14px;
+        background-position: -44px 0;
+        margin-right: 5px;
+      }
+      .name {
+        margin-bottom: 0;
+        letter-spacing: 1px;
+      }
+    }
+
+  }
+  .copyright {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
 
     p {
-      margin-top: auto;
+      color: #888888;
     }
   }
 }
-//.footer {
-//  position: absolute;
-//  bottom: 0 !important;
-//  width: 100%;
-//}
+
 
 </style>
