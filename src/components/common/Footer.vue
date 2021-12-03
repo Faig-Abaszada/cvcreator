@@ -85,10 +85,12 @@ export default {
 
 <style lang="scss" scoped>
 footer {
-  margin-top: auto;
   padding: 0 25px;
+  margin-top: 150px;
   background-color: #0F141F;
   color: #fff;
+  box-shadow: 0 -5px 20px 0px rgba(0, 0, 0, 0.23);
+
   .container {
     //display: flex;
     //flex-direction: column;
@@ -97,7 +99,7 @@ footer {
     .middle {
       display: flex;
       justify-content: space-between;
-      max-width: 700px;
+      max-width: 900px;
       margin: 0 auto;
       padding-top: 40px;
 
@@ -119,12 +121,16 @@ footer {
     button {
       //margin: 0 auto;
       background-color: transparent;
-      font-size: 2.5rem;
+      font-size: 2rem;
+
+      @media (max-width: 800px) {
+        font-size: 20px;
+      }
 
     }
   }
   .social-links {
-    max-width: 400px;
+    width: 250px;
 
     h2 {
       font-size: 24px;
@@ -151,7 +157,11 @@ footer {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: 10px;
+      margin-right: 15px;
+
+      @media (max-width: 800px) {
+        margin: 0 10px;
+      }
 
       .icon-svg {
         height: 25px;
