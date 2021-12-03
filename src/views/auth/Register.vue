@@ -1,6 +1,6 @@
 <template>
   <div class="form-wrap">
-    <form class="register">
+    <form class="register" :class="{'loadingIs': signing}">
       <p class="login-register">
         Already have an account?
         <router-link class="router-link" :to="{ name: 'Login' }"
@@ -35,6 +35,7 @@
       </div>
 
       <button class="primary-button" @click.prevent="register">Sign Up</button>
+      <img class="loading-gif" v-if="signing" :src='require("@/assets/gifs/dotted-loading.gif")'>
 
       <div class="angle"></div>
     </form>
@@ -68,10 +69,12 @@ export default {
       password: '',
       error: null,
       errorMsg: '',
+      signing: null,
     };
   },
   methods: {
     async register() {
+      this.signing = true;
       if (
         (this.email !== '') &
         (this.password !== '') &
@@ -95,6 +98,9 @@ export default {
           email: this.email,
         });
         this.$router.push({ name: 'Home' });
+        setTimeout(()=> {
+          this.signing = false;
+        },100);
         return;
       }
       this.error = true;
@@ -105,6 +111,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loading-gif {
+  width: 100px;
+  position: relative;
+  z-index: 104;
+}
+.loadingIs {
+  position: relative;
+}
+.loadingIs:after {
+  content: "";
+  display: block;
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+
+}
 .register {
   h2 {
     max-width: 350px;

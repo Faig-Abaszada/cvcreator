@@ -1,6 +1,6 @@
 <template>
   <div class="form-wrap">
-    <form class="login">
+    <form class="login" :class="{'loadingIs': signing}">
       <p class="login-register">
         Don't have an account?
         <router-link class="router-link" :to="{ name: 'Register' }"
@@ -24,10 +24,13 @@
       >
 
       <button @click.prevent="signIn" class="primary-button">Sign In</button>
+      <img class="loading-gif" v-if="signing" :src='require("@/assets/gifs/dotted-loading.gif")'>
+
+
 
       <div class="angle"></div>
-    </form>
 
+    </form>
     <div class="background"></div>
   </div>
 </template>
@@ -51,15 +54,20 @@ export default {
       password: '',
       error: null,
       errorMsg: '',
+      signing: null,
     };
   },
   methods: {
     signIn() {
+      this.signing = true;
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
           this.$router.push({ name: 'Home' });
+          setTimeout(()=> {
+            this.signing = false;
+          },500);
           this.error = false;
           this.errorMsg = '';
           console.log(firebase.auth().currentUser.uid);
@@ -74,6 +82,23 @@ export default {
 </script>
 
 <style lang="scss">
+.loading-gif {
+  width: 100px;
+  position: relative;
+  z-index: 104;
+}
+.loadingIs {
+  position: relative;
+}
+.loadingIs:after {
+  content: "";
+  display: block;
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+
+}
 .form-wrap {
   overflow: hidden;
   display: flex;
@@ -82,6 +107,8 @@ export default {
   align-self: center;
   margin: 0 auto;
   width: 90%;
+
+
 
   @media (min-width: 900px) {
     width: 100%;
