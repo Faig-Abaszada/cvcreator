@@ -1,14 +1,22 @@
 <template>
   <!-- inner -->
   <div class="item-wrapper">
+
+    <DeleteItemModal
+        v-show="deleteModal"
+        @close-modal="deleteModal = false"
+
+        @deleteItemEmit="deleteItemFunc"
+    />
+
     <div class="item">
       <div class="header-wrapper">
         <MoveIcon class="icon move-icon" />
-        <DeleteIcon class="icon delete-icon" />
+        <DeleteIcon class="icon delete-icon" @click="deleteModal = true"/>
         <div class="header" @click="showJobDetail = !showJobDetail">
           <div>
-            <h2 class="title">Html</h2>
-            <span>Expert</span>
+            <h2 class="title">{{skill.name}}</h2>
+            <span>{{ skill.level }}</span>
           </div>
           <ArrowIcon class="icon" />
         </div>
@@ -17,11 +25,11 @@
         <div class="inputs">
           <div class="input">
             <label for="first-name">Skill</label>
-            <input :blur="handleBlur" type="text" id="first-name" />
+            <CommonInput :inputValue.sync="skill.name" />
           </div>
           <div class="input">
             <label for="last-name">Level ---<span> Expert</span></label>
-            <input type="text" id="last-name" />
+            <CommonInput :inputValue.sync="skill.level" />
           </div>
         </div>
       </div>
@@ -32,6 +40,8 @@
 import MoveIcon from '../../../assets/Icons/create-cv/movement.svg';
 import ArrowIcon from '../../../assets/Icons/create-cv/arrow-right.svg';
 import DeleteIcon from '../../../assets/Icons/create-cv/delete.svg';
+import CommonInput from "../../CommonInput";
+import DeleteItemModal from "../../common/DeleteItemModal";
 
 import { mapState } from 'vuex';
 
@@ -40,8 +50,13 @@ export default {
     MoveIcon,
     ArrowIcon,
     DeleteIcon,
+    CommonInput,
+    DeleteItemModal
   },
-  props: ['skillObj'],
+  props: [
+      'skill',
+      'index',
+  ],
   data() {
     return {
       customToolbar: [
@@ -49,12 +64,16 @@ export default {
         [{ list: 'ordered' }, { list: 'bullet' }],
       ],
       showJobDetail: false,
+      deleteModal: false,
     };
   },
   computed: mapState(['skillsSec']),
   methods: {
-    handleBlur() {
-      this.$emit();
+    deleteItemFunc(){
+      this.$store.commit('deleteItemObject', {
+        itemType: 'skillItem',
+        index: this.index
+      });
     },
   },
 };

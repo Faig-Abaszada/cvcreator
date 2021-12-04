@@ -46,7 +46,7 @@ export default {
 
     this.checkRoute();
     this.$store.dispatch('getPost');
-    this.$store.dispatch('getResumes');
+    this.$store.dispatch('getResumes', this.$store.state.profileId);
   },
   mounted() {},
   methods: {

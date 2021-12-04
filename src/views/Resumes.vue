@@ -18,12 +18,16 @@
 
         <button v-show="resumes.length !== 0" class="primary-button mobile-new-resume" @click="createResume">+ Create New</button>
 
-        <ResumeCard class="col-md-6" v-for="(resume, index) in resumes" :key="index" :resume="resume" />
+        <ResumeCard v-show="resumes.length !== 0" class="col-md-6" v-for="(resume, index) in resumes" :key="index" :resume="resume" />
 <!--        <ResumeCard v-for="(resume, index) in resumes" :key="index" :resume="resume" />-->
-          <div v-show="resumes.length === 0" @click="createResume" class="static-resume-card">
+          <div @click="createResume" class="static-resume-card">
               <div class="doc-shadow">
                   <PlusIcon v-show="resumes.length !== 0" class="icon" />
                   <NoResumeImg v-show="resumes.length === 0" />
+<!--                  <NoResumeImg v-show="false" />-->
+<!--                  <div v-show="cardLoadWait" class="card-waiting">-->
+<!--                    <img :src='require("@/assets/loading-fast.gif")' alt="">-->
+<!--                  </div>-->
               </div>
               <div class="doc-content">
                 <h2>New Resume</h2>
@@ -61,6 +65,7 @@ export default {
     return {
       loading: null,
       upgradeModal: null,
+      cardLoadWait: null,
     };
   },
   methods: {
@@ -265,17 +270,30 @@ export default {
     // resumes() {
     //   return this.$store.state.resumes;
     // },
-    ...mapFields(['resumes'])
+    ...mapFields(['resumes']),
+    resumesFromState() {
+      return this.$store.state.resumes;
+    }
   },
-  created() {},
+  created() {
+    this.cardLoadWait = true;
+    this.$store.dispatch('getResumes', this.profileId);
+    this.cardLoadWait = false;
+  },
   async mounted() {
     // await this.$store.dispatch('getResumes');
     await this.$store.dispatch('getCurrentUser');
-    await this.$store.dispatch('getResumes', this.profileId);
+    // await this.$store.dispatch('getResumes', this.profileId);
   },
 };
 </script>
 <style lang="scss">
+.card-waiting {
+
+  img {
+    width: 100px;
+  }
+}
 .cvbuilder-wrapper {
   padding: 0 20px;
   margin: 20px auto;

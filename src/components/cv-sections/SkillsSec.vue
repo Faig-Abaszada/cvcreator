@@ -32,11 +32,16 @@
 
 
     <div class="section-inner" ref="sectionInner">
-      <SkillItem />
+      <SkillItem v-for="(skill, index) in skillsSec.skills"
+                 :key="index"
+                 :skill="skill"
+                 :index="index"
+
+      />
       <!-- v-for="(skillObj, index) in skillsSec.skills" :key="index"
       :skillObj="skillObj" -->
     </div>
-    <button class="btn add-skill">
+    <button @click="addSkill" class="btn add-skill">
       <PlusIcon class="icon"/> Add skill
     </button>
   </div>
@@ -85,6 +90,9 @@ export default {
     disableEditing() {
       this.editing = false;
       this.resume.skillsSec.sectionTitle = this.sectionTitleValue;
+    },
+    addSkill() {
+      this.$store.commit('addItemObject', 'skillItem');
     }
   },
 };

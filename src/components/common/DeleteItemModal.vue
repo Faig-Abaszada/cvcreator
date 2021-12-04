@@ -2,12 +2,9 @@
   <div class="modal">
     <div class="modal-content">
       <XIcon @click="closeModal" class="exit-icon"/>
-      <div class="left" v-show="!deleteModal">
-        <OverLimit class="icon"/>
-      </div>
 
-        <h2>Data Entry</h2>
-        <p>Are you sure want to delete this entry?</p>
+
+        <h2>Are you sure want to delete this entry?</h2>
        <div class="buttons">
          <button  class="delete primary-button" @click="deleteEmployment">Delete</button>
          <button  class="primary-button" @click="closeModal">Cancel</button>
@@ -20,23 +17,21 @@
 
 <script>
 // import Tick from "../../assets/Icons/create-cv/tick.svg";
-import OverLimit from "../../assets/Icons/create-cv/overlimit.svg";
 import XIcon from "../../assets/Icons/create-cv/close-x.svg";
 export default {
   name: "DeleteModal",
   components: {
     // Tick,
-    OverLimit,
     XIcon
   },
-  props: ["deleteModal"],
+  props: [],
   methods: {
     closeModal() {
       this.$emit("close-modal");
       console.log('clicked')
     },
     deleteEmployment() {
-      this.$emit('deleteEmployment');
+      this.$emit('deleteItemEmit');
       this.$emit("close-modal");
     }
   }

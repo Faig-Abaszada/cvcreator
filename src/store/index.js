@@ -252,11 +252,23 @@ export default new Vuex.Store({
                     description: null,
                 })
             }
+            if (payload === 'skillItem') {
+                state.resume.skillsSec.skills.push({
+                    name: null,
+                    level: null,
+                })
+            }
         },
         deleteItemObject(state, payload) {
             if(payload.itemType === 'jobItem') {
                 console.log(payload.index);
-                state.resume.employmentHistorySec.employmentHistories = state.resume.employmentHistorySec.employmentHistories.filter((jobItem, index) => {
+                state.resume.employmentHistorySec.employmentHistories = state.resume.employmentHistorySec.employmentHistories.filter((item, index) => {
+                    return index !== payload.index;
+                });
+            }
+            if(payload.itemType === 'skillItem') {
+                console.log(payload.index);
+                state.resume.skillsSec.skills = state.resume.skillsSec.skills.filter((item, index) => {
                     return index !== payload.index;
                 });
             }

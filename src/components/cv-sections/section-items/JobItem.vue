@@ -1,7 +1,11 @@
 <template>
   <div class="item-wrapper">
 
-    <DeleteModal v-show="deleteModal" @close-modal="deleteModal = false" :deleteModal="true" @deleteEmployment="deleteEmployment"/>
+    <DeleteItemModal v-show="deleteModal"
+                 @close-modal="deleteModal = false"
+                 :deleteModal="true"
+                 @deleteItemEmit="deleteItemFunc"
+    />
 
     <div class="item">
       <div class="header-wrapper">
@@ -74,7 +78,7 @@ import 'vue2-datepicker/index.css';
 
 import CommonInput from "../../CommonInput";
 
-import DeleteModal from "../../common/DeleteModal";
+import DeleteItemModal from "../../common/DeleteItemModal";
 export default {
   components: {
     MoveIcon,
@@ -83,7 +87,7 @@ export default {
     DatePicker,
     CommonInput,
 
-    DeleteModal
+    DeleteItemModal
   },
   data() {
     return {
@@ -126,7 +130,7 @@ export default {
     // customFormatter(date) {
     //   return moment(date).format('MMMM Do YYYY, h:mm:ss a');
     // },
-    deleteEmployment(){
+    deleteItemFunc(){
       this.$store.commit('deleteItemObject', {
         itemType: 'jobItem',
         index: this.index
