@@ -243,7 +243,7 @@ export default new Vuex.Store({
         addItemObject(state, payload) {
             if (payload === 'jobItem') {
                 state.resume.employmentHistorySec.employmentHistories.push({
-                    position: 'Not specified',
+                    position: '',
                     employer: null,
                     startDate: null,
                     endDate: null,
@@ -254,7 +254,7 @@ export default new Vuex.Store({
             }
             if (payload === 'skillItem') {
                 state.resume.skillsSec.skills.push({
-                    name: 'Not specified',
+                    name: '',
                     level: null,
                 })
             }

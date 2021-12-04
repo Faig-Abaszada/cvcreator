@@ -13,6 +13,7 @@
         <DeleteIcon class="icon delete-icon" @click="deleteModal = true"/>
         <div class="header" @click="handleClick">
 <!--          <div class="header" @click="toggleItem">-->
+          <h2 class="title" v-show="experience.position.length === 0">Not Specified</h2>
           <h2 class="title">{{experience.position}}</h2>
           <ArrowIcon class="icon" />
         </div>
