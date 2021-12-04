@@ -33,7 +33,7 @@
                :index="index"
                ref="jobItemComp"
                :should-toggle="index === employmentHistorySec.employmentHistories.length - 1"
-               :addEmploymentFired="addEmploymentFired"
+               :addItemFired="addItemFired"
                :is-selected="selectedItem"
                @selected="handleSelected($event)"
       />
@@ -41,7 +41,7 @@
 
     </div>
 
-    <button @click="addEmployment" class="btn add-employment">
+    <button @click="addItem" class="btn add-employment">
       <PlusIcon class="icon" /> Add employment
     </button>
   </div>
@@ -68,7 +68,7 @@ export default {
     return {
       editing: false,
       sectionTitleValue: null,
-      addEmploymentFired: false,
+      addItemFired: false,
       selectedItem: false,
     };
   },
@@ -82,7 +82,7 @@ export default {
         this.selectedItem = id;
       }
     },
-    addEmployment() {
+    addItem() {
       // if (event.target && event.target.classList.contains('add-employment')) {
       //   const JobItemClass = Vue.extend(JobItem);
       //   const jobItemInstance = new JobItemClass({
@@ -97,7 +97,7 @@ export default {
       // }
       this.$store.commit('addItemObject', 'jobItem');
       // this.$refs.jobItemComp.shouldToggleFunc();
-      this.addEmploymentFired = true;
+      this.addItemFired = true;
     },
 
     enableEditing() {

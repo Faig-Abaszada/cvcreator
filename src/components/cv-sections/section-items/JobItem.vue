@@ -105,7 +105,7 @@ export default {
       'experience',
       'index',
       'shouldToggle',
-      'addEmploymentFired',
+      'addItemFired',
       'isSelected'
   ],
   computed:{
@@ -140,7 +140,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      if (this.shouldToggle && this.addEmploymentFired) {
+      if (this.shouldToggle && this.addItemFired) {
         this.handleClick();
       }
       // else {

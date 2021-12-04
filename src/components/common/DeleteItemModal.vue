@@ -6,7 +6,7 @@
 
         <h2>Are you sure want to delete this entry?</h2>
        <div class="buttons">
-         <button  class="delete primary-button" @click="deleteEmployment">Delete</button>
+         <button  class="delete primary-button" @click="deleteItem">Delete</button>
          <button  class="primary-button" @click="closeModal">Cancel</button>
        </div>
 
@@ -30,7 +30,7 @@ export default {
       this.$emit("close-modal");
       console.log('clicked')
     },
-    deleteEmployment() {
+    deleteItem() {
       this.$emit('deleteItemEmit');
       this.$emit("close-modal");
     }

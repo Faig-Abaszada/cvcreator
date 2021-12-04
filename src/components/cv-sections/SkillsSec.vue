@@ -36,12 +36,17 @@
                  :key="index"
                  :skill="skill"
                  :index="index"
+                 :should-toggle="index === skillsSec.skills.length - 1"
+                 :addItemFired="addItemFired"
+                 :is-selected="selectedItem"
+                 @selected="handleSelected($event)"
+
 
       />
       <!-- v-for="(skillObj, index) in skillsSec.skills" :key="index"
       :skillObj="skillObj" -->
     </div>
-    <button @click="addSkill" class="btn add-skill">
+    <button @click="addItem" class="btn add-skill">
       <PlusIcon class="icon"/> Add skill
     </button>
   </div>
@@ -73,16 +78,27 @@ export default {
     return {
       editing: false,
       sectionTitleValue: null,
+      selectedItem: false,
+      addItemFired: false,
     }
   },
   computed: {
     ...mapFields([
       'resume',
       'resume.skillsSec'
+    ]),
 
-    ])
   },
   methods: {
+    handleSelected (id) {
+
+
+      if(id === this.selectedItem) {
+        this.selectedItem = false;
+      } else {
+        this.selectedItem = id;
+      }
+    },
     enableEditing() {
       this.sectionTitleValue = this.skillsSec.sectionTitle;
       this.editing = true;
@@ -91,8 +107,9 @@ export default {
       this.editing = false;
       this.resume.skillsSec.sectionTitle = this.sectionTitleValue;
     },
-    addSkill() {
+    addItem() {
       this.$store.commit('addItemObject', 'skillItem');
+      this.addItemFired = true;
     }
   },
 };
