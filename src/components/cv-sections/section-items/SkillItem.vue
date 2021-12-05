@@ -15,8 +15,10 @@
         <DeleteIcon class="icon delete-icon" @click="deleteModal = true"/>
         <div class="header" @click="handleClick">
           <div>
-            <h2 class="title" v-show="skill.name.length === 0">Not specified</h2>
+
+            <h2 class="title" v-show="skill.name === null">Not specified</h2>
             <h2 class="title">{{skill.name}}</h2>
+
             <span>{{ skill.level }}</span>
           </div>
           <ArrowIcon class="icon" />
