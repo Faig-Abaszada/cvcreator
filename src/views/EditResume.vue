@@ -45,6 +45,7 @@
             >
 
           </div>
+          <EditableText :value.sync="resume.resumeDocName" :docName="true"/>
 
 
         <!-- percentages -->
@@ -119,6 +120,7 @@ import Loading from "../components/common/Loading";
 import {mapFields} from "vuex-map-fields";
 
 import SelectTemplate from "../components/SelectTemplate";
+import EditableText from "../components/EditableText";
 
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
@@ -141,7 +143,8 @@ export default {
     // BasicThemeFuji,
     ResumePreview,
     Loading,
-    SelectTemplate
+    SelectTemplate,
+    EditableText
   },
   data() {
     return {
