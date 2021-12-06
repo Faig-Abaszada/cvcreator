@@ -23,7 +23,7 @@
 <!--        <h2 class="page-title">Create CV</h2>-->
 
 
-          <EditableText :value.sync="resume.resumeDocName" :docName="true"/>
+          <EditableText :value.sync="resume.resumeDocName" :field-name="'document-name'"/>
 
 
         <!-- percentages -->

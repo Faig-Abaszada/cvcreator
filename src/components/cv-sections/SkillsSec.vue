@@ -2,32 +2,12 @@
   <div class="section">
 
 
-    <div class="section-header">
-      <MoveIcon class="icon move-icon" />
-      <h2 class="title" v-if="!editing">
-        {{ skillsSec.sectionTitle }}
-      </h2>
-<!--      <h4 class="subtitle">-->
-<!--        You can add links to websites you want hiring managers to see! Perhaps-->
-<!--        it will be a link to you portfolio. LinkedIn profile.-->
-<!--      </h4>-->
-      <label v-show="!editing"
-             for="personalDetailsSec"
-             @click="enableEditing"
-      >
-        <EditIcon class="icon" />
-      </label>
-      <input class="title-input"
-             type="text"
-             v-if="editing"
-             id="personalDetailsSec"
-             @blur="disableEditing"
-             @keyup.enter="disableEditing"
-             v-model="sectionTitleValue"
-      >
-    </div>
+    <!--      <h4 class="subtitle">-->
+    <!--        You can add links to websites you want hiring managers to see! Perhaps-->
+    <!--        it will be a link to you portfolio. LinkedIn profile.-->
+    <!--      </h4>-->
 
-
+    <EditableText :value.sync="skillsSec.sectionTitle" :field-name="'skills-section'"/>
 
 
 
@@ -52,11 +32,11 @@
   </div>
 </template>
 <script>
-import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
-import MoveIcon from '../../assets/Icons/create-cv/movement.svg';
 import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 
 import SkillItem from './section-items/SkillItem.vue';
+
+import EditableText from "../EditableText";
 
 // import Vue from 'vue';
 // import { mapState, mapMutations } from 'vuex';
@@ -69,10 +49,9 @@ import {mapFields} from "vuex-map-fields";
 
 export default {
   components: {
-    MoveIcon,
     PlusIcon,
-    EditIcon,
     SkillItem,
+    EditableText,
   },
   data() {
     return {

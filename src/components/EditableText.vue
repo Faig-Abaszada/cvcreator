@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <MoveIcon class="icon move-icon" v-show="!docName"/>
+  <div class="section-header">
+    <MoveIcon class="icon move-icon" v-show="fieldName !== 'document-name'"/>
     <h2 class="title" v-if="!editing">
-      {{ this.value}}<span v-show="docName">.pdf</span>
+      {{ this.value}}<span v-show="fieldName === 'document-name'">.pdf</span>
     </h2>
 
     <label v-show="!editing"
@@ -38,7 +38,7 @@ export default {
   },
   props: [
     'value',
-    'docName'
+    'fieldName'
   ],
   data() {
     return {
