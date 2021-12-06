@@ -107,9 +107,7 @@ export default {
           },
           skillsSec: {
             sectionTitle: 'Skills',
-            skills: [
-
-            ],
+            skills: [],
           },
           educationSec: {
             sectionTitle: 'Education',
