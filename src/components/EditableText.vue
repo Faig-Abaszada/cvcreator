@@ -2,7 +2,7 @@
   <div>
     <MoveIcon class="icon move-icon" v-show="!docName"/>
     <h2 class="title" v-if="!editing">
-      {{ this.value }}
+      {{ this.value}}<span v-show="docName">.pdf</span>
     </h2>
 
     <label v-show="!editing"

@@ -22,29 +22,7 @@
         <div>
 <!--        <h2 class="page-title">Create CV</h2>-->
 
-          <div class="section-header">
 
-            <h2 class="title" v-if="!editing">
-              {{ resume.resumeDocName }}
-            </h2>
-
-            <label v-show="!editing"
-                   for="personalDetailsSec"
-                   @click="enableEditing"
-            >
-              <EditIcon class="icon" />
-            </label>
-
-            <input class="title-input"
-                   type="text"
-                   v-if="editing"
-                   id="personalDetailsSec"
-                   @blur="disableEditing"
-                   @keyup.enter="disableEditing"
-                   v-model="sectionTitleValue"
-            >
-
-          </div>
           <EditableText :value.sync="resume.resumeDocName" :docName="true"/>
 
 
@@ -106,7 +84,6 @@
 import QuestionIcon from '../assets/Icons/create-cv/question.svg';
 import DocIcon from '../assets/Icons/create-cv/doc.svg';
 import XIcon from '../assets/Icons/create-cv/close-x.svg';
-import EditIcon from '../assets/Icons/create-cv/editicon.svg';
 import PersonalDetailsSec from '../components/cv-sections/PersonalDetailsSec.vue';
 import SummarySec from '../components/cv-sections/SummarySec.vue';
 import EmploymentSec from '../components/cv-sections/EmploymentSec.vue';
@@ -131,7 +108,6 @@ export default {
     QuestionIcon,
     DocIcon,
     XIcon,
-    EditIcon,
     PersonalDetailsSec,
     SummarySec,
     EmploymentSec,
@@ -161,8 +137,6 @@ export default {
       mobilePreview: null,
       scrolledToBottom: false,
       windowWidth: null,
-      editing: false,
-      sectionTitleValue: null,
     };
   },
   mounted() {
@@ -243,14 +217,6 @@ export default {
 
       }
 
-    },
-    enableEditing() {
-      this.sectionTitleValue = this.resume.resumeDocName;
-      this.editing = true;
-    },
-    disableEditing() {
-      this.editing = false;
-      this.resume.resumeDocName = this.sectionTitleValue;
     },
     // onScroll ({ target: { scrollTop, clientHeight, scrollHeight }}) {
     //   this.scrolledToBottom = true;
