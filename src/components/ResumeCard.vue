@@ -22,19 +22,20 @@
 
   </div>
     <div class="content">
-      <div class="header">
-        <h2 v-if="!editing">{{ resume.resumeDocName }} </h2>
-        <label v-show="!editing" for="inputIsActive" @click="enableEditing">
-          <EditIcon @click="enableEditing" class="edit-icon"/>
-        </label>
-        <input v-if="editing" v-model="inputValue"
-               @blur="disableEditing(); $emit('update')"
-               @keyup.enter="disableEditing(); $emit('update')"
-               autofocus
-               id="inputIsActive"
-        >
-      </div>
+<!--      <div class="header">-->
+<!--        <h2 v-if="!editing">{{ resume.resumeDocName }} </h2>-->
+<!--        <label v-show="!editing" for="inputIsActive" @click="enableEditing">-->
+<!--          <EditIcon @click="enableEditing" class="edit-icon"/>-->
+<!--        </label>-->
+<!--        <input v-if="editing" v-model="inputValue"-->
+<!--               @blur="disableEditing(); $emit('update')"-->
+<!--               @keyup.enter="disableEditing(); $emit('update')"-->
+<!--               autofocus-->
+<!--               id="inputIsActive"-->
+<!--        >-->
+<!--      </div>-->
 
+      <EditableText class="header" :value.sync="resume.resumeDocName" :field-name="'document-name'"/>
 
       <div class="card-buttons">
         <p>Created:  {{ new Date(resume.date).toLocaleString('en-us', {dateStyle: "long"}) }}</p>
@@ -84,6 +85,7 @@ import DownloadIcon from "../assets/Icons/create-cv/download.svg"
 import DotsIcon from "../assets/Icons/create-cv/dots.svg"
 import CompressIcon from "../assets/Icons/create-cv/compress-icon.svg"
 // import vClickOutside from 'v-click-outside';
+import EditableText from "./EditableText";
 
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
@@ -102,7 +104,8 @@ export default {
     DownloadIcon,
     DotsIcon,
     CompressIcon,
-    VueHtml2pdf
+    VueHtml2pdf,
+    EditableText
   },
   props: ['resume'],
   data() {
