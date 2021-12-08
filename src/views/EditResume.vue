@@ -25,18 +25,8 @@
 
           <div class="edit-page-title">
             <EditableText :value.sync="resume.resumeDocName" :field-name="'document-name'"/>
+            <Flags />
 
-            <div class="lang-section">
-              <select id="selectbox" data-selected="">
-                <option value="" selected="selected" disabled="disabled">Select an image</option>
-                <option value="1">Ocean Wall</option>
-                <option value="2">Skate Park</option>
-                <option value="3">Mountain View</option>
-                <option value="4">Cityscape</option>
-                <option value="5">Workshop</option>
-              </select>
-
-            </div>
           </div>
 
 
@@ -112,6 +102,7 @@ import {mapFields} from "vuex-map-fields";
 
 import SelectTemplate from "../components/SelectTemplate";
 import EditableText from "../components/EditableText";
+import Flags from "../components/Flags";
 
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
@@ -134,7 +125,8 @@ export default {
     ResumePreview,
     Loading,
     SelectTemplate,
-    EditableText
+    EditableText,
+    Flags,
   },
   data() {
     return {
@@ -656,18 +648,6 @@ export default {
   height: auto;
 }
 
-.lang-section select {
-  margin-bottom: 1em;
-  padding: .25em;
-  border: 0;
-  border-bottom: 2px solid currentcolor;
-  font-weight: bold;
-  letter-spacing: .15em;
-  border-radius: 0;
-  &:focus, &:active {
-    outline: 0;
-    border-bottom-color: red;
-  }
-}
+
 </style>
 

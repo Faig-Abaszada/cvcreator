@@ -80,7 +80,10 @@ export default {
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
 }
-
+ul {
+  list-style: none;
+  padding: 0;
+}
 .waiting-gif {
   display: flex;
   justify-content: center;
