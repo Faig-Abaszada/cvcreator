@@ -255,7 +255,7 @@ export default new Vuex.Store({
             if (payload === 'skillItem') {
                 state.resume.skillsSec.skills.push({
                     name: null,
-                    level: null,
+                    level: 'Expert',
                 })
             }
         },

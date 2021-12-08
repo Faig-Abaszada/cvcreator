@@ -1,6 +1,6 @@
 <template>
   <!-- inner -->
-  <div class="item-wrapper">
+  <div class="item-wrapper skill-wrapper">
 
     <DeleteItemModal
         v-show="deleteModal"
@@ -30,11 +30,40 @@
             <label for="first-name">Skill</label>
             <CommonInput ref="commonInputComp" :inputValue.sync="skill.name" />
           </div>
-          <div class="input">
-            <label for="last-name">Level ---<span> Expert</span></label>
-            <CommonInput :inputValue.sync="skill.level" />
+          <div>
+            <label for="last-name">Level ---<span> {{ skill.level }}</span></label>
+<!--            <CommonInput :inputValue.sync="skill.level" />-->
+            <div class="radio-buttons">
+<!--              <input type="radio" value='Beginner' v-model="skill.level">-->
+<!--              <input type="radio" value='Experienced' v-model="skill.level">-->
+<!--              <input type="radio" value="Expert" v-model="skill.level">-->
+
+<!--              <label for="input1"></label>-->
+<!--              <input  id="input1" name="radio" type="radio" value='Beginner' v-model="skill.level" />-->
+<!--              <label for="input2"></label>-->
+<!--              <input  id="input2" name="radio" type="radio" value='Experienced' v-model="skill.level" />-->
+<!--              <label for="input3"></label>-->
+<!--              <input  id="input3" name="radio" type="radio" value='Expert' v-model="skill.level"/>-->
+
+              <div>
+                <label>
+                  <input type="radio" class="option-input radio" name="example" value='Expert' v-model="skill.level" checked />
+                  Expert
+                </label>
+                <label>
+                  <input type="radio" class="option-input radio" name="example"  value='Experienced' v-model="skill.level"/>
+                  Experienced
+                </label>
+                <label>
+                  <input type="radio" class="option-input radio" name="example" value='Beginner' v-model="skill.level" />
+                  Beginner
+                </label>
+              </div>
+
+            </div>
+            </div>
           </div>
-        </div>
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -107,5 +136,103 @@ export default {
       color: rgb(139, 139, 139);
     }
   }
+}
+.skill-wrapper {
+  //.radio-buttons {
+  //  display: flex;
+  //
+  //
+  //  input[type="radio"] {
+  //    display: none;
+  //  }
+  //  label {
+  //    width: 20px;
+  //    height: 20px;
+  //    background-color: #2196f3;
+  //    margin: 0 10px;
+  //  }
+  //
+  //}
+
+  @keyframes click-wave {
+    0% {
+      height: 40px;
+      width: 40px;
+      opacity: 0.35;
+      position: relative;
+    }
+    100% {
+      height: 200px;
+      width: 200px;
+      margin-left: -80px;
+      margin-top: -80px;
+      opacity: 0;
+    }
+  }
+
+  .option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+  }
+  .option-input:hover {
+    background: #9faab7;
+  }
+  .option-input:checked {
+    background: #000;
+  }
+  .option-input:checked::before {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: 26.66667px;
+    text-align: center;
+    line-height: 40px;
+  }
+  .option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: #000;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
+  .option-input.radio {
+    //border-radius: 50%;
+  }
+  .option-input.radio::after {
+    //border-radius: 50%;
+  }
+
+
+  body label {
+    display: block;
+    line-height: 40px;
+  }
+
+
 }
 </style>
