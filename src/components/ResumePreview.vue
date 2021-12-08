@@ -162,6 +162,11 @@ export default {
 
   .resume-wrapper {
     transform: scale(0.5);
+
+    .resume-doc {
+      max-height: 29.7cm;
+      overflow-y: scroll;
+    }
     @media (max-width: 800px) {
       transform: scale(0.4);
       position: absolute;
