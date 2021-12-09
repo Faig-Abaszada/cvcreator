@@ -23,8 +23,9 @@
 <!--        <h2 class="page-title">Create CV</h2>-->
 
 
-          <div class="edit-page-title">
-            <EditableText :value.sync="resume.resumeDocName" :field-name="'document-name'" :movable="false"/>
+          <div>
+
+            <EditableText class="edit-page-title" :value.sync="resume.resumeDocName" :field-name="'document-name'" :movable="false"/>
             <Flags />
 
           </div>
@@ -247,7 +248,13 @@ export default {
 </script>
 <style lang="scss">
 .edit-page-title {
-  text-align: center;
+  justify-content: center;
+
+  .edit-icon {
+    margin-right: -26px !important;
+  }
+
+
 }
 .create-cv-wrapper {
   //display: flex;
