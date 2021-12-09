@@ -1,6 +1,6 @@
 <template>
 <div>
-  <input ref="customInputComp" v-model="commonInputValue" type="text" id="last-name" />
+  <input ref="customInputComp" v-model="commonInputValue" type="text" id="last-name" autocomplete="off" />
 </div>
 </template>
 
