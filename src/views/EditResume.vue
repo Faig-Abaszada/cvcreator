@@ -24,7 +24,7 @@
 
 
           <div class="edit-page-title">
-            <EditableText :value.sync="resume.resumeDocName" :field-name="'document-name'"/>
+            <EditableText :value.sync="resume.resumeDocName" :field-name="'document-name'" :movable="false"/>
             <Flags />
 
           </div>
@@ -373,47 +373,47 @@ export default {
 
     .section {
       margin-top: 50px;
-      .section-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-
-        .title {
-          line-height: 50px;
-          margin-right: 10px;
-          margin-bottom: 0;
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-        }
-        .icon {
-          display: flex;
-          align-items: center;
-          visibility: hidden;
-          margin-right: 3px;
-          margin-left: 3px;
-          cursor: pointer;
-        }
-        .move-icon {
-          margin-left: -24px;
-        }
-        &:hover .icon {
-          visibility: initial !important;
-        }
-        .title-input {
-          line-height: 50px;
-          outline: none;
-          border: 0;
-          box-shadow: 0 2px 0 0px #2196f3;
-        }
-
-        .subtitle {
-          color: rgb(152, 161, 179);
-          font-weight: initial;
-          font-size: 14px;
-          margin-bottom: 8px;
-        }
-      }
+      //.section-header {
+      //  display: flex;
+      //  align-items: center;
+      //  margin-bottom: 10px;
+      //
+      //  .title {
+      //    line-height: 50px;
+      //    margin-right: 10px;
+      //    margin-bottom: 0;
+      //    display: flex;
+      //    align-items: center;
+      //    cursor: pointer;
+      //  }
+      //  .icon {
+      //    display: flex;
+      //    align-items: center;
+      //    visibility: hidden;
+      //    margin-right: 3px;
+      //    margin-left: 3px;
+      //    cursor: pointer;
+      //  }
+      //  .move-icon {
+      //    margin-left: -24px;
+      //  }
+      //  &:hover .icon {
+      //    visibility: initial !important;
+      //  }
+      //  .title-input {
+      //    line-height: 50px;
+      //    outline: none;
+      //    border: 0;
+      //    box-shadow: 0 2px 0 0px #2196f3;
+      //  }
+      //
+      //  .subtitle {
+      //    color: rgb(152, 161, 179);
+      //    font-weight: initial;
+      //    font-size: 14px;
+      //    margin-bottom: 8px;
+      //  }
+      //}
 
       .section-inner {
 

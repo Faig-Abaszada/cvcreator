@@ -1,25 +1,12 @@
 <template>
   <div>
     <div class="section">
-      <div class="section-header">
-        <h2 class="title" v-if="!editing">
-          {{ personalDetailsSec.sectionTitle }}
-        </h2>
-        <label v-show="!editing"
-               for="personalDetailsSec"
-               @click="enableEditing"
-        >
-          <EditIcon class="icon" />
-        </label>
-        <input class="title-input"
-               type="text"
-               v-if="editing"
-               id="personalDetailsSec"
-               @blur="disableEditing"
-               @keyup.enter="disableEditing"
-               v-model="sectionTitleValue"
-        >
-      </div>
+
+
+
+      <EditableText :value.sync="personalDetailsSec.sectionTitle" :movable="false"/>
+
+
 
       <div class="section-inner">
         <div class="inputs">
@@ -115,8 +102,8 @@
 <script>
 import UserIcon from '../../assets/Icons/create-cv/upload-user.svg';
 import ArrowIcon from '../../assets/Icons/create-cv/arrow-right.svg';
-import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
 import CommonInput from "../CommonInput";
+import EditableText from "../EditableText";
 
 import { mapFields } from 'vuex-map-fields';
 
@@ -125,8 +112,8 @@ export default {
   components: {
     UserIcon,
     ArrowIcon,
-    EditIcon,
     CommonInput,
+    EditableText
   },
   props: {
     personalDetailsSec: {

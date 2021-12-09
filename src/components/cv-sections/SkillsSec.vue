@@ -7,7 +7,7 @@
     <!--        it will be a link to you portfolio. LinkedIn profile.-->
     <!--      </h4>-->
 
-    <EditableText :value.sync="skillsSec.sectionTitle" :field-name="'skills-section'"/>
+    <EditableText :value.sync="skillsSec.sectionTitle" :movable="true"/>
 
 
 
