@@ -1,5 +1,5 @@
 <template>
-  <div class="section-header">
+  <div class="editable-text">
     <MoveIcon class="icon move-icon" v-show="movable"/>
     <h2 class="title" v-if="!editing">
       {{ this.value}}
@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.section-header {
+.editable-text {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -110,6 +110,7 @@ export default {
     outline: none;
     border: 0;
     box-shadow: 0 2px 0 0px #2196f3;
+    padding: 0 !important;
   }
 
   .subtitle {

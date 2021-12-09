@@ -35,7 +35,7 @@
 <!--        >-->
 <!--      </div>-->
 
-      <EditableText class="header" :value.sync="resume.resumeDocName" :field-name="'document-name'"/>
+      <EditableText :value.sync="resume.resumeDocName" :field-name="'document-name'"/>
 
       <div class="card-buttons">
         <p>Created:  {{ new Date(resume.date).toLocaleString('en-us', {dateStyle: "long"}) }}</p>
@@ -179,6 +179,7 @@ export default {
     }
   }
 
+
   width: 450px;
   height: 228px;
   position: relative;
@@ -190,12 +191,9 @@ export default {
     left: 0;
     transform-origin: 0 0;
     transform: scale(0.2);
-
-
     //transform-origin: 0 0;
     //margin-right: calc(21cm * -0.2);
     //margin-bottom: calc(29.7cm * -0.2);
-
     border: 5px solid #e5e5e5;
     border-radius: 30px;
     cursor: pointer;
@@ -205,47 +203,48 @@ export default {
   .content {
     position: absolute;
     right: 40px;
+    top: 0;
+    bottom: 0;
+    left: 175px;
 
 
-
-
-    .header {
-      display: flex;
-      //justify-content: center;
-      align-items: center;
-      //line-height: 60px;
-
-      label {
-        display: flex;
-        align-items: center;
-      }
-      .edit-icon {
-        color: #98a1b3;
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
-        margin-left: 5px;
-
-        &:hover {
-          color: rgb(33, 150, 243)
-        }
-      }
-      input {
-        //width: 100% !important;
-        font-size: 20px;
-        //outline: none;
-        padding: 5px;
-        box-sizing: border-box;
-        line-height: 20px;
-
-      }
-      h2 {
-        margin-bottom: 0px;
-        font-size: 20px;
-        padding: 5px;
-        line-height: 20px;
-      }
-    }
+    //.header {
+    //  display: flex;
+    //  //justify-content: center;
+    //  align-items: center;
+    //  //line-height: 60px;
+    //
+    //  label {
+    //    display: flex;
+    //    align-items: center;
+    //  }
+    //  .edit-icon {
+    //    color: #98a1b3;
+    //    width: 25px;
+    //    height: 25px;
+    //    cursor: pointer;
+    //    margin-left: 5px;
+    //
+    //    &:hover {
+    //      color: rgb(33, 150, 243)
+    //    }
+    //  }
+    //  input {
+    //    //width: 100% !important;
+    //    font-size: 20px;
+    //    //outline: none;
+    //    //padding: 5px;
+    //    box-sizing: border-box;
+    //    line-height: 20px;
+    //
+    //  }
+    //  h2 {
+    //    margin-bottom: 0px;
+    //    font-size: 20px;
+    //    padding: 5px;
+    //    line-height: 20px;
+    //  }
+    //}
 
 
   }
@@ -275,7 +274,7 @@ export default {
     button {
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
+      //margin-bottom: 5px;
       padding: 3px 0;
 
 
