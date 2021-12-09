@@ -1,27 +1,8 @@
 <template>
   <div class="section">
-    <div class="section-header">
-      <h2 class="title" v-if="!editing">
-        {{ professionalSummarySec.sectionTitle }}
-      </h2>
-<!--      <h4 class="subtitle">-->
-<!--        Include 2-3 clear sentences about your overall experience-->
-<!--      </h4>-->
-      <label v-show="!editing"
-             for="personalDetailsSec"
-             @click="enableEditing"
-      >
-        <EditIcon class="icon" />
-      </label>
-      <input class="title-input"
-             type="text"
-             v-if="editing"
-             id="personalDetailsSec"
-             @blur="disableEditing"
-             @keyup.enter="disableEditing"
-             v-model="sectionTitleValue"
-      >
-    </div>
+
+
+    <EditableText :value.sync="professionalSummarySec.sectionTitle" :movable="false"/>
 
 
 
@@ -31,11 +12,11 @@
   </div>
 </template>
 <script>
-import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
+import EditableText from "../EditableText";
 import { mapFields } from 'vuex-map-fields';
 export default {
   components: {
-    EditIcon,
+    EditableText,
   },
   data() {
     return {

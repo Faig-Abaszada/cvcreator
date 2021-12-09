@@ -1,30 +1,7 @@
 <template>
   <div class="section">
 
-    <div class="section-header">
-      <MoveIcon class="icon move-icon" />
-      <h2 class="title" v-if="!editing">
-        {{ socialLinksSec.sectionTitle }}
-      </h2>
-<!--      <h4 class="subtitle">-->
-<!--        You can add links to websites you want hiring managers to see! Perhaps-->
-<!--        it will be a link to you portfolio. LinkedIn profile.-->
-<!--      </h4>-->
-      <label v-show="!editing"
-             for="personalDetailsSec"
-             @click="enableEditing"
-      >
-        <EditIcon class="icon" />
-      </label>
-      <input class="title-input"
-             type="text"
-             v-if="editing"
-             id="personalDetailsSec"
-             @blur="disableEditing"
-             @keyup.enter="disableEditing"
-             v-model="sectionTitleValue"
-      >
-    </div>
+    <EditableText :value.sync="socialLinksSec.sectionTitle" :movable="true"/>
 
 
 
@@ -39,19 +16,17 @@
   </div>
 </template>
 <script>
-import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
-import MoveIcon from '../../assets/Icons/create-cv/movement.svg';
 import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 
 import LinksItem from './section-items/LinksItem.vue';
+import EditableText from "../EditableText";
 import {mapFields} from "vuex-map-fields";
 
 export default {
   components: {
-    MoveIcon,
     PlusIcon,
-    EditIcon,
     LinksItem,
+    EditableText
   },
   data() {
     return {

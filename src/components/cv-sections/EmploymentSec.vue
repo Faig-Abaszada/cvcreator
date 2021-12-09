@@ -1,29 +1,8 @@
 <template>
   <div class="section">
-    <div class="section-header">
-      <MoveIcon class="icon move-icon" />
-      <h2 class="title" v-if="!editing">
-        {{ employmentHistorySec.sectionTitle }}
-      </h2>
-<!--            <h4 class="subtitle">-->
-<!--              Include your last 10 years of relevant experience and dates in this-->
-<!--              section. List your most recent position first.-->
-<!--            </h4>-->
-      <label v-show="!editing"
-             for="personalDetailsSec"
-             @click="enableEditing"
-      >
-        <EditIcon class="icon" />
-      </label>
-      <input class="title-input"
-             type="text"
-             v-if="editing"
-             id="personalDetailsSec"
-             @blur="disableEditing"
-             @keyup.enter="disableEditing"
-             v-model="sectionTitleValue"
-      >
-    </div>
+
+
+    <EditableText :value.sync="employmentHistorySec.sectionTitle" :movable="true"/>
 
     <div class="section-inner" ref="sectionInner">
 
@@ -47,22 +26,21 @@
   </div>
 </template>
 <script>
-import EditIcon from '../../assets/Icons/create-cv/editicon.svg';
-import MoveIcon from '../../assets/Icons/create-cv/movement.svg';
+
 import PlusIcon from '../../assets/Icons/create-cv/plus-blue.svg';
 
 // import Vue from 'vue';
 
 import JobItem from './section-items/JobItem.vue';
+import EditableText from "../EditableText";
 import {mapFields} from "vuex-map-fields";
 
 export default {
   // props: ['employmentHistorySec'],
   components: {
-    EditIcon,
-    MoveIcon,
     PlusIcon,
     JobItem,
+    EditableText
   },
   data() {
     return {
