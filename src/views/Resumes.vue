@@ -83,6 +83,7 @@ export default {
           templateName: "Sherlock",
           resumeDocName: "cv-name",
           personalDetailsSec: {
+            sectionId: 'personal',
             sectionTitle: 'Personal Details',
             jobTitle: '',
             photoName: '',
@@ -102,14 +103,17 @@ export default {
             dateOfBirth: null,
           },
           professionalSummarySec: {
+            sectionId: 'summary',
             sectionTitle: 'Professional Summary',
             summaryHTML: '',
           },
           skillsSec: {
+            sectionId: 'skills',
             sectionTitle: 'Skills',
             skills: [],
           },
           educationSec: {
+            sectionId: 'educations',
             sectionTitle: 'Education',
             educations: [
               {
@@ -123,6 +127,7 @@ export default {
             ],
           },
           socialLinksSec: {
+            sectionId: 'links',
             sectionTitle: 'Websites & Social Links',
             socialLinks: [
               {
@@ -132,6 +137,7 @@ export default {
             ],
           },
           employmentHistorySec: {
+            sectionId: 'employments',
             sectionTitle: 'Employment History',
             employmentHistories: [
               // {
@@ -146,10 +152,12 @@ export default {
             ],
           },
           hobbiesSec: {
+            sectionId: 'hobbies',
             sectionTitle: 'Hobbies',
             hobbiesText: null,
           },
           coursesSec: {
+            sectionId: 'courses',
             sectionTitle: 'Courses',
             courses: [
               {
@@ -162,6 +170,7 @@ export default {
             ],
           },
           internshipsSec: {
+            sectionId: 'internships',
             sectionTitle: 'Internships',
             internships: [
               {
@@ -176,6 +185,7 @@ export default {
             ],
           },
           languagesSec: {
+            sectionId: 'languages',
             sectionTitle: 'Languages',
             languagesSec: [
               {
@@ -185,6 +195,7 @@ export default {
             ],
           },
           referencesSec: {
+            sectionId: 'references',
             sectionTitle: 'References',
             references: [
               {
@@ -196,6 +207,7 @@ export default {
             ],
           },
           extraActivitiesSec: {
+            sectionId: 'activities',
             sectionTitle: 'Extra-curricular Activities',
             extraActivities: [
               {
@@ -210,6 +222,7 @@ export default {
             ],
           },
           customSectionSec: {
+            sectionId: 'customs',
             sectionTitle: 'Untitled Edit Me!',
             customSectionSec: [
               {
