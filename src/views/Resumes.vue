@@ -103,7 +103,7 @@ export default {
           },
           professionalSummarySec: {
             sectionTitle: 'Professional Summary',
-            summaryHTML: null,
+            summaryHTML: '',
           },
           skillsSec: {
             sectionTitle: 'Skills',

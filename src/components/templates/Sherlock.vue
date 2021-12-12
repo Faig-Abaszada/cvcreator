@@ -69,8 +69,7 @@
     <div id="resume-footer">
       <div>
         <h2>Xulase</h2>
-        <p>Hi, my name is John Doe. I"m just about the most boring type of person you could possibly imagine. I like collecting leaves
-          from the tree in my back yard and documenting each time I eat a peanut that is non-uniform. I am not a robot. Please hire me.</p>
+        <p v-html="resume.professionalSummarySec.summaryHTML"></p>
       </div>
     </div>
   </div>

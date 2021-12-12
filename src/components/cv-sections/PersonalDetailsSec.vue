@@ -50,41 +50,41 @@
             <div class="inputs">
               <div class="input">
                 <label for="country">Country</label>
-                <input type="text" id="country" />
+                <CommonInput :inputValue.sync="personalDetailsSec.country"/>
               </div>
               <div class="input">
                 <label for="city">City</label>
-                <input type="text" id="city" />
+                <CommonInput :inputValue.sync="personalDetailsSec.city"/>
               </div>
             </div>
             <div class="inputs">
               <div class="input">
                 <label for="address">Address</label>
-                <input type="text" id="address" />
+                <CommonInput :inputValue.sync="personalDetailsSec.address"/>
               </div>
               <div class="input">
                 <label for="postal-code">Postal Code</label>
-                <input type="text" id="postal-code" />
+                <CommonInput :inputValue.sync="personalDetailsSec.postalCode"/>
               </div>
             </div>
             <div class="inputs">
               <div class="input">
                 <label for="driving-license">Drivin Lisense</label>
-                <input type="text" id="driving-license" />
+                <CommonInput :inputValue.sync="personalDetailsSec.drivingLicense"/>
               </div>
               <div class="input">
                 <label for="nationality">Nationality</label>
-                <input type="text" id="nationality" />
+                <CommonInput :inputValue.sync="personalDetailsSec.nationality"/>
               </div>
             </div>
             <div class="inputs">
               <div class="input">
                 <label for="place-of-birth">Place Of Birth</label>
-                <input type="text" id="place-of-birth" />
+                <CommonInput :inputValue.sync="personalDetailsSec.placeOfBirth"/>
               </div>
               <div class="input">
                 <label for="date-of-birth">Date Of Birth</label>
-                <input type="text" id="date-of-birth" />
+                <CommonInput :inputValue.sync="personalDetailsSec.dateOfBirth"/>
               </div>
             </div>
           </div>

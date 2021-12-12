@@ -32,18 +32,18 @@
 
 
         <!-- percentages -->
-        <div class="create-cv-header">
-          <div class="top">
-            <p class="complete-percent">
-              <span>25%</span> Profile completeness
-            </p>
-            <p class="percent">
-              <span>+10%</span>Add profile summary<QuestionIcon
-                class="info-icon"
-              />
-            </p>
-          </div>
-        </div>
+<!--        <div class="create-cv-header">-->
+<!--          <div class="top">-->
+<!--            <p class="complete-percent">-->
+<!--              <span>25%</span> Profile completeness-->
+<!--            </p>-->
+<!--            <p class="percent">-->
+<!--              <span>+10%</span>Add profile summary<QuestionIcon-->
+<!--                class="info-icon"-->
+<!--              />-->
+<!--            </p>-->
+<!--          </div>-->
+<!--        </div>-->
 
         <div class="cv-info-fill">
           <!-- section start -->
@@ -86,7 +86,7 @@
   </div>
 </template>
 <script>
-import QuestionIcon from '../assets/Icons/create-cv/question.svg';
+// import QuestionIcon from '../assets/Icons/create-cv/question.svg';
 import DocIcon from '../assets/Icons/create-cv/doc.svg';
 import XIcon from '../assets/Icons/create-cv/close-x.svg';
 import PersonalDetailsSec from '../components/cv-sections/PersonalDetailsSec.vue';
@@ -111,7 +111,7 @@ import db from '../firebase/firebaseInit';
 export default {
   name: 'EditResume',
   components: {
-    QuestionIcon,
+    // QuestionIcon,
     DocIcon,
     XIcon,
     PersonalDetailsSec,

@@ -122,12 +122,12 @@ export default {
       },10)
       console.log(this.isSelected)
     },
-    toggleItem(){
-      this.showJobDetail = !this.showJobDetail;
-      setTimeout(()=> {
-        this.$refs.commonInputComp.focusInput();
-      },10)
-    },
+    // toggleItem(){
+    //   this.showJobDetail = !this.showJobDetail;
+    //   setTimeout(()=> {
+    //     this.$refs.commonInputComp.focusInput();
+    //   },10)
+    // },
     // customFormatter(date) {
     //   return moment(date).format('MMMM Do YYYY, h:mm:ss a');
     // },

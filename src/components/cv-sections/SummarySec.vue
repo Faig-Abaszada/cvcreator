@@ -7,7 +7,10 @@
 
 
     <div class="editor">
-      <vue-editor v-model="blogHTML" useCustomImageHandler />
+      <vue-editor v-model="professionalSummarySec.summaryHTML"
+                  useCustomImageHandler
+                  :editorToolbar="customToolbar"
+      />
     </div>
   </div>
 </template>
