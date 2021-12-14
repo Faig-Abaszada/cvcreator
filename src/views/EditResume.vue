@@ -57,10 +57,10 @@
           <EmploymentSec :employmentHistorySec="this.employmentHistorySec"/>
           <!-- section end -->
           <!-- section start  -->
-          <EducationSec />
+<!--          <EducationSec />-->
           <!-- section end -->
           <!-- section start  -->
-          <SocialLinksSec />
+<!--          <SocialLinksSec />-->
           <!-- section end -->
           <!-- section start  -->
           <SkillsSec />
@@ -92,8 +92,8 @@ import XIcon from '../assets/Icons/create-cv/close-x.svg';
 import PersonalDetailsSec from '../components/cv-sections/PersonalDetailsSec.vue';
 import SummarySec from '../components/cv-sections/SummarySec.vue';
 import EmploymentSec from '../components/cv-sections/EmploymentSec.vue';
-import EducationSec from '../components/cv-sections/EducationSec.vue';
-import SocialLinksSec from '../components/cv-sections/SocialLinksSec.vue';
+// import EducationSec from '../components/cv-sections/EducationSec.vue';
+// import SocialLinksSec from '../components/cv-sections/SocialLinksSec.vue';
 import SkillsSec from '../components/cv-sections/SkillsSec.vue';
 import CustomSec from '../components/cv-sections/CustomSec.vue';
 
@@ -117,8 +117,8 @@ export default {
     PersonalDetailsSec,
     SummarySec,
     EmploymentSec,
-    EducationSec,
-    SocialLinksSec,
+    // EducationSec,
+    // SocialLinksSec,
     SkillsSec,
     CustomSec,
     // BasicTheme,
