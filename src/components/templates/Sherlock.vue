@@ -49,26 +49,53 @@
         </div>
 <!--        -->
       </div>
-      <div id="skills-container">
-        <h2 id="skills-title">Skills</h2>
+
+      <div id="personal-container">
+        <h2 id="personal-title">{{ resume.personalDetailsSec.sectionTitle }}</h2>
         <div class="spacer"></div>
-        <p id="skill-description">Also proficient in Adobe Photoshop and Illustrator, grew up bilingual (English and Klingon).</p>
-        <ul id="skill-list">
+        <p id="personal-description">Also proficient in Adobe Photoshop and Illustrator, grew up bilingual (English and Klingon).</p>
+        <ul id="personal-list">
 
 <!--          skills donguye girmelidir-->
-          <li class="skill" v-for="skill in resume.skillsSec.skills" :key="skill.name">
+          <li class="skill">
                   <span class="list-item-black">
-                    {{skill.name}}
+                    {{ resume.personalDetailsSec.country}} <br>
+                    {{ resume.personalDetailsSec.city}} <br>
+                    {{ resume.personalDetailsSec.address}} <br>
+                    {{ resume.personalDetailsSec.postalCode}} <br>
+                  driving license  {{ resume.personalDetailsSec.drivingLicense}} <br>
+                    {{ resume.personalDetailsSec.nationality}} <br>
+                    {{ resume.personalDetailsSec.placeOfBirth}} <br>
+                    {{ resume.personalDetailsSec.dateOfBirth}} <br>
                   </span>
           </li>
 <!--          -->
 
         </ul>
       </div>
+      <div id="skills-container">
+        <h2 id="skills-title">{{ resume.skillsSec.sectionTitle }}</h2>
+        <div class="spacer"></div>
+        <p id="skill-description">Also proficient in Adobe Photoshop and Illustrator, grew up bilingual (English and Klingon).</p>
+        <ul id="skill-list">
+
+          <!--          skills donguye girmelidir-->
+          <li class="skill" v-for="skill in resume.skillsSec.skills" :key="skill.name">
+                  <span class="list-item-black">
+                    {{skill.name}} <br>
+                    {{skill.level}}
+
+                  </span>
+
+          </li>
+          <!--          -->
+
+        </ul>
+      </div>
     </div>
     <div id="resume-footer">
       <div>
-        <h2>Xulase</h2>
+        <h2>{{resume.professionalSummarySec.sectionTitle}}</h2>
         <p v-html="resume.professionalSummarySec.summaryHTML"></p>
       </div>
     </div>

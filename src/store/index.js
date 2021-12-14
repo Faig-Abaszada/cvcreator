@@ -243,7 +243,7 @@ export default new Vuex.Store({
         addItemObject(state, payload) {
             if (payload === 'jobItem') {
                 state.resume.employmentHistorySec.employmentHistories.push({
-                    position: '',
+                    position: null,
                     employer: null,
                     startDate: null,
                     endDate: null,
