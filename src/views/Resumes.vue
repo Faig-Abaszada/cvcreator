@@ -85,6 +85,7 @@ export default {
           // resumePhotoFile: null,
           resumePhotoName: null,
           resumePhotoFileURL: null,
+          resumePhotoType: null,
           personalDetailsSec: {
             sectionId: 'personal',
             sectionTitle: 'Personal Details',

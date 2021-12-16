@@ -8,7 +8,7 @@
             <label for="job-title">Wanted Job Title</label>
             <CommonInput :inputValue.sync="personalDetailsSec.jobTitle"/>
           </div>
-          <div class="input">
+          <div class="input" :class="{ 'hasPhoto': this.resume.resumePhotoName }">
 
             <input type="file"
                    id="upload-photo"
@@ -18,10 +18,11 @@
 
 
             />
-            <label for="upload-photo" class="upload-photo">
-              <UserIcon />Upload photo
+            <label for="upload-photo" class="upload-photo" >
+              <UserIcon />Upload photo <TickIcon class="icon" v-show="this.resume.resumePhotoName"/>
             </label>
-            <p>{{resume.resumePhotoName}}</p>
+
+<!--            <p>{{resume.resumePhotoName}}</p>-->
 
           </div>
         </div>
@@ -111,6 +112,7 @@
 
 import UserIcon from '../../assets/Icons/create-cv/upload-user.svg';
 import ArrowIcon from '../../assets/Icons/create-cv/arrow-right.svg';
+import TickIcon from '../../assets/Icons/create-cv/tick.svg';
 import CommonInput from "../CommonInput";
 import EditableText from "../EditableText";
 
@@ -121,6 +123,7 @@ export default {
   components: {
     UserIcon,
     ArrowIcon,
+    TickIcon,
     CommonInput,
     EditableText
   },
@@ -153,8 +156,15 @@ export default {
       this.file = this.$refs.resumePhoto.files[0];
       this.fileName = this.file.name;
       this.$store.state.resumePhotoFile = this.$refs.resumePhoto.files[0];
+
+      // .jpg .png .jpeg
+      // files[0].type.slice(6);
+      this.resume.resumePhotoType = this.$refs.resumePhoto.files[0].type.slice(6);
+
       this.$store.commit('resumeFileNameChange', this.fileName);
       this.$store.commit( 'resumeCreateFileURL', URL.createObjectURL(this.file));
+
+      console.log(this.$refs.resumePhoto.files[0].type.slice(6));
     }
     // fileChange() {
     //   this.$store.state.resumePhotoFile = this.$refs.resumePhoto.files[0];
@@ -173,5 +183,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.hasPhoto {
+  background-color: lawngreen !important;
+
+  * {
+    color: #0F141F !important;
+    font-weight: 600;
+  }
+  .icon {
+    width: 40px;
+  }
+}
 
 </style>

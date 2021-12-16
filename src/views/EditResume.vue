@@ -196,7 +196,12 @@ export default {
       if (this.resume.resumePhotoName) {
         const storageRef = firebase.storage().ref();
         const docRef = storageRef.child(
-            `documents/ResumeAvatars/${this.resume.resumePhotoName}`
+            // with resume id
+            // `documents/ResumeAvatars/${this.resume.resumeID}/photo`
+
+            // with user id
+                `documents/ResumeAvatars/${this.$store.state.profileId}/cv-photo.${this.resume.resumePhotoType}`
+
         );
         docRef.put(this.resume.resumePhotoFile).on(
             'state_changed',
