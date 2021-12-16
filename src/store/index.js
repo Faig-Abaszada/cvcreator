@@ -182,6 +182,7 @@ export default new Vuex.Store({
                 ],
             },
         },
+        resumePhotoFile: null,
         // create cv page end
         // resume: null,
         resumeLoaded: null,
@@ -275,12 +276,13 @@ export default new Vuex.Store({
         },
 
 
-
+        // cv avatar photo setters
         resumeFileNameChange(state, payload) {
-            state.ResumePhotoName = payload;
+            state.resume.resumePhotoName = payload;
         },
         resumeCreateFileURL(state, payload) {
-            state.ResumePhotoFileURL = payload;
+            state.resume.resumePhotoFileURL = payload;
+
         },
         //cv create end
 

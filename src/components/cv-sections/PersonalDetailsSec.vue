@@ -21,6 +21,7 @@
             <label for="upload-photo" class="upload-photo">
               <UserIcon />Upload photo
             </label>
+            <p>{{resume.resumePhotoName}}</p>
 
           </div>
         </div>
@@ -103,9 +104,9 @@
   </div>
 </template>
 <script>
-import firebase from 'firebase/app';
-import 'firebase/storage';
-import db from '../../firebase/firebaseInit';
+// import firebase from 'firebase/app';
+// import 'firebase/storage';
+// import db from '../../firebase/firebaseInit';
 
 
 import UserIcon from '../../assets/Icons/create-cv/upload-user.svg';
@@ -134,6 +135,7 @@ export default {
       editing: false,
       sectionTitleValue: null,
       file: null,
+      fileName: null,
     };
   },
   methods: {
@@ -149,10 +151,17 @@ export default {
     // in Resume Object we have image path and its name :)
     fileChange() {
       this.file = this.$refs.resumePhoto.files[0];
-      const fileName = this.file.name;
-      this.$store.commit('resumeFileNameChange', fileName);
+      this.fileName = this.file.name;
+      this.$store.state.resumePhotoFile = this.$refs.resumePhoto.files[0];
+      this.$store.commit('resumeFileNameChange', this.fileName);
       this.$store.commit( 'resumeCreateFileURL', URL.createObjectURL(this.file));
     }
+    // fileChange() {
+    //   this.$store.state.resumePhotoFile = this.$refs.resumePhoto.files[0];
+    //   const fileName = this.$store.state.resumePhotoFile.name;
+    //   this.$store.commit('resumeFileNameChange', fileName);
+    //   this.$store.commit( 'resumeCreateFileURL', URL.createObjectURL(this.$store.state.resumePhotoFile));
+    // }
   },
   computed: {
     ...mapFields([

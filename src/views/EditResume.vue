@@ -105,6 +105,7 @@ import SelectTemplate from "../components/SelectTemplate";
 import EditableText from "../components/EditableText";
 import Flags from "../components/Flags";
 
+import firebase from "firebase/app";
 import 'firebase/storage';
 import db from '../firebase/firebaseInit';
 
@@ -191,6 +192,22 @@ export default {
        */
       this.loading = true;
       const resumeDB = await db.collection('resumes').doc(this.routeID);
+
+      if (this.resume.resumePhotoName) {
+        const storageRef = firebase.storage().ref();
+        const docRef = storageRef.child(
+            `documents/ResumeAvatars/${this.resume.resumePhotoName}`
+        );
+        docRef.put(this.resume.resumePhotoFile).on(
+            'state_changed',
+            (snapshot) => {
+              console.log(snapshot)
+            },
+            (error) => {
+              console.log(error)
+            }
+        )
+      }
 
       await resumeDB.update(this.resume);
       await this.$store.dispatch('getResumes');
