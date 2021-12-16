@@ -273,6 +273,15 @@ export default new Vuex.Store({
                 });
             }
         },
+
+
+
+        resumeFileNameChange(state, payload) {
+            state.ResumePhotoName = payload;
+        },
+        resumeCreateFileURL(state, payload) {
+            state.ResumePhotoFileURL = payload;
+        },
         //cv create end
 
 

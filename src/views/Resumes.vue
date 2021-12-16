@@ -82,6 +82,8 @@ export default {
           date: timestamp,
           templateName: "Sherlock",
           resumeDocName: "cv-name",
+          ResumePhotoName: null,
+          ResumePhotoFileURL: null,
           personalDetailsSec: {
             sectionId: 'personal',
             sectionTitle: 'Personal Details',
