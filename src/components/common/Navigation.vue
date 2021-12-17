@@ -186,8 +186,9 @@ export default {
       }
     },
     signOut() {
-      firebase.auth().signOut();
-      this.$router.push("/", () => {});
+      firebase.auth().signOut().then(() => {
+        this.$router.push("/", () => {});
+      });
       // window.location.reload();
     },
   },
