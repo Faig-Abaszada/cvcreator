@@ -187,7 +187,7 @@ export default {
     },
     signOut() {
       firebase.auth().signOut();
-      this.$router.push({name: 'Home'});
+      this.$router.push("/", () => {});
       // window.location.reload();
     },
   },
