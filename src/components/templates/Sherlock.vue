@@ -16,7 +16,8 @@
       </div>
       <div id="header-right">
         <div id="headshot">
-          <img :src="resume.resumePhotoFileURL" alt="cv-photo">
+<!--          <img :src="`data:image/jpeg;base64,${this.resume.resumePhotoFile}`" alt="">-->
+          <img :src="`data:image/jpeg;base64,${this.resumePhotoFile}`" alt="">
         </div>
       </div>
     </div>
@@ -105,9 +106,18 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields'
 export default {
   name: 'Sherlock',
-  props: ['resume'],
+  // props: ['resume'],
+  computed: {
+    ...mapFields([
+        'resume',
+        'resumePhotoFile'
+    ])
+
+  }
+
 };
 </script>
 
@@ -198,14 +208,11 @@ export default {
     #header-right {
       width: 125px;
       float: right;
-      margin: 0px;
-      box-sizing: border-box;
-      height: 140px;
-      background-color: #FFF;
-      padding: 5px;
+
 
       img {
-        width: 100%;
+        width: 150px;
+
       }
 
     }

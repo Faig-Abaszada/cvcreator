@@ -8,23 +8,40 @@
             <label for="job-title">Wanted Job Title</label>
             <CommonInput :inputValue.sync="personalDetailsSec.jobTitle"/>
           </div>
-          <div class="input" :class="{ 'hasPhoto': this.resume.resumePhotoName }">
-
-            <input type="file"
-                   id="upload-photo"
-                   @change="fileChange"
-                   accept=".png, .jpg, .jpeg"
-                   ref="resumePhoto"
 
 
-            />
-            <label for="upload-photo" class="upload-photo" >
+
+
+
+          <div class="input" :class="{ 'hasPhoto': this.resume.resumePhotoFile }">
+<!--            <input type="file"-->
+<!--                   id="upload-photo"-->
+<!--                   @change="fileChange"-->
+<!--                   accept=".png, .jpg, .jpeg"-->
+<!--                   ref="resumePhoto"-->
+
+
+<!--            />-->
+            <label for="upload-photo" class="upload-photo" @click="toggleUpload" v-show="!this.resumePhotoFile">
               <UserIcon />Upload photo <TickIcon class="icon" v-show="this.resume.resumePhotoName"/>
             </label>
 
-<!--            <p>{{resume.resumePhotoName}}</p>-->
+            <div class="photo-container" v-show="this.resumePhotoFile">
+              <img :src="`data:image/jpeg;base64,${this.resumePhotoFile}`" alt="">
+              <delete-icon class="icon"  @click="$store.commit('setResumePhotoFile', null)"/>
+            </div>
+
+
+            <UploadImage v-show="isUpload" @closeModal="toggleUpload"/>
 
           </div>
+
+
+
+
+
+
+
         </div>
         <div class="inputs">
           <div class="input">
@@ -112,9 +129,12 @@
 
 import UserIcon from '../../assets/Icons/create-cv/upload-user.svg';
 import ArrowIcon from '../../assets/Icons/create-cv/arrow-right.svg';
+import DeleteIcon from '../../assets/Icons/create-cv/delete.svg';
 import TickIcon from '../../assets/Icons/create-cv/tick.svg';
 import CommonInput from "../CommonInput";
 import EditableText from "../EditableText";
+
+import UploadImage from "../UploadImage";
 
 import { mapFields } from 'vuex-map-fields';
 
@@ -123,9 +143,11 @@ export default {
   components: {
     UserIcon,
     ArrowIcon,
+    DeleteIcon,
     TickIcon,
     CommonInput,
-    EditableText
+    EditableText,
+    UploadImage
   },
   props: {
     personalDetailsSec: {
@@ -139,6 +161,7 @@ export default {
       sectionTitleValue: null,
       file: null,
       fileName: null,
+      isUpload: false,
     };
   },
   methods: {
@@ -165,6 +188,9 @@ export default {
       this.$store.commit( 'resumeCreateFileURL', URL.createObjectURL(this.file));
 
       console.log(this.$refs.resumePhoto.files[0].type.slice(6));
+    },
+    toggleUpload() {
+      this.isUpload = !this.isUpload;
     }
     // fileChange() {
     //   this.$store.state.resumePhotoFile = this.$refs.resumePhoto.files[0];
@@ -175,7 +201,8 @@ export default {
   },
   computed: {
     ...mapFields([
-        'resume'
+        'resume',
+        'resumePhotoFile'
     ])
   }
 
@@ -195,4 +222,30 @@ export default {
   }
 }
 
+.photo-container {
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px -1px #6f88c4;
+
+
+
+  img {
+    width: 50px;
+    border-radius: 3px;
+    margin-right: 20px;
+
+  }
+  .icon {
+    width: 40px;
+    color: #838383;
+    padding: 5px;
+
+    &:hover {
+      background-color: #0F141F;
+      color: red;
+      box-shadow: 0 0 2px 4px #0F141F;
+
+    }
+  }
+}
 </style>

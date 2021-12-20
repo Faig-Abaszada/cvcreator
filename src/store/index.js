@@ -39,37 +39,47 @@ export default new Vuex.Store({
         resumes: [],
         templateName: "BasicTheme",
         resume: {
-            templateName: "BasicTheme",
-            resumeDocName: "CV document Name 222222",
-            // resumeDocName: "CV document Name",
+            resumeID: null,
+            profileId: null,
+            date: null,
+            templateName: "Sherlock",
+            resumeDocName: "cv-name",
+            // resumePhotoFile: null,
+            resumePhotoName: null,
+            resumePhotoFileURL: null,
+            resumePhotoType: null,
             personalDetailsSec: {
+                sectionId: 'personal',
                 sectionTitle: 'Personal Details',
                 jobTitle: '',
-                PhotoName: '',
-                PhotoFileURL: null,
-                PhotoPreview: null,
-                FirstName: 'Faig',
-                LastName: 'Abaszad',
-                Email: null,
-                Phone: null,
-                Country: null,
-                City: null,
-                Address: null,
-                PostalCode: null,
-                DrivingLicense: null,
-                Nationality: null,
-                PlaceOfBirth: null,
-                DateOfBirth: null,
+                photoName: '',
+                photoFileURL: null,
+                photoPreview: null,
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                country: null,
+                city: null,
+                address: null,
+                postalCode: null,
+                drivingLicense: null,
+                nationality: null,
+                placeOfBirth: null,
+                dateOfBirth: null,
             },
             professionalSummarySec: {
+                sectionId: 'summary',
                 sectionTitle: 'Professional Summary',
-                summaryHTML: null,
+                summaryHTML: '',
             },
             skillsSec: {
+                sectionId: 'skills',
                 sectionTitle: 'Skills',
                 skills: [],
             },
             educationSec: {
+                sectionId: 'educations',
                 sectionTitle: 'Education',
                 educations: [
                     {
@@ -83,6 +93,7 @@ export default new Vuex.Store({
                 ],
             },
             socialLinksSec: {
+                sectionId: 'links',
                 sectionTitle: 'Websites & Social Links',
                 socialLinks: [
                     {
@@ -92,24 +103,27 @@ export default new Vuex.Store({
                 ],
             },
             employmentHistorySec: {
+                sectionId: 'employments',
                 sectionTitle: 'Employment History',
                 employmentHistories: [
-                    {
-                        position: null,
-                        employer: null,
-                        startDate: null,
-                        endDate: null,
-                        startAndEndDate: null,
-                        city: null,
-                        jobDescHTML: null,
-                    },
+                    // {
+                    //   position: 'frontend',
+                    //   company: null,
+                    //   startDate: '2015',
+                    //   endDate: null,
+                    //   startAndEndDate: null,
+                    //   city: 'baku',
+                    //   description: null,
+                    // },
                 ],
             },
             hobbiesSec: {
+                sectionId: 'hobbies',
                 sectionTitle: 'Hobbies',
                 hobbiesText: null,
             },
             coursesSec: {
+                sectionId: 'courses',
                 sectionTitle: 'Courses',
                 courses: [
                     {
@@ -122,6 +136,7 @@ export default new Vuex.Store({
                 ],
             },
             internshipsSec: {
+                sectionId: 'internships',
                 sectionTitle: 'Internships',
                 internships: [
                     {
@@ -136,6 +151,7 @@ export default new Vuex.Store({
                 ],
             },
             languagesSec: {
+                sectionId: 'languages',
                 sectionTitle: 'Languages',
                 languagesSec: [
                     {
@@ -145,6 +161,7 @@ export default new Vuex.Store({
                 ],
             },
             referencesSec: {
+                sectionId: 'references',
                 sectionTitle: 'References',
                 references: [
                     {
@@ -156,6 +173,7 @@ export default new Vuex.Store({
                 ],
             },
             extraActivitiesSec: {
+                sectionId: 'activities',
                 sectionTitle: 'Extra-curricular Activities',
                 extraActivities: [
                     {
@@ -170,6 +188,7 @@ export default new Vuex.Store({
                 ],
             },
             customSectionSec: {
+                sectionId: 'customs',
                 sectionTitle: 'Untitled Edit Me!',
                 customSectionSec: [
                     {
@@ -183,6 +202,8 @@ export default new Vuex.Store({
             },
         },
         resumePhotoFile: null,
+
+
         // create cv page end
         // resume: null,
         resumeLoaded: null,
@@ -284,6 +305,11 @@ export default new Vuex.Store({
             state.resume.resumePhotoFileURL = payload;
 
         },
+        // resume photo
+        setResumePhotoFile(state, payload) {
+            state.resumePhotoFile = payload;
+        },
+
         //cv create end
 
 
