@@ -82,7 +82,7 @@ export default {
           date: timestamp,
           templateName: "Sherlock",
           resumeDocName: "cv-name",
-          // resumePhotoFile: null,
+          resumePhotoFile: null,
           resumePhotoName: null,
           resumePhotoFileURL: null,
           resumePhotoType: null,

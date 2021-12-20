@@ -17,7 +17,7 @@
       <div id="header-right">
         <div id="headshot">
 <!--          <img :src="`data:image/jpeg;base64,${this.resume.resumePhotoFile}`" alt="">-->
-          <img :src="`data:image/jpeg;base64,${this.resumePhotoFile}`" alt="">
+          <img :src="`data:image/jpeg;base64,${this.resume.resumePhotoFile}`" alt="">
         </div>
       </div>
     </div>

@@ -231,6 +231,7 @@ export default {
   methods: {
     uploadPhoto() {
       this.$store.commit('setResumePhotoFile', this.cropImg.split(',')[1]);
+      this.resume.resumePhotoFile = this.resumePhotoFile;
       this.closeModal();
       // this.resume.resumePhotoFile = this.cropImg.split(',')[1];
 

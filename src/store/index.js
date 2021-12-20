@@ -44,7 +44,7 @@ export default new Vuex.Store({
             date: null,
             templateName: "Sherlock",
             resumeDocName: "cv-name",
-            // resumePhotoFile: null,
+            resumePhotoFile: null,
             resumePhotoName: null,
             resumePhotoFileURL: null,
             resumePhotoType: null,

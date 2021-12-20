@@ -13,7 +13,7 @@
 
 
 
-          <div class="input" :class="{ 'hasPhoto': this.resume.resumePhotoFile }">
+          <div class="input">
 <!--            <input type="file"-->
 <!--                   id="upload-photo"-->
 <!--                   @change="fileChange"-->
@@ -22,12 +22,12 @@
 
 
 <!--            />-->
-            <label for="upload-photo" class="upload-photo" @click="toggleUpload" v-show="!this.resumePhotoFile">
+            <label for="upload-photo" class="upload-photo" @click="toggleUpload" v-show="!this.resume.resumePhotoFile">
               <UserIcon />Upload photo
             </label>
 
-            <div class="photo-container" v-show="this.resumePhotoFile">
-              <img :src="`data:image/jpeg;base64,${this.resumePhotoFile}`" alt="">
+            <div class="photo-container" v-show="this.resume.resumePhotoFile">
+              <img :src="`data:image/jpeg;base64,${this.resume.resumePhotoFile}`" alt="">
               <delete-icon class="icon"  @click="$store.commit('setResumePhotoFile', null)"/>
             </div>
 
@@ -208,18 +208,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.hasPhoto {
-  background-color: lawngreen !important;
-
-  * {
-    color: #0F141F !important;
-    font-weight: 600;
-  }
-  .icon {
-    width: 40px;
-  }
-}
-
 .photo-container {
   width: 100%;
   border-radius: 3px;

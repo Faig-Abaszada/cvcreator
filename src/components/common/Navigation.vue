@@ -30,22 +30,28 @@
           </router-link>
         </ul>
 
-        <div
+        <button
           v-if="user && !this.mobile"
-          @click="toggleProfileMenu"
+          @click="profileMenu = !profileMenu"
+          @blur="toggleProfileMenu"
           class="profile"
           ref="profile"
         >
-          <span>{{ this.$store.state.profileInitials }}</span>
+                    <span v-show="!profilePhoto">{{ this.$store.state.profileInitials }}</span>
+                    <span>
+                      <img :src="`data:image/jpeg;base64,${this.profilePhoto}`" v-if="this.profilePhoto">
+                    </span>
           <div v-show="profileMenu" class="profile-menu">
             <div class="info">
-              <p class="initials">{{ this.$store.state.profileInitials }}</p>
+              <span v-show="!profilePhoto">{{ this.$store.state.profileInitials }}</span>
+              <span>
+                <img :src="`data:image/jpeg;base64,${this.profilePhoto}`" v-if="this.profilePhoto">
+              </span>
               <div class="right">
                 <p>
                   {{ this.$store.state.profileFirstName }}
                   {{ this.$store.state.profileLastName }}
                 </p>
-                <p>{{ this.$store.state.profileUserName }}</p>
                 <p>{{ this.$store.state.profileEmail }}</p>
               </div>
             </div>
@@ -56,19 +62,19 @@
                   <p>Profile</p>
                 </router-link>
               </div>
-              <div class="option" v-show="admin">
-                <router-link class="option" :to="{ name: 'Admin' }">
-                  <adminIcon class="icon" />
-                  <p>Admin</p>
-                </router-link>
-              </div>
+<!--              <div class="option" v-show="admin">-->
+<!--                <router-link class="option" :to="{ name: 'Admin' }">-->
+<!--                  <adminIcon class="icon" />-->
+<!--                  <p>Admin</p>-->
+<!--                </router-link>-->
+<!--              </div>-->
               <div @click="signOut" class="option">
                 <signOutIcon class="icon" />
                 <p>Sign Out</p>
               </div>
             </div>
           </div>
-        </div>
+        </button>
 
       </div>
     </nav>
@@ -130,7 +136,7 @@ import logo from '../../assets/logo.png';
 import menuIcon from '../../assets/Icons/bars-regular.svg';
 import XIcon from '../../assets/Icons/create-cv/close-x.svg';
 import userIcon from '../../assets/Icons/user-alt-light.svg';
-import adminIcon from '../../assets/Icons/user-crown-light.svg';
+// import adminIcon from '../../assets/Icons/user-crown-light.svg';
 import signOutIcon from '../../assets/Icons/sign-out-alt-regular.svg';
 
 import UpgradeIcon from '../../assets/Icons/upgrade.svg';
@@ -144,13 +150,13 @@ export default {
     menuIcon,
     userIcon,
     signOutIcon,
-    adminIcon,
+    // adminIcon,
     UpgradeIcon,
     XIcon
   },
   data() {
     return {
-      profileMenu: null,
+      profileMenu: true,
       logo: logo,
       mobile: null, // screen is mobile or not
       mobileNav: null, //  if mobile nav is open
@@ -180,10 +186,13 @@ export default {
     toggleMobileNav() {
       this.mobileNav = !this.mobileNav;
     },
-    toggleProfileMenu(e) {
-      if (e.target === this.$refs.profile) {
-        this.profileMenu = !this.profileMenu;
-      }
+    toggleProfileMenu() {
+      setTimeout(() => {
+        this.profileMenu = false;
+      },200)
+      // if (e.target === this.$refs.profile) {
+      //
+      // }
     },
     signOut() {
       firebase.auth().signOut().then(() => {
@@ -199,6 +208,9 @@ export default {
     admin() {
       return this.$store.state.admin;
     },
+    profilePhoto() {
+      return this.$store.state.resume.resumePhotoFile;
+    }
   },
 };
 </script>
@@ -234,7 +246,7 @@ header {
     //max-width: 100px;
     background-color: #2196f3;
     color: #fff;
-    padding: 6px;
+    //padding: 6px;
     padding-right: 10px;
     display: flex;
     flex-direction: row;
@@ -287,13 +299,26 @@ header {
         justify-content: center;
         width: 40px;
         height: 40px;
-        margin-right: 50px;
         border-radius: 50%;
-        color: #fff;
-        background-color: #303030;
+        color: #000;
+        text-transform: uppercase;
+        background-color: #ffffff;
+        box-shadow: 0 0 5px 0px #0F141F;
 
         span {
           pointer-events: none;
+        }
+        img {
+          //position: absolute;
+          //top: 0;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: scale-down;
+          padding: 3px;
+
+
+
         }
 
         .profile-menu {
@@ -301,15 +326,22 @@ header {
           top: 60px;
           right: 0;
           width: 250px;
-          background-color: #303030;
+          background-color: #0F141F;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
             0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
+          color: #fff;
+          border-radius: 10px;
           .info {
             display: flex;
             align-items: center;
             padding: 15px;
             border-bottom: 1px solid #fff;
+
+            img {
+              background-color: #f1f1f1;
+              box-shadow: 0 0 5px 0px #fff;
+            }
+
 
             .initials {
               position: initial;
@@ -319,13 +351,14 @@ header {
               color: #303030;
               display: flex;
               align-items: center;
-              justify-content: center;
+              //justify-content: center;
               border-radius: 50%;
             }
 
             .right {
               flex: 1;
               margin-left: 24px;
+              text-align: left;
 
               p:nth-child(1) {
                 font-size: 14px;
@@ -334,6 +367,8 @@ header {
               p:nth-child(3) {
                 font-size: 12px;
               }
+
+
             }
           }
 
@@ -354,11 +389,17 @@ header {
               p {
                 font-size: 14px;
                 margin-left: 12px;
+                margin-bottom: 0;
               }
 
               &:last-child {
                 margin-bottom: 0px;
               }
+
+              //a {
+              //  display: flex;
+              //  align-items: center;
+              //}
             }
           }
         }
