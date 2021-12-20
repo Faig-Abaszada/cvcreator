@@ -585,6 +585,7 @@ export default {
               margin-bottom: 5px;
             }
             input {
+              width: 100%;
               border: none;
               background-color: rgb(242, 245, 250);
               // background-color: #e8f0fe;

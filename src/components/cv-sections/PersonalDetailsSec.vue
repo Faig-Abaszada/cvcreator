@@ -130,7 +130,6 @@
 import UserIcon from '../../assets/Icons/create-cv/upload-user.svg';
 import ArrowIcon from '../../assets/Icons/create-cv/arrow-right.svg';
 import DeleteIcon from '../../assets/Icons/create-cv/delete.svg';
-import TickIcon from '../../assets/Icons/create-cv/tick.svg';
 import CommonInput from "../CommonInput";
 import EditableText from "../EditableText";
 
@@ -144,7 +143,6 @@ export default {
     UserIcon,
     ArrowIcon,
     DeleteIcon,
-    TickIcon,
     CommonInput,
     EditableText,
     UploadImage

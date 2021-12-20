@@ -11,7 +11,7 @@
           @change="setImage"
       />
 
-      <div class="content" v-show="imgSrc">
+      <div class="content" v-show="cropImg && !rendering">
         <section class="cropper-area">
           <div class="img-cropper">
             <vue-cropper
@@ -185,7 +185,8 @@
 <!--        sjhhjsghjgsjhgsjhjgsh-->
       </div>
 
-      <button class="primary-button" @click.prevent="showFileChooser" v-show="!imgSrc">Upload Image</button>
+      <button class="primary-button" @click.prevent="showFileChooser" v-show="!cropImg && !rendering">Upload Image</button>
+      <img class="loading-gif" v-show="rendering" :src='require("@/assets/gifs/dotted-loading.gif")'>
     </div>
 
     <button class="primary-button close-button" @click="closeModal">
@@ -213,12 +214,14 @@ export default {
     ZoomMinusIcon,
     RotateIcon,
     XIcon,
+
   },
   data() {
     return {
       imgSrc: null,
       cropImg: '',
       data: null,
+      rendering: false,
     };
   },
   mounted() {
@@ -228,6 +231,7 @@ export default {
   methods: {
     uploadPhoto() {
       this.$store.commit('setResumePhotoFile', this.cropImg.split(',')[1]);
+      this.closeModal();
       // this.resume.resumePhotoFile = this.cropImg.split(',')[1];
 
     },
@@ -238,6 +242,8 @@ export default {
       this.$emit('closeModal', false);
     },
     setImage(e) {
+      this.rendering = true;
+
       const file = e.target.files[0];
       if (file.type.indexOf('image/') === -1) {
         alert('Please select an image file');
@@ -248,20 +254,25 @@ export default {
         reader.onload = (event) => {
           this.imgSrc = event.target.result;
           this.cropImg = event.target.result;
+          setTimeout(() => {
+            this.rendering = false;
+          },500);
           // rebuild cropperjs with the updated source
           this.$refs.cropper.replace(event.target.result);
+
           setTimeout(() => {
             this.move(1, 1);
-          }, 100)
+          }, 100);
 
         };
         reader.readAsDataURL(file);
 
 
-
       } else {
         alert('Sorry, FileReader API not supported');
       }
+
+
     },
 
 
@@ -347,6 +358,9 @@ export default {
     border-radius: 20px;
     position: relative;
 
+    .loading {
+      width: 100px;
+    }
 
     button {
       align-self: end;
