@@ -23,7 +23,7 @@
 
 <!--            />-->
             <label for="upload-photo" class="upload-photo" @click="toggleUpload" v-show="!this.resumePhotoFile">
-              <UserIcon />Upload photo <TickIcon class="icon" v-show="this.resume.resumePhotoName"/>
+              <UserIcon />Upload photo
             </label>
 
             <div class="photo-container" v-show="this.resumePhotoFile">
