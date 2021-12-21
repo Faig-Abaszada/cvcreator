@@ -28,7 +28,7 @@
 
             <div class="photo-container" v-show="this.resume.resumePhotoFile">
               <img :src="`data:image/jpeg;base64,${this.resume.resumePhotoFile}`" alt="">
-              <delete-icon class="icon"  @click="$store.commit('setResumePhotoFile', null)"/>
+              <delete-icon class="icon"  @click="$store.commit('removeResumePhotoFile', null)"/>
             </div>
 
 

@@ -309,6 +309,11 @@ export default new Vuex.Store({
         setResumePhotoFile(state, payload) {
             state.resumePhotoFile = payload;
         },
+        removeResumePhotoFile(state, payload) {
+            state.resume.resumePhotoFile = payload;
+            state.resumePhotoFile = payload;
+
+        },
 
         //cv create end
 
