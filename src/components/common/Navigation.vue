@@ -300,7 +300,7 @@ header {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        color: #000;
+         color: #000;
         text-transform: uppercase;
         background-color: #ffffff;
         box-shadow: 0 0 5px 0px #0F141F;

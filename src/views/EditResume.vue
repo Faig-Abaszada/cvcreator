@@ -1,10 +1,10 @@
 <template>
 <!--  <div class="create-cv-wrapper" v-if="this.$store.state.resumeLoaded">-->
-    <div class="create-cv-wrapper" >
+
+  <div class="create-cv-wrapper" >
     <Loading v-show="loading" />
     <SelectTemplate @templateIs="templateIs = $event" v-show="templateIs"  @updatedTemplateName="getAndSetCurrentResume"/>
-
-
+    <Modal v-show="updated" :modalMessage="'Successfully Updated!'" :from="'updated'" @close-modal="updated = false"/>
 <!--    mobile olanda preview gosterirdik ama eslinde select-temp- i gostermeli idik cunku orda hem preview var hemde temp changer   -->
 <!--      <button v-show="mobile === true" @click="mobilePreview = true" class="prev-and-down-button">-->
 <!--        Preview & Download <DocIcon class="icon"/>-->
@@ -104,6 +104,7 @@ import {mapFields} from "vuex-map-fields";
 import SelectTemplate from "../components/SelectTemplate";
 import EditableText from "../components/EditableText";
 import Flags from "../components/Flags";
+import Modal from "../components/common/Modal";
 
 import firebase from "firebase/app";
 import 'firebase/storage';
@@ -129,6 +130,7 @@ export default {
     SelectTemplate,
     EditableText,
     Flags,
+    Modal,
   },
   data() {
     return {
@@ -145,6 +147,7 @@ export default {
       mobilePreview: null,
       scrolledToBottom: false,
       windowWidth: null,
+      updated: true,
     };
   },
   mounted() {
@@ -263,6 +266,8 @@ export default {
       await this.$store.dispatch('getResumes');
 
       this.loading = false;
+      this.updated = true;
+
     },
     checkScreen() {
       this.windowWidth = window.innerWidth;
