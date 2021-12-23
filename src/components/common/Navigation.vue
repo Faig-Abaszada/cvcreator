@@ -156,7 +156,7 @@ export default {
   },
   data() {
     return {
-      profileMenu: true,
+      profileMenu: false,
       logo: logo,
       mobile: null, // screen is mobile or not
       mobileNav: null, //  if mobile nav is open

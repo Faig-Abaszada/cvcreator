@@ -147,7 +147,7 @@ export default {
       mobilePreview: null,
       scrolledToBottom: false,
       windowWidth: null,
-      updated: true,
+      updated: false,
     };
   },
   mounted() {
