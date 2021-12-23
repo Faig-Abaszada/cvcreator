@@ -63,7 +63,7 @@
              <a
                  href="#"
                  role="button"
-                 @click.prevent="move(-10, 0)"
+                 @click.prevent="move(10, 0)"
                  class="left"
              >
                <arrow-icon class="icon" />
@@ -71,7 +71,7 @@
              <a
                  href="#"
                  role="button"
-                 @click.prevent="move(10, 0)"
+                 @click.prevent="move(-10, 0)"
                  class="right"
              >
                <arrow-icon class="icon" />
@@ -79,7 +79,7 @@
              <a
                  href="#"
                  role="button"
-                 @click.prevent="move(0, -10)"
+                 @click.prevent="move(0, 10)"
                  class="up"
              >
                <arrow-icon class="icon" />
@@ -87,7 +87,7 @@
              <a
                  href="#"
                  role="button"
-                 @click.prevent="move(0, 10)"
+                 @click.prevent="move(0, -10)"
                  class="down"
              >
                <arrow-icon class="icon" />
