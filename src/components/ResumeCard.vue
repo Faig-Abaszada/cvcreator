@@ -176,6 +176,7 @@ export default {
   @media (max-width: 800px ) {
     .resume-doc {
       //transform: scale(0.1);
+      height: 228px;
     }
   }
 
@@ -197,6 +198,9 @@ export default {
     border: 5px solid #e5e5e5;
     border-radius: 30px;
     cursor: pointer;
+    height: 228px;
+    overflow-y: hidden;
+
   }
 
 
